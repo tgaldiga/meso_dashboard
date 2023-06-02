@@ -1,0 +1,3717 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Dashboard",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "f70210d4f539c189",
+        "type": "tab",
+        "label": "Communication",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9de811dcbdfe509c",
+        "type": "tab",
+        "label": "Configuration",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "275a8126f3a15dcd",
+        "type": "ui_tab",
+        "name": "Central Control",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "367ffba239b612fd",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "CentralControl",
+                "default": "#4B7930",
+                "baseColor": "#008040",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "reset": false
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": true
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": true
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": true
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": true
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": true
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": true
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": true
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "light-green",
+                "accents": "light-green",
+                "warn": "red",
+                "background": "grey",
+                "palette": "dark"
+            }
+        },
+        "site": {
+            "name": "Mesocosms Central Control",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD.MM.YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "488e4680b3501a91",
+        "type": "ui_group",
+        "name": "Tankpair 1",
+        "tab": "275a8126f3a15dcd",
+        "order": 1,
+        "disp": true,
+        "width": "8",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "a013ae35ae3afd26",
+        "type": "ui_group",
+        "name": "Tankpair 2",
+        "tab": "275a8126f3a15dcd",
+        "order": 2,
+        "disp": true,
+        "width": 8,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "163ea7d09f4bf58e",
+        "type": "ui_group",
+        "name": "Tankpair 3",
+        "tab": "275a8126f3a15dcd",
+        "order": 3,
+        "disp": true,
+        "width": 8,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "721874ef308b3b34",
+        "type": "ui_tab",
+        "name": "Configuration",
+        "icon": "settings",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "9965b02dfa6e8ff8",
+        "type": "ui_group",
+        "name": "Network addresses",
+        "tab": "721874ef308b3b34",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c41bd9b0d16e9aef",
+        "type": "ui_spacer",
+        "z": "f6f2187d.f17ca8",
+        "name": "spacer",
+        "group": "488e4680b3501a91",
+        "order": 7,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "51612f3f5ffa20f1",
+        "type": "ui_spacer",
+        "z": "f6f2187d.f17ca8",
+        "name": "spacer",
+        "group": "488e4680b3501a91",
+        "order": 14,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "88b7a27cbb4de79c",
+        "type": "ui_spacer",
+        "z": "f6f2187d.f17ca8",
+        "name": "spacer",
+        "group": "a013ae35ae3afd26",
+        "order": 7,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "8b9179a3aa0ba0dd",
+        "type": "ui_spacer",
+        "z": "f6f2187d.f17ca8",
+        "name": "spacer",
+        "group": "a013ae35ae3afd26",
+        "order": 14,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "ec22db868cb931c8",
+        "type": "ui_spacer",
+        "z": "f6f2187d.f17ca8",
+        "name": "spacer",
+        "group": "163ea7d09f4bf58e",
+        "order": 7,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "4e8d19607f24dd92",
+        "type": "ui_spacer",
+        "z": "f6f2187d.f17ca8",
+        "name": "spacer",
+        "group": "163ea7d09f4bf58e",
+        "order": 14,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "de5b45c21d2b6f84",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "Tankpair 1",
+        "info": "",
+        "x": 620,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "9c8eb983134ace82",
+        "type": "ui_dropdown",
+        "z": "f6f2187d.f17ca8",
+        "name": "operating_mode_1",
+        "label": "Set Mode",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "488e4680b3501a91",
+        "order": 1,
+        "width": 8,
+        "height": 1,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Automatic cycle",
+                "value": 0,
+                "type": "num"
+            },
+            {
+                "label": "Measure tank A",
+                "value": 1,
+                "type": "num"
+            },
+            {
+                "label": "Measure tank B",
+                "value": 2,
+                "type": "num"
+            },
+            {
+                "label": "Drain Sensor",
+                "value": 3,
+                "type": "num"
+            },
+            {
+                "label": "Stop",
+                "value": 4,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "operating_mode_1",
+        "topicType": "str",
+        "className": "",
+        "x": 650,
+        "y": 80,
+        "wires": [
+            [
+                "a6779e25bc2c3056"
+            ]
+        ]
+    },
+    {
+        "id": "fd4479e7d5cff27e",
+        "type": "ui_numeric",
+        "z": "f6f2187d.f17ca8",
+        "name": "temperature_setpoint_1a",
+        "label": "Temperature setpoint A",
+        "tooltip": "",
+        "group": "488e4680b3501a91",
+        "order": 5,
+        "width": 4,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "temperature_setpoint_1a",
+        "topicType": "str",
+        "format": "{{value}} °C",
+        "min": 0,
+        "max": "25",
+        "step": "0.1",
+        "className": "",
+        "x": 590,
+        "y": 180,
+        "wires": [
+            [
+                "a6779e25bc2c3056"
+            ]
+        ]
+    },
+    {
+        "id": "ee95cf47de12d099",
+        "type": "ui_numeric",
+        "z": "f6f2187d.f17ca8",
+        "name": "temperature_setpoint_1b",
+        "label": "Temperature setpoint B",
+        "tooltip": "",
+        "group": "488e4680b3501a91",
+        "order": 6,
+        "width": 4,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "temperature_setpoint_1b",
+        "topicType": "str",
+        "format": "{{value}} °C",
+        "min": 0,
+        "max": "25",
+        "step": "0.1",
+        "className": "",
+        "x": 590,
+        "y": 220,
+        "wires": [
+            [
+                "a6779e25bc2c3056"
+            ]
+        ]
+    },
+    {
+        "id": "0966b4a1f47ced5d",
+        "type": "ui_switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "automatic_tide_1a",
+        "label": "Automatic Tide A",
+        "tooltip": "",
+        "group": "488e4680b3501a91",
+        "order": 8,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "automatic_tide_1a",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 610,
+        "y": 280,
+        "wires": [
+            [
+                "b53bfceb45cf35cd",
+                "a6779e25bc2c3056"
+            ]
+        ]
+    },
+    {
+        "id": "698288cd36ac9e8b",
+        "type": "ui_switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "automatic_tide_1b",
+        "label": "Automatic Tide B",
+        "tooltip": "",
+        "group": "488e4680b3501a91",
+        "order": 9,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "automatic_tide_1b",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 610,
+        "y": 320,
+        "wires": [
+            [
+                "1d7f0e856fb1959e",
+                "a6779e25bc2c3056"
+            ]
+        ]
+    },
+    {
+        "id": "1f500c9320222ed4",
+        "type": "ui_slider",
+        "z": "f6f2187d.f17ca8",
+        "name": "tide_level_1a",
+        "label": "Tide A [mm]",
+        "tooltip": "",
+        "group": "488e4680b3501a91",
+        "order": 10,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "outs": "end",
+        "topic": "tide_level_1a",
+        "topicType": "str",
+        "min": 0,
+        "max": "780",
+        "step": 1,
+        "className": "",
+        "x": 630,
+        "y": 380,
+        "wires": [
+            [
+                "a6779e25bc2c3056"
+            ]
+        ]
+    },
+    {
+        "id": "131a3c2ebebd0604",
+        "type": "ui_slider",
+        "z": "f6f2187d.f17ca8",
+        "name": "tide_level_1b",
+        "label": "Tide level B [mm]",
+        "tooltip": "",
+        "group": "488e4680b3501a91",
+        "order": 11,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "outs": "end",
+        "topic": "tide_level_1b",
+        "topicType": "str",
+        "min": 0,
+        "max": "780",
+        "step": 1,
+        "className": "",
+        "x": 630,
+        "y": 420,
+        "wires": [
+            [
+                "a6779e25bc2c3056"
+            ]
+        ]
+    },
+    {
+        "id": "b53bfceb45cf35cd",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "enable/disable",
+        "func": "msg.enabled = !Boolean(msg.payload);\ndelete msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 360,
+        "wires": [
+            [
+                "1f500c9320222ed4"
+            ]
+        ]
+    },
+    {
+        "id": "1d7f0e856fb1959e",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "enable/disable",
+        "func": "msg.enabled = !Boolean(msg.payload);\ndelete msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 400,
+        "wires": [
+            [
+                "131a3c2ebebd0604"
+            ]
+        ]
+    },
+    {
+        "id": "7b28da556cb86150",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "temperature_1a",
+        "group": "488e4680b3501a91",
+        "order": 15,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Temperature (A)",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "30",
+        "colors": [
+            "#80ffff",
+            "#80ff80",
+            "#ff8000"
+        ],
+        "seg1": "10",
+        "seg2": "20",
+        "diff": false,
+        "className": "",
+        "x": 560,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "8126cf03d00e206b",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "temperature_1b",
+        "group": "488e4680b3501a91",
+        "order": 16,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Temperature (B)",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "30",
+        "colors": [
+            "#80ffff",
+            "#80ff80",
+            "#ff8000"
+        ],
+        "seg1": "10",
+        "seg2": "20",
+        "diff": false,
+        "className": "",
+        "x": 560,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "8bcb1d1bb225552c",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "acidity_1a",
+        "group": "488e4680b3501a91",
+        "order": 17,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "pH-Value (A)",
+        "label": "",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "14",
+        "colors": [
+            "#ff8000",
+            "#80ff80",
+            "#0080ff"
+        ],
+        "seg1": "7",
+        "seg2": "8.5",
+        "diff": false,
+        "className": "",
+        "x": 540,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "bbe340e0cdd1a9a2",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "salinity_1a",
+        "group": "488e4680b3501a91",
+        "order": 19,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Salinity (A)",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ff8000",
+            "#80ff80",
+            "#0080ff"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 550,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "6eee4f259d0bdac2",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "oxygen_1a",
+        "group": "488e4680b3501a91",
+        "order": 21,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Oxygen (A)",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "20",
+        "colors": [
+            "#ff8000",
+            "#80ff80",
+            "#0080ff"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 550,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "63248366dd54a514",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "488e4680b3501a91",
+        "order": 3,
+        "width": 4,
+        "height": 1,
+        "name": "",
+        "label": "<b>Tank A</b>",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 560,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "b530ed940ae18462",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "488e4680b3501a91",
+        "order": 4,
+        "width": 4,
+        "height": 1,
+        "name": "",
+        "label": "<b>Tank B</b>",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 560,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "ca87bd899fc74c26",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "acidity_1b",
+        "group": "488e4680b3501a91",
+        "order": 18,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "pH-Value (B)",
+        "label": "",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "14",
+        "colors": [
+            "#ff8000",
+            "#80ff80",
+            "#0080ff"
+        ],
+        "seg1": "7",
+        "seg2": "8.5",
+        "diff": false,
+        "className": "",
+        "x": 540,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "3c45444017542cdb",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "salinity_1b",
+        "group": "488e4680b3501a91",
+        "order": 20,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Salinity (B)",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ff8000",
+            "#80ff80",
+            "#0080ff"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 550,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "4311981f87b43852",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "oxygen_1b",
+        "group": "488e4680b3501a91",
+        "order": 22,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Oxygen (B)",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "20",
+        "colors": [
+            "#ff8000",
+            "#80ff80",
+            "#0080ff"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 550,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "c988a36d80497fea",
+        "type": "link in",
+        "z": "f6f2187d.f17ca8",
+        "name": "lnk_in_pair1json",
+        "links": [
+            "e80724df446a62ff"
+        ],
+        "x": 45,
+        "y": 460,
+        "wires": [
+            [
+                "f9087cdd61f15d5b",
+                "ce0735f83c2e4526",
+                "25c34937816d0618",
+                "64aac7e5de01a2fc",
+                "7b09d19f08b21909",
+                "f10c670d9d931a34",
+                "bcc79456087b085b",
+                "f372c870698e63e2",
+                "2b0ee7a58605b33f",
+                "c72e2082e874e8c5",
+                "75d9f3ec3ae57ce9",
+                "90aa685d2c19c424",
+                "e75f730fb2a37afe",
+                "54893ea6bf17afb5",
+                "20dfb901a224b5f0",
+                "c70f2c0df730d821",
+                "caeb741fa3fcbdf2",
+                "27bb203c70a3984a"
+            ]
+        ]
+    },
+    {
+        "id": "90aa685d2c19c424",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "oxygen_b",
+        "func": "msg.payload = msg.payload.system.tank_b.o2_concentration;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 920,
+        "wires": [
+            [
+                "4311981f87b43852"
+            ]
+        ]
+    },
+    {
+        "id": "75d9f3ec3ae57ce9",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "salinity",
+        "func": "msg.payload = msg.payload.system.tank_b.salinity;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 880,
+        "wires": [
+            [
+                "3c45444017542cdb"
+            ]
+        ]
+    },
+    {
+        "id": "c72e2082e874e8c5",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "acidity_b",
+        "func": "msg.payload = msg.payload.system.tank_b.acidity;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 840,
+        "wires": [
+            [
+                "ca87bd899fc74c26"
+            ]
+        ]
+    },
+    {
+        "id": "2b0ee7a58605b33f",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "temperature_b",
+        "func": "msg.payload = msg.payload.system.tank_b.temperature.current;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 800,
+        "wires": [
+            [
+                "8126cf03d00e206b"
+            ]
+        ]
+    },
+    {
+        "id": "f9087cdd61f15d5b",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "oxygen_a",
+        "func": "msg.payload = msg.payload.system.tank_a.o2_concentration;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 720,
+        "wires": [
+            [
+                "6eee4f259d0bdac2"
+            ]
+        ]
+    },
+    {
+        "id": "ce0735f83c2e4526",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "salinity_a",
+        "func": "msg.payload = msg.payload.system.tank_a.salinity;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 680,
+        "wires": [
+            [
+                "bbe340e0cdd1a9a2"
+            ]
+        ]
+    },
+    {
+        "id": "25c34937816d0618",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "acidity_a",
+        "func": "msg.payload = msg.payload.system.tank_a.acidity;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 640,
+        "wires": [
+            [
+                "8bcb1d1bb225552c"
+            ]
+        ]
+    },
+    {
+        "id": "64aac7e5de01a2fc",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "temperature_a",
+        "func": "msg.payload = msg.payload.system.tank_a.temperature.current;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 600,
+        "wires": [
+            [
+                "7b28da556cb86150"
+            ]
+        ]
+    },
+    {
+        "id": "7b09d19f08b21909",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "t_setpoint_a",
+        "func": "msg.payload = msg.payload.system.tank_a.temperature.target;\nif (msg.payload != context.get(\"last_setting\")) {\n    context.set(\"last_setting\", msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"last_setting\", -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 180,
+        "wires": [
+            [
+                "fd4479e7d5cff27e"
+            ]
+        ]
+    },
+    {
+        "id": "f10c670d9d931a34",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "t_setpoint_b",
+        "func": "msg.payload = msg.payload.system.tank_b.temperature.target;\nif (msg.payload != context.get(\"last_setting\")) {\n    context.set(\"last_setting\", msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"last_setting\", -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 220,
+        "wires": [
+            [
+                "ee95cf47de12d099"
+            ]
+        ]
+    },
+    {
+        "id": "bcc79456087b085b",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "tide_setpoint_b",
+        "func": "msg.payload = msg.payload.system.tank_b.platform_position.target;\nif (msg.payload != context.get(\"last_setting\")) {\n    context.set(\"last_setting\", msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"last_setting\", -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 420,
+        "wires": [
+            [
+                "131a3c2ebebd0604"
+            ]
+        ]
+    },
+    {
+        "id": "f372c870698e63e2",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "tide_setpoint_a",
+        "func": "msg.payload = msg.payload.system.tank_a.platform_position.target;\nif (msg.payload != context.get(\"last_setting\")) {\n    context.set(\"last_setting\", msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"last_setting\", -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 380,
+        "wires": [
+            [
+                "1f500c9320222ed4"
+            ]
+        ]
+    },
+    {
+        "id": "83ba558c02642c01",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "488e4680b3501a91",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "current_state_1",
+        "label": "Current state:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 560,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "e75f730fb2a37afe",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "current_state",
+        "func": "msg.payload = msg.payload.system.state;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 120,
+        "wires": [
+            [
+                "83ba558c02642c01"
+            ]
+        ]
+    },
+    {
+        "id": "54893ea6bf17afb5",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "auto_tide_a",
+        "func": "msg.payload = msg.payload.system.tank_a.platform_position.auto_tide;\nif (msg.payload != context.get(\"last_setting\")) {\n    context.set(\"last_setting\", msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"last_setting\", -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 280,
+        "wires": [
+            [
+                "0966b4a1f47ced5d"
+            ]
+        ]
+    },
+    {
+        "id": "20dfb901a224b5f0",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "auto_tide_b",
+        "func": "msg.payload = msg.payload.system.tank_b.platform_position.auto_tide;\nif (msg.payload != context.get(\"last_setting\")) {\n    context.set(\"last_setting\", msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"last_setting\", -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 320,
+        "wires": [
+            [
+                "698288cd36ac9e8b"
+            ]
+        ]
+    },
+    {
+        "id": "a6779e25bc2c3056",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "construct REST-request pair 1",
+        "func": "// if message is a passed through update from the REST-api do nothing\nif(\"headers\" in msg) {\n    return null;\n}\n\n// if message comes from a change in the dashboard send request to REST-api\nvar config = global.get(\"configuration\");\nmsg.url = config[\"url_pair_1\"];\n\nswitch(msg.topic) {\n    case \"operating_mode_1\":\n        msg.url = msg.url + \"/system/operating-mode\";\n        msg.payload = { \"operating_mode\": msg.payload };\n        break;\n    case \"temperature_setpoint_1a\":\n        msg.url = msg.url + \"/system/tank-a/temperature/target\";\n        msg.payload = { \"target\": msg.payload };\n        break;\n    case \"temperature_setpoint_1b\":\n        msg.url = msg.url + \"/system/tank-b/temperature/target\";\n        msg.payload = { \"target\": msg.payload };\n        break;\n    case \"automatic_tide_1a\":\n        msg.url = msg.url + \"/system/tank-a/platform-position/auto-tide\";\n        msg.payload = { \"auto_tide\": msg.payload };\n        break;\n    case \"automatic_tide_1b\":\n        msg.url = msg.url + \"/system/tank-b/platform-position/auto-tide\";\n        msg.payload = { \"auto_tide\": msg.payload };\n        break;\n    case \"tide_level_1a\":\n        msg.url = msg.url + \"/system/tank-a/platform-position/target\";\n        msg.payload = { \"target\": msg.payload };\n        break;\n    case \"tide_level_1b\":\n        msg.url = msg.url + \"/system/tank-b/platform-position/target\";\n        msg.payload = { \"target\": msg.payload };\n        break;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 180,
+        "wires": [
+            [
+                "acc77919c2c9b66d"
+            ]
+        ]
+    },
+    {
+        "id": "acc77919c2c9b66d",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "lnk_out_put_request",
+        "mode": "link",
+        "links": [
+            "bd392e4d7ba46ad5"
+        ],
+        "x": 1125,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "c70f2c0df730d821",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "operating_mode",
+        "func": "var getOperatingModeNumber = function (mode_string) {\n    switch (mode_string) {\n        case \"AUTOMATIC_CYCLE\":\n            return 0;\n        case \"MEASURE_TANK_A\":\n            return 1;\n        case \"MEASURE_TANK_B\":\n            return 2;\n        case \"DRAIN_SENSOR\":\n            return 3;\n        case \"STOP\":\n            return 4;\n    }\n}\n\nmsg.payload = getOperatingModeNumber(msg.payload.system.operating_mode);\nif (msg.payload != context.get(\"last_setting\")) {\n    context.set(\"last_setting\", msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"last_setting\", -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 80,
+        "wires": [
+            [
+                "9c8eb983134ace82"
+            ]
+        ]
+    },
+    {
+        "id": "c827e30004f6f9d2",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "488e4680b3501a91",
+        "order": 12,
+        "width": 4,
+        "height": 1,
+        "name": "current_tide_1a",
+        "label": "Current Tide:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 560,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "a35115f55259f018",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "488e4680b3501a91",
+        "order": 13,
+        "width": 4,
+        "height": 1,
+        "name": "current_tide_1b",
+        "label": "Current Tide:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 560,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "caeb741fa3fcbdf2",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "current_tide_a",
+        "func": "msg.payload = msg.payload.system.tank_a.platform_position.current;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 460,
+        "wires": [
+            [
+                "c827e30004f6f9d2"
+            ]
+        ]
+    },
+    {
+        "id": "27bb203c70a3984a",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "current_tide_b",
+        "func": "msg.payload = msg.payload.system.tank_b.platform_position.current;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 500,
+        "wires": [
+            [
+                "a35115f55259f018"
+            ]
+        ]
+    },
+    {
+        "id": "39eec2f589bb5261",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "Tankpair 2",
+        "info": "",
+        "x": 1700,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "fca68f581438c743",
+        "type": "ui_dropdown",
+        "z": "f6f2187d.f17ca8",
+        "name": "operating_mode_2",
+        "label": "Set Mode",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "a013ae35ae3afd26",
+        "order": 1,
+        "width": 8,
+        "height": 1,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Automatic cycle",
+                "value": 0,
+                "type": "num"
+            },
+            {
+                "label": "Measure tank A",
+                "value": 1,
+                "type": "num"
+            },
+            {
+                "label": "Measure tank B",
+                "value": 2,
+                "type": "num"
+            },
+            {
+                "label": "Drain Sensor",
+                "value": 3,
+                "type": "num"
+            },
+            {
+                "label": "Stop",
+                "value": 4,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "operating_mode_2",
+        "topicType": "str",
+        "className": "",
+        "x": 1730,
+        "y": 80,
+        "wires": [
+            [
+                "ab03f712da72d440"
+            ]
+        ]
+    },
+    {
+        "id": "4774be4c5902e4b4",
+        "type": "ui_numeric",
+        "z": "f6f2187d.f17ca8",
+        "name": "temperature_setpoint_2a",
+        "label": "Temperature setpoint A",
+        "tooltip": "",
+        "group": "a013ae35ae3afd26",
+        "order": 5,
+        "width": 4,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "temperature_setpoint_2a",
+        "topicType": "str",
+        "format": "{{value}} °C",
+        "min": 0,
+        "max": "25",
+        "step": "0.1",
+        "className": "",
+        "x": 1670,
+        "y": 180,
+        "wires": [
+            [
+                "ab03f712da72d440"
+            ]
+        ]
+    },
+    {
+        "id": "542feaf557a3e0ee",
+        "type": "ui_numeric",
+        "z": "f6f2187d.f17ca8",
+        "name": "temperature_setpoint_2b",
+        "label": "Temperature setpoint B",
+        "tooltip": "",
+        "group": "a013ae35ae3afd26",
+        "order": 6,
+        "width": 4,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "temperature_setpoint_2b",
+        "topicType": "str",
+        "format": "{{value}} °C",
+        "min": 0,
+        "max": "25",
+        "step": "0.1",
+        "className": "",
+        "x": 1670,
+        "y": 220,
+        "wires": [
+            [
+                "ab03f712da72d440"
+            ]
+        ]
+    },
+    {
+        "id": "47d5ae1a14d84534",
+        "type": "ui_switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "automatic_tide_2a",
+        "label": "Automatic Tide A",
+        "tooltip": "",
+        "group": "a013ae35ae3afd26",
+        "order": 8,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "automatic_tide_2a",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 1690,
+        "y": 280,
+        "wires": [
+            [
+                "e40f7213105dbe87",
+                "ab03f712da72d440"
+            ]
+        ]
+    },
+    {
+        "id": "a18cdd25b0e42097",
+        "type": "ui_switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "automatic_tide_2b",
+        "label": "Automatic Tide B",
+        "tooltip": "",
+        "group": "a013ae35ae3afd26",
+        "order": 9,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "automatic_tide_2b",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 1690,
+        "y": 320,
+        "wires": [
+            [
+                "723d95b2140c1467",
+                "ab03f712da72d440"
+            ]
+        ]
+    },
+    {
+        "id": "dbbd857516b187ea",
+        "type": "ui_slider",
+        "z": "f6f2187d.f17ca8",
+        "name": "tide_level_2a",
+        "label": "Tide A [mm]",
+        "tooltip": "",
+        "group": "a013ae35ae3afd26",
+        "order": 10,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "outs": "end",
+        "topic": "tide_level_2a",
+        "topicType": "str",
+        "min": 0,
+        "max": "780",
+        "step": 1,
+        "className": "",
+        "x": 1710,
+        "y": 380,
+        "wires": [
+            [
+                "ab03f712da72d440"
+            ]
+        ]
+    },
+    {
+        "id": "8770862df570e48b",
+        "type": "ui_slider",
+        "z": "f6f2187d.f17ca8",
+        "name": "tide_level_2b",
+        "label": "Tide level B [mm]",
+        "tooltip": "",
+        "group": "a013ae35ae3afd26",
+        "order": 11,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "outs": "end",
+        "topic": "tide_level_2b",
+        "topicType": "str",
+        "min": 0,
+        "max": "780",
+        "step": 1,
+        "className": "",
+        "x": 1710,
+        "y": 420,
+        "wires": [
+            [
+                "ab03f712da72d440"
+            ]
+        ]
+    },
+    {
+        "id": "e40f7213105dbe87",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "enable/disable",
+        "func": "msg.enabled = !Boolean(msg.payload);\ndelete msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1540,
+        "y": 360,
+        "wires": [
+            [
+                "dbbd857516b187ea"
+            ]
+        ]
+    },
+    {
+        "id": "723d95b2140c1467",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "enable/disable",
+        "func": "msg.enabled = !Boolean(msg.payload);\ndelete msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1540,
+        "y": 400,
+        "wires": [
+            [
+                "8770862df570e48b"
+            ]
+        ]
+    },
+    {
+        "id": "3715ed5d8970a661",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "temperature_2a",
+        "group": "a013ae35ae3afd26",
+        "order": 15,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Temperature (A)",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "30",
+        "colors": [
+            "#80ffff",
+            "#80ff80",
+            "#ff8000"
+        ],
+        "seg1": "10",
+        "seg2": "20",
+        "diff": false,
+        "className": "",
+        "x": 1640,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "f05d96fde778b5c1",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "temperature_2b",
+        "group": "a013ae35ae3afd26",
+        "order": 16,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Temperature (B)",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "30",
+        "colors": [
+            "#80ffff",
+            "#80ff80",
+            "#ff8000"
+        ],
+        "seg1": "10",
+        "seg2": "20",
+        "diff": false,
+        "className": "",
+        "x": 1640,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "ac1b4a5ba75fdcc7",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "acidity_2a",
+        "group": "a013ae35ae3afd26",
+        "order": 17,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "pH-Value (A)",
+        "label": "",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "14",
+        "colors": [
+            "#ff8000",
+            "#80ff80",
+            "#0080ff"
+        ],
+        "seg1": "7",
+        "seg2": "8.5",
+        "diff": false,
+        "className": "",
+        "x": 1620,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "45b60ae711344f5f",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "salinity_2a",
+        "group": "a013ae35ae3afd26",
+        "order": 19,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Salinity (A)",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ff8000",
+            "#80ff80",
+            "#0080ff"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1630,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "6d3f69f342554bc9",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "oxygen_2a",
+        "group": "a013ae35ae3afd26",
+        "order": 21,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Oxygen (A)",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "20",
+        "colors": [
+            "#ff8000",
+            "#80ff80",
+            "#0080ff"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1630,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "56124fae3a9f2cee",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "a013ae35ae3afd26",
+        "order": 3,
+        "width": 4,
+        "height": 1,
+        "name": "",
+        "label": "<b>Tank A</b>",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1640,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "3cf47ba58db36533",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "a013ae35ae3afd26",
+        "order": 4,
+        "width": 4,
+        "height": 1,
+        "name": "",
+        "label": "<b>Tank B</b>",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1640,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "49ebc3644cfcca7c",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "acidity_2b",
+        "group": "a013ae35ae3afd26",
+        "order": 18,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "pH-Value (B)",
+        "label": "",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "14",
+        "colors": [
+            "#ff8000",
+            "#80ff80",
+            "#0080ff"
+        ],
+        "seg1": "7",
+        "seg2": "8.5",
+        "diff": false,
+        "className": "",
+        "x": 1620,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "7107796ca3f09fad",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "salinity_2b",
+        "group": "a013ae35ae3afd26",
+        "order": 20,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Salinity (B)",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ff8000",
+            "#80ff80",
+            "#0080ff"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1630,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "84b463b462f4ec6f",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "oxygen_2b",
+        "group": "a013ae35ae3afd26",
+        "order": 22,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Oxygen (B)",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "20",
+        "colors": [
+            "#ff8000",
+            "#80ff80",
+            "#0080ff"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1630,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "3ba2becedbab5f59",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "oxygen_b",
+        "func": "msg.payload = msg.payload.system.tank_b.o2_concentration;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1440,
+        "y": 920,
+        "wires": [
+            [
+                "84b463b462f4ec6f"
+            ]
+        ]
+    },
+    {
+        "id": "ae766434677ef67d",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "salinity",
+        "func": "msg.payload = msg.payload.system.tank_b.salinity;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1430,
+        "y": 880,
+        "wires": [
+            [
+                "7107796ca3f09fad"
+            ]
+        ]
+    },
+    {
+        "id": "1a97b78c9f8199ae",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "acidity_b",
+        "func": "msg.payload = msg.payload.system.tank_b.acidity;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1440,
+        "y": 840,
+        "wires": [
+            [
+                "49ebc3644cfcca7c"
+            ]
+        ]
+    },
+    {
+        "id": "3b20b961c67b2dcb",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "temperature_b",
+        "func": "msg.payload = msg.payload.system.tank_b.temperature.current;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1460,
+        "y": 800,
+        "wires": [
+            [
+                "f05d96fde778b5c1"
+            ]
+        ]
+    },
+    {
+        "id": "6ac8978d162b35ce",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "oxygen_a",
+        "func": "msg.payload = msg.payload.system.tank_a.o2_concentration;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1440,
+        "y": 720,
+        "wires": [
+            [
+                "6d3f69f342554bc9"
+            ]
+        ]
+    },
+    {
+        "id": "6d14abc98cad9a56",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "salinity_a",
+        "func": "msg.payload = msg.payload.system.tank_a.salinity;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1440,
+        "y": 680,
+        "wires": [
+            [
+                "45b60ae711344f5f"
+            ]
+        ]
+    },
+    {
+        "id": "feb140eae95e4bd4",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "acidity_a",
+        "func": "msg.payload = msg.payload.system.tank_a.acidity;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1440,
+        "y": 640,
+        "wires": [
+            [
+                "ac1b4a5ba75fdcc7"
+            ]
+        ]
+    },
+    {
+        "id": "6b86d4e07979621d",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "temperature_a",
+        "func": "msg.payload = msg.payload.system.tank_a.temperature.current;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1460,
+        "y": 600,
+        "wires": [
+            [
+                "3715ed5d8970a661"
+            ]
+        ]
+    },
+    {
+        "id": "9048d3fc0554ab6f",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "t_setpoint_a",
+        "func": "msg.payload = msg.payload.system.tank_a.temperature.target;\nif (msg.payload != context.get(\"last_setting\")) {\n    context.set(\"last_setting\", msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"last_setting\", -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 1470,
+        "y": 180,
+        "wires": [
+            [
+                "4774be4c5902e4b4"
+            ]
+        ]
+    },
+    {
+        "id": "840b3cb49310fa03",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "t_setpoint_b",
+        "func": "msg.payload = msg.payload.system.tank_b.temperature.target;\nif (msg.payload != context.get(\"last_setting\")) {\n    context.set(\"last_setting\", msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"last_setting\", -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 1470,
+        "y": 220,
+        "wires": [
+            [
+                "542feaf557a3e0ee"
+            ]
+        ]
+    },
+    {
+        "id": "865494a1186711d0",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "tide_setpoint_b",
+        "func": "msg.payload = msg.payload.system.tank_b.platform_position.target;\nif (msg.payload != context.get(\"last_setting\")) {\n    context.set(\"last_setting\", msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"last_setting\", -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 1320,
+        "y": 420,
+        "wires": [
+            [
+                "8770862df570e48b"
+            ]
+        ]
+    },
+    {
+        "id": "db8556e53fd72129",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "tide_setpoint_a",
+        "func": "msg.payload = msg.payload.system.tank_a.platform_position.target;\nif (msg.payload != context.get(\"last_setting\")) {\n    context.set(\"last_setting\", msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"last_setting\", -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 1320,
+        "y": 380,
+        "wires": [
+            [
+                "dbbd857516b187ea"
+            ]
+        ]
+    },
+    {
+        "id": "0faf9745c7d4e292",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "a013ae35ae3afd26",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "current_state_2",
+        "label": "Current state:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1640,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "0e36e07b1ba8a0d4",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "current_state",
+        "func": "msg.payload = msg.payload.system.state;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1470,
+        "y": 120,
+        "wires": [
+            [
+                "0faf9745c7d4e292"
+            ]
+        ]
+    },
+    {
+        "id": "f44bf812a7330a83",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "auto_tide_a",
+        "func": "msg.payload = msg.payload.system.tank_a.platform_position.auto_tide;\nif (msg.payload != context.get(\"last_setting\")) {\n    context.set(\"last_setting\", msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"last_setting\", -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 1490,
+        "y": 280,
+        "wires": [
+            [
+                "47d5ae1a14d84534"
+            ]
+        ]
+    },
+    {
+        "id": "26b584330cd393f0",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "auto_tide_b",
+        "func": "msg.payload = msg.payload.system.tank_b.platform_position.auto_tide;\nif (msg.payload != context.get(\"last_setting\")) {\n    context.set(\"last_setting\", msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"last_setting\", -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 1490,
+        "y": 320,
+        "wires": [
+            [
+                "a18cdd25b0e42097"
+            ]
+        ]
+    },
+    {
+        "id": "ab03f712da72d440",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "construct REST-request pair 2",
+        "func": "// if message is a passed through update from the REST-api do nothing\nif(\"headers\" in msg) {\n    return null;\n}\n\n// if message comes from a change in the dashboard send request to REST-api\nvar config = global.get(\"configuration\");\nmsg.url = config[\"url_pair_2\"];\n\nswitch(msg.topic) {\n    case \"operating_mode_2\":\n        msg.url = msg.url + \"/system/operating-mode\";\n        msg.payload = { \"operating_mode\": msg.payload };\n        break;\n    case \"temperature_setpoint_2a\":\n        msg.url = msg.url + \"/system/tank-a/temperature/target\";\n        msg.payload = { \"target\": msg.payload };\n        break;\n    case \"temperature_setpoint_2b\":\n        msg.url = msg.url + \"/system/tank-b/temperature/target\";\n        msg.payload = { \"target\": msg.payload };\n        break;\n    case \"automatic_tide_2a\":\n        msg.url = msg.url + \"/system/tank-a/platform-position/auto-tide\";\n        msg.payload = { \"auto_tide\": msg.payload };\n        break;\n    case \"automatic_tide_2b\":\n        msg.url = msg.url + \"/system/tank-b/platform-position/auto-tide\";\n        msg.payload = { \"auto_tide\": msg.payload };\n        break;\n    case \"tide_level_2a\":\n        msg.url = msg.url + \"/system/tank-a/platform-position/target\";\n        msg.payload = { \"target\": msg.payload };\n        break;\n    case \"tide_level_2b\":\n        msg.url = msg.url + \"/system/tank-b/platform-position/target\";\n        msg.payload = { \"target\": msg.payload };\n        break;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2030,
+        "y": 180,
+        "wires": [
+            [
+                "1a0d12bdaf5b3d5b"
+            ]
+        ]
+    },
+    {
+        "id": "87bc196399e9e1b5",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "operating_mode",
+        "func": "var getOperatingModeNumber = function (mode_string) {\n    switch (mode_string) {\n        case \"AUTOMATIC_CYCLE\":\n            return 0;\n        case \"MEASURE_TANK_A\":\n            return 1;\n        case \"MEASURE_TANK_B\":\n            return 2;\n        case \"DRAIN_SENSOR\":\n            return 3;\n        case \"STOP\":\n            return 4;\n    }\n}\n\nmsg.payload = getOperatingModeNumber(msg.payload.system.operating_mode);\nif (msg.payload != context.get(\"last_setting\")) {\n    context.set(\"last_setting\", msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"last_setting\", -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 1520,
+        "y": 80,
+        "wires": [
+            [
+                "fca68f581438c743"
+            ]
+        ]
+    },
+    {
+        "id": "038440de4d75e847",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "a013ae35ae3afd26",
+        "order": 12,
+        "width": 4,
+        "height": 1,
+        "name": "current_tide_2a",
+        "label": "Current Tide:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1640,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "5c0914160771f8bc",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "a013ae35ae3afd26",
+        "order": 13,
+        "width": 4,
+        "height": 1,
+        "name": "current_tide_2b",
+        "label": "Current Tide:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1640,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "e87e3e0e38c694c0",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "current_tide_a",
+        "func": "msg.payload = msg.payload.system.tank_a.platform_position.current;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1460,
+        "y": 460,
+        "wires": [
+            [
+                "038440de4d75e847"
+            ]
+        ]
+    },
+    {
+        "id": "2c5bd04f4614f955",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "current_tide_b",
+        "func": "msg.payload = msg.payload.system.tank_b.platform_position.current;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1460,
+        "y": 500,
+        "wires": [
+            [
+                "5c0914160771f8bc"
+            ]
+        ]
+    },
+    {
+        "id": "b78d45aa2ea07b42",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "Tankpair 3",
+        "info": "",
+        "x": 2720,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "182ab55e12eb9eca",
+        "type": "ui_dropdown",
+        "z": "f6f2187d.f17ca8",
+        "name": "operating_mode_3",
+        "label": "Set Mode",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "163ea7d09f4bf58e",
+        "order": 1,
+        "width": 8,
+        "height": 1,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Automatic cycle",
+                "value": 0,
+                "type": "num"
+            },
+            {
+                "label": "Measure tank A",
+                "value": 1,
+                "type": "num"
+            },
+            {
+                "label": "Measure tank B",
+                "value": 2,
+                "type": "num"
+            },
+            {
+                "label": "Drain Sensor",
+                "value": 3,
+                "type": "num"
+            },
+            {
+                "label": "Stop",
+                "value": 4,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "operating_mode_3",
+        "topicType": "str",
+        "className": "",
+        "x": 2750,
+        "y": 80,
+        "wires": [
+            [
+                "1639aeed76e37f28"
+            ]
+        ]
+    },
+    {
+        "id": "0751bc28aa37e87a",
+        "type": "ui_numeric",
+        "z": "f6f2187d.f17ca8",
+        "name": "temperature_setpoint_3a",
+        "label": "Temperature setpoint A",
+        "tooltip": "",
+        "group": "163ea7d09f4bf58e",
+        "order": 5,
+        "width": 4,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "temperature_setpoint_3a",
+        "topicType": "str",
+        "format": "{{value}} °C",
+        "min": 0,
+        "max": "25",
+        "step": "0.1",
+        "className": "",
+        "x": 2690,
+        "y": 180,
+        "wires": [
+            [
+                "1639aeed76e37f28"
+            ]
+        ]
+    },
+    {
+        "id": "703983a434df0f4e",
+        "type": "ui_numeric",
+        "z": "f6f2187d.f17ca8",
+        "name": "temperature_setpoint_3b",
+        "label": "Temperature setpoint B",
+        "tooltip": "",
+        "group": "163ea7d09f4bf58e",
+        "order": 6,
+        "width": 4,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "temperature_setpoint_3b",
+        "topicType": "str",
+        "format": "{{value}} °C",
+        "min": 0,
+        "max": "25",
+        "step": "0.1",
+        "className": "",
+        "x": 2690,
+        "y": 220,
+        "wires": [
+            [
+                "1639aeed76e37f28"
+            ]
+        ]
+    },
+    {
+        "id": "ae738ee8bc534451",
+        "type": "ui_switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "automatic_tide_3a",
+        "label": "Automatic Tide A",
+        "tooltip": "",
+        "group": "163ea7d09f4bf58e",
+        "order": 8,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "automatic_tide_3a",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 2710,
+        "y": 280,
+        "wires": [
+            [
+                "d9ee12316a4ddf71",
+                "1639aeed76e37f28"
+            ]
+        ]
+    },
+    {
+        "id": "6a0b07efe4573916",
+        "type": "ui_switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "automatic_tide_3b",
+        "label": "Automatic Tide B",
+        "tooltip": "",
+        "group": "163ea7d09f4bf58e",
+        "order": 9,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "automatic_tide_3b",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 2710,
+        "y": 320,
+        "wires": [
+            [
+                "7b505e5aedfccda5",
+                "1639aeed76e37f28"
+            ]
+        ]
+    },
+    {
+        "id": "29d1029a0e5b89e2",
+        "type": "ui_slider",
+        "z": "f6f2187d.f17ca8",
+        "name": "tide_level_3a",
+        "label": "Tide A [mm]",
+        "tooltip": "",
+        "group": "163ea7d09f4bf58e",
+        "order": 10,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "outs": "end",
+        "topic": "tide_level_3a",
+        "topicType": "str",
+        "min": 0,
+        "max": "780",
+        "step": 1,
+        "className": "",
+        "x": 2730,
+        "y": 380,
+        "wires": [
+            [
+                "1639aeed76e37f28"
+            ]
+        ]
+    },
+    {
+        "id": "5f811f571e063623",
+        "type": "ui_slider",
+        "z": "f6f2187d.f17ca8",
+        "name": "tide_level_3b",
+        "label": "Tide level B [mm]",
+        "tooltip": "",
+        "group": "163ea7d09f4bf58e",
+        "order": 11,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "outs": "end",
+        "topic": "tide_level_3b",
+        "topicType": "str",
+        "min": 0,
+        "max": "780",
+        "step": 1,
+        "className": "",
+        "x": 2730,
+        "y": 420,
+        "wires": [
+            [
+                "1639aeed76e37f28"
+            ]
+        ]
+    },
+    {
+        "id": "d9ee12316a4ddf71",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "enable/disable",
+        "func": "msg.enabled = !Boolean(msg.payload);\ndelete msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2560,
+        "y": 360,
+        "wires": [
+            [
+                "29d1029a0e5b89e2"
+            ]
+        ]
+    },
+    {
+        "id": "7b505e5aedfccda5",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "enable/disable",
+        "func": "msg.enabled = !Boolean(msg.payload);\ndelete msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2560,
+        "y": 400,
+        "wires": [
+            [
+                "5f811f571e063623"
+            ]
+        ]
+    },
+    {
+        "id": "418134364a351027",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "temperature_3a",
+        "group": "163ea7d09f4bf58e",
+        "order": 15,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Temperature (A)",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "30",
+        "colors": [
+            "#80ffff",
+            "#80ff80",
+            "#ff8000"
+        ],
+        "seg1": "10",
+        "seg2": "20",
+        "diff": false,
+        "className": "",
+        "x": 2660,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "cdb22cfd466fcb05",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "temperature_3b",
+        "group": "163ea7d09f4bf58e",
+        "order": 16,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Temperature (B)",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "30",
+        "colors": [
+            "#80ffff",
+            "#80ff80",
+            "#ff8000"
+        ],
+        "seg1": "10",
+        "seg2": "20",
+        "diff": false,
+        "className": "",
+        "x": 2660,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "2739701b8e1b4a64",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "acidity_3a",
+        "group": "163ea7d09f4bf58e",
+        "order": 17,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "pH-Value (A)",
+        "label": "",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "14",
+        "colors": [
+            "#ff8000",
+            "#80ff80",
+            "#0080ff"
+        ],
+        "seg1": "7",
+        "seg2": "8.5",
+        "diff": false,
+        "className": "",
+        "x": 2640,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "df44deff1516bf32",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "salinity_3a",
+        "group": "163ea7d09f4bf58e",
+        "order": 19,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Salinity (A)",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ff8000",
+            "#80ff80",
+            "#0080ff"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 2650,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "955a7252dc0b2a81",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "oxygen_3a",
+        "group": "163ea7d09f4bf58e",
+        "order": 21,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Oxygen (A)",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "20",
+        "colors": [
+            "#ff8000",
+            "#80ff80",
+            "#0080ff"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 2650,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "d635ace1b034581d",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "163ea7d09f4bf58e",
+        "order": 3,
+        "width": 4,
+        "height": 1,
+        "name": "",
+        "label": "<b>Tank A</b>",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 2660,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "7f7c9ee6245dd230",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "163ea7d09f4bf58e",
+        "order": 4,
+        "width": 4,
+        "height": 1,
+        "name": "",
+        "label": "<b>Tank B</b>",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 2660,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "aae8a770b28fb479",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "acidity_3b",
+        "group": "163ea7d09f4bf58e",
+        "order": 18,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "pH-Value (B)",
+        "label": "",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "14",
+        "colors": [
+            "#ff8000",
+            "#80ff80",
+            "#0080ff"
+        ],
+        "seg1": "7",
+        "seg2": "8.5",
+        "diff": false,
+        "className": "",
+        "x": 2640,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "f75d2ea83ba786af",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "salinity_3b",
+        "group": "163ea7d09f4bf58e",
+        "order": 20,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Salinity (B)",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ff8000",
+            "#80ff80",
+            "#0080ff"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 2650,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "a2e699ada4818a53",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "oxygen_3b",
+        "group": "163ea7d09f4bf58e",
+        "order": 22,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Oxygen (B)",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "20",
+        "colors": [
+            "#ff8000",
+            "#80ff80",
+            "#0080ff"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 2650,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "ae5ab5a916f128a9",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "oxygen_b",
+        "func": "msg.payload = msg.payload.system.tank_b.o2_concentration;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2460,
+        "y": 920,
+        "wires": [
+            [
+                "a2e699ada4818a53"
+            ]
+        ]
+    },
+    {
+        "id": "020813f0bb3fad64",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "salinity",
+        "func": "msg.payload = msg.payload.system.tank_b.salinity;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2450,
+        "y": 880,
+        "wires": [
+            [
+                "f75d2ea83ba786af"
+            ]
+        ]
+    },
+    {
+        "id": "94f4d3cae80a05fe",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "acidity_b",
+        "func": "msg.payload = msg.payload.system.tank_b.acidity;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2460,
+        "y": 840,
+        "wires": [
+            [
+                "aae8a770b28fb479"
+            ]
+        ]
+    },
+    {
+        "id": "189e666f46b8456d",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "temperature_b",
+        "func": "msg.payload = msg.payload.system.tank_b.temperature.current;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2480,
+        "y": 800,
+        "wires": [
+            [
+                "cdb22cfd466fcb05"
+            ]
+        ]
+    },
+    {
+        "id": "dd1fb50ec8607113",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "oxygen_a",
+        "func": "msg.payload = msg.payload.system.tank_a.o2_concentration;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2460,
+        "y": 720,
+        "wires": [
+            [
+                "955a7252dc0b2a81"
+            ]
+        ]
+    },
+    {
+        "id": "53cd17186efa6e3d",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "salinity_a",
+        "func": "msg.payload = msg.payload.system.tank_a.salinity;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2460,
+        "y": 680,
+        "wires": [
+            [
+                "df44deff1516bf32"
+            ]
+        ]
+    },
+    {
+        "id": "4bee867fd7360507",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "acidity_a",
+        "func": "msg.payload = msg.payload.system.tank_a.acidity;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2460,
+        "y": 640,
+        "wires": [
+            [
+                "2739701b8e1b4a64"
+            ]
+        ]
+    },
+    {
+        "id": "50eee8e98f95d121",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "temperature_a",
+        "func": "msg.payload = msg.payload.system.tank_a.temperature.current;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2480,
+        "y": 600,
+        "wires": [
+            [
+                "418134364a351027"
+            ]
+        ]
+    },
+    {
+        "id": "b5dc427b1ddc1867",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "t_setpoint_a",
+        "func": "msg.payload = msg.payload.system.tank_a.temperature.target;\nif (msg.payload != context.get(\"last_setting\")) {\n    context.set(\"last_setting\", msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"last_setting\", -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 2490,
+        "y": 180,
+        "wires": [
+            [
+                "0751bc28aa37e87a"
+            ]
+        ]
+    },
+    {
+        "id": "f2a715360787ab18",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "t_setpoint_b",
+        "func": "msg.payload = msg.payload.system.tank_b.temperature.target;\nif (msg.payload != context.get(\"last_setting\")) {\n    context.set(\"last_setting\", msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"last_setting\", -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 2490,
+        "y": 220,
+        "wires": [
+            [
+                "703983a434df0f4e"
+            ]
+        ]
+    },
+    {
+        "id": "866e64f5efdf1805",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "tide_setpoint_b",
+        "func": "msg.payload = msg.payload.system.tank_b.platform_position.target;\nif (msg.payload != context.get(\"last_setting\")) {\n    context.set(\"last_setting\", msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"last_setting\", -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 2340,
+        "y": 420,
+        "wires": [
+            [
+                "5f811f571e063623"
+            ]
+        ]
+    },
+    {
+        "id": "90230923169dfcab",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "tide_setpoint_a",
+        "func": "msg.payload = msg.payload.system.tank_a.platform_position.target;\nif (msg.payload != context.get(\"last_setting\")) {\n    context.set(\"last_setting\", msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"last_setting\", -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 2340,
+        "y": 380,
+        "wires": [
+            [
+                "29d1029a0e5b89e2"
+            ]
+        ]
+    },
+    {
+        "id": "cfbf192d871c368c",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "163ea7d09f4bf58e",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "current_state_3",
+        "label": "Current state:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 2660,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "1d4ec3021b99c642",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "current_state",
+        "func": "msg.payload = msg.payload.system.state;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2490,
+        "y": 120,
+        "wires": [
+            [
+                "cfbf192d871c368c"
+            ]
+        ]
+    },
+    {
+        "id": "007cce9db476b2be",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "auto_tide_a",
+        "func": "msg.payload = msg.payload.system.tank_a.platform_position.auto_tide;\nif (msg.payload != context.get(\"last_setting\")) {\n    context.set(\"last_setting\", msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"last_setting\", -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 2510,
+        "y": 280,
+        "wires": [
+            [
+                "ae738ee8bc534451"
+            ]
+        ]
+    },
+    {
+        "id": "c4f6b6ffa8077290",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "auto_tide_b",
+        "func": "msg.payload = msg.payload.system.tank_b.platform_position.auto_tide;\nif (msg.payload != context.get(\"last_setting\")) {\n    context.set(\"last_setting\", msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"last_setting\", -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 2510,
+        "y": 320,
+        "wires": [
+            [
+                "6a0b07efe4573916"
+            ]
+        ]
+    },
+    {
+        "id": "1639aeed76e37f28",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "construct REST-request pair 3",
+        "func": "// if message is a passed through update from the REST-api do nothing\nif(\"headers\" in msg) {\n    return null;\n}\n\n// if message comes from a change in the dashboard send request to REST-api\nvar config = global.get(\"configuration\");\nmsg.url = config[\"url_pair_3\"];\n\nswitch(msg.topic) {\n    case \"operating_mode_3\":\n        msg.url = msg.url + \"/system/operating-mode\";\n        msg.payload = { \"operating_mode\": msg.payload };\n        break;\n    case \"temperature_setpoint_3a\":\n        msg.url = msg.url + \"/system/tank-a/temperature/target\";\n        msg.payload = { \"target\": msg.payload };\n        break;\n    case \"temperature_setpoint_3b\":\n        msg.url = msg.url + \"/system/tank-b/temperature/target\";\n        msg.payload = { \"target\": msg.payload };\n        break;\n    case \"automatic_tide_3a\":\n        msg.url = msg.url + \"/system/tank-a/platform-position/auto-tide\";\n        msg.payload = { \"auto_tide\": msg.payload };\n        break;\n    case \"automatic_tide_3b\":\n        msg.url = msg.url + \"/system/tank-b/platform-position/auto-tide\";\n        msg.payload = { \"auto_tide\": msg.payload };\n        break;\n    case \"tide_level_3a\":\n        msg.url = msg.url + \"/system/tank-a/platform-position/target\";\n        msg.payload = { \"target\": msg.payload };\n        break;\n    case \"tide_level_3b\":\n        msg.url = msg.url + \"/system/tank-b/platform-position/target\";\n        msg.payload = { \"target\": msg.payload };\n        break;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3050,
+        "y": 180,
+        "wires": [
+            [
+                "f7b14a241c4ddfbc"
+            ]
+        ]
+    },
+    {
+        "id": "26a21b2afe9a7dd5",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "operating_mode",
+        "func": "var getOperatingModeNumber = function (mode_string) {\n    switch (mode_string) {\n        case \"AUTOMATIC_CYCLE\":\n            return 0;\n        case \"MEASURE_TANK_A\":\n            return 1;\n        case \"MEASURE_TANK_B\":\n            return 2;\n        case \"DRAIN_SENSOR\":\n            return 3;\n        case \"STOP\":\n            return 4;\n    }\n}\n\nmsg.payload = getOperatingModeNumber(msg.payload.system.operating_mode);\nif (msg.payload != context.get(\"last_setting\")) {\n    context.set(\"last_setting\", msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"last_setting\", -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 2540,
+        "y": 80,
+        "wires": [
+            [
+                "182ab55e12eb9eca"
+            ]
+        ]
+    },
+    {
+        "id": "af865fb19c7c0fbd",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "163ea7d09f4bf58e",
+        "order": 12,
+        "width": 4,
+        "height": 1,
+        "name": "current_tide_3a",
+        "label": "Current Tide:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 2660,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "0a6c81684fdb901a",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "163ea7d09f4bf58e",
+        "order": 13,
+        "width": 4,
+        "height": 1,
+        "name": "current_tide_3b",
+        "label": "Current Tide:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 2660,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "754d5f94af15177e",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "current_tide_a",
+        "func": "msg.payload = msg.payload.system.tank_a.platform_position.current;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2480,
+        "y": 460,
+        "wires": [
+            [
+                "af865fb19c7c0fbd"
+            ]
+        ]
+    },
+    {
+        "id": "065216de69ba024d",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "current_tide_b",
+        "func": "msg.payload = msg.payload.system.tank_b.platform_position.current;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2480,
+        "y": 500,
+        "wires": [
+            [
+                "0a6c81684fdb901a"
+            ]
+        ]
+    },
+    {
+        "id": "1a0d12bdaf5b3d5b",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "lnk_out_put_request",
+        "mode": "link",
+        "links": [
+            "bd392e4d7ba46ad5"
+        ],
+        "x": 2215,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "f7b14a241c4ddfbc",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "lnk_out_put_request",
+        "mode": "link",
+        "links": [
+            "bd392e4d7ba46ad5"
+        ],
+        "x": 3235,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "ae3c76899062505f",
+        "type": "link in",
+        "z": "f6f2187d.f17ca8",
+        "name": "lnk_in_pair2json",
+        "links": [
+            "6961ef41532b9346"
+        ],
+        "x": 1145,
+        "y": 380,
+        "wires": [
+            [
+                "87bc196399e9e1b5",
+                "0e36e07b1ba8a0d4",
+                "9048d3fc0554ab6f",
+                "f44bf812a7330a83",
+                "840b3cb49310fa03",
+                "26b584330cd393f0",
+                "865494a1186711d0",
+                "db8556e53fd72129",
+                "e87e3e0e38c694c0",
+                "2c5bd04f4614f955",
+                "6b86d4e07979621d",
+                "feb140eae95e4bd4",
+                "6d14abc98cad9a56",
+                "6ac8978d162b35ce",
+                "3b20b961c67b2dcb",
+                "1a97b78c9f8199ae",
+                "ae766434677ef67d",
+                "3ba2becedbab5f59"
+            ]
+        ]
+    },
+    {
+        "id": "28da7489cfaca2f3",
+        "type": "link in",
+        "z": "f6f2187d.f17ca8",
+        "name": "lnk_in_pair3json",
+        "links": [
+            "be12441307b73c7a"
+        ],
+        "x": 2195,
+        "y": 380,
+        "wires": [
+            [
+                "90230923169dfcab",
+                "26a21b2afe9a7dd5",
+                "1d4ec3021b99c642",
+                "b5dc427b1ddc1867",
+                "f2a715360787ab18",
+                "007cce9db476b2be",
+                "c4f6b6ffa8077290",
+                "866e64f5efdf1805",
+                "754d5f94af15177e",
+                "065216de69ba024d",
+                "50eee8e98f95d121",
+                "4bee867fd7360507",
+                "53cd17186efa6e3d",
+                "dd1fb50ec8607113",
+                "189e666f46b8456d",
+                "94f4d3cae80a05fe",
+                "020813f0bb3fad64",
+                "ae5ab5a916f128a9"
+            ]
+        ]
+    },
+    {
+        "id": "764c1dfd0795a25d",
+        "type": "http request",
+        "z": "f70210d4f539c189",
+        "name": "Get Pair 1",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 340,
+        "y": 80,
+        "wires": [
+            [
+                "e80724df446a62ff"
+            ]
+        ]
+    },
+    {
+        "id": "dfcab2c5c698df12",
+        "type": "inject",
+        "z": "f70210d4f539c189",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 40,
+        "wires": [
+            [
+                "4ff0b00d972ceec6",
+                "77d479d17d808fda",
+                "2bd7960f80eacca5"
+            ]
+        ]
+    },
+    {
+        "id": "70e26397a7cda14a",
+        "type": "http request",
+        "z": "f70210d4f539c189",
+        "name": "Get Pair 2",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "host.docker.internal:1881/system",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 340,
+        "y": 120,
+        "wires": [
+            [
+                "6961ef41532b9346"
+            ]
+        ]
+    },
+    {
+        "id": "cf912aad70664514",
+        "type": "http request",
+        "z": "f70210d4f539c189",
+        "name": "Get Pair 3",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "host.docker.internal:1882/system",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 340,
+        "y": 160,
+        "wires": [
+            [
+                "be12441307b73c7a"
+            ]
+        ]
+    },
+    {
+        "id": "e80724df446a62ff",
+        "type": "link out",
+        "z": "f70210d4f539c189",
+        "name": "lnk_out_pair1json",
+        "mode": "link",
+        "links": [
+            "c988a36d80497fea"
+        ],
+        "x": 495,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "6961ef41532b9346",
+        "type": "link out",
+        "z": "f70210d4f539c189",
+        "name": "lnk_out_pair2json",
+        "mode": "link",
+        "links": [
+            "b1866ff1065bb187",
+            "ae3c76899062505f"
+        ],
+        "x": 495,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "be12441307b73c7a",
+        "type": "link out",
+        "z": "f70210d4f539c189",
+        "name": "lnk_out_pair3json",
+        "mode": "link",
+        "links": [
+            "d79dd2905929adf2",
+            "28da7489cfaca2f3"
+        ],
+        "x": 495,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "5de2b28784287651",
+        "type": "http request",
+        "z": "f70210d4f539c189",
+        "name": "PUT",
+        "method": "PUT",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 330,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bd392e4d7ba46ad5",
+        "type": "link in",
+        "z": "f70210d4f539c189",
+        "name": "lnk_in_put_request",
+        "links": [
+            "acc77919c2c9b66d",
+            "1a0d12bdaf5b3d5b",
+            "f7b14a241c4ddfbc"
+        ],
+        "x": 205,
+        "y": 240,
+        "wires": [
+            [
+                "5de2b28784287651"
+            ]
+        ]
+    },
+    {
+        "id": "4ff0b00d972ceec6",
+        "type": "function",
+        "z": "f70210d4f539c189",
+        "name": "url 1",
+        "func": "var configuration = global.get(\"configuration\");\nmsg.url = configuration[\"url_pair_1\"] + \"/system\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 210,
+        "y": 80,
+        "wires": [
+            [
+                "764c1dfd0795a25d"
+            ]
+        ]
+    },
+    {
+        "id": "77d479d17d808fda",
+        "type": "function",
+        "z": "f70210d4f539c189",
+        "name": "url 2",
+        "func": "var configuration = global.get(\"configuration\");\nmsg.url = configuration[\"url_pair_2\"] + \"/system\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 210,
+        "y": 120,
+        "wires": [
+            [
+                "70e26397a7cda14a"
+            ]
+        ]
+    },
+    {
+        "id": "2bd7960f80eacca5",
+        "type": "function",
+        "z": "f70210d4f539c189",
+        "name": "url 3",
+        "func": "var configuration = global.get(\"configuration\");\nmsg.url = configuration[\"url_pair_3\"] + \"/system\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 210,
+        "y": 160,
+        "wires": [
+            [
+                "cf912aad70664514"
+            ]
+        ]
+    },
+    {
+        "id": "5a16c13587c5e351",
+        "type": "ui_text_input",
+        "z": "9de811dcbdfe509c",
+        "name": "url_pair_1",
+        "label": "Tank pair 1:",
+        "tooltip": "",
+        "group": "9965b02dfa6e8ff8",
+        "order": 20,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 360,
+        "y": 60,
+        "wires": [
+            [
+                "801c0d003c317eb9"
+            ]
+        ]
+    },
+    {
+        "id": "3f4dd2b5bf2744c6",
+        "type": "ui_text_input",
+        "z": "9de811dcbdfe509c",
+        "name": "url_pair_2",
+        "label": "Tank pair 2:",
+        "tooltip": "",
+        "group": "9965b02dfa6e8ff8",
+        "order": 20,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 360,
+        "y": 100,
+        "wires": [
+            [
+                "86226cb2b81d43cb"
+            ]
+        ]
+    },
+    {
+        "id": "dec6afe989ae4282",
+        "type": "ui_text_input",
+        "z": "9de811dcbdfe509c",
+        "name": "url_pair_3",
+        "label": "Tank pair 3:",
+        "tooltip": "",
+        "group": "9965b02dfa6e8ff8",
+        "order": 20,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 360,
+        "y": 140,
+        "wires": [
+            [
+                "5ee83dcb0e67b436"
+            ]
+        ]
+    },
+    {
+        "id": "801c0d003c317eb9",
+        "type": "change",
+        "z": "9de811dcbdfe509c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "configuration.url_pair_1",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "86226cb2b81d43cb",
+        "type": "change",
+        "z": "9de811dcbdfe509c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "configuration.url_pair_2",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5ee83dcb0e67b436",
+        "type": "change",
+        "z": "9de811dcbdfe509c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "configuration.url_pair_3",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a755cf1e08ebf193",
+        "type": "inject",
+        "z": "9de811dcbdfe509c",
+        "name": "init",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 50,
+        "y": 100,
+        "wires": [
+            [
+                "625acb03ec1da665",
+                "65cc4d9a055f8e8c",
+                "1d7a2e0e49b14683"
+            ]
+        ]
+    },
+    {
+        "id": "625acb03ec1da665",
+        "type": "template",
+        "z": "9de811dcbdfe509c",
+        "name": "pair 1",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "host.docker.internal:1880",
+        "output": "str",
+        "x": 210,
+        "y": 60,
+        "wires": [
+            [
+                "5a16c13587c5e351"
+            ]
+        ]
+    },
+    {
+        "id": "65cc4d9a055f8e8c",
+        "type": "template",
+        "z": "9de811dcbdfe509c",
+        "name": "pair 2",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "host.docker.internal:1881",
+        "output": "str",
+        "x": 210,
+        "y": 100,
+        "wires": [
+            [
+                "3f4dd2b5bf2744c6"
+            ]
+        ]
+    },
+    {
+        "id": "1d7a2e0e49b14683",
+        "type": "template",
+        "z": "9de811dcbdfe509c",
+        "name": "pair 3",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "host.docker.internal:1882",
+        "output": "str",
+        "x": 210,
+        "y": 140,
+        "wires": [
+            [
+                "dec6afe989ae4282"
+            ]
+        ]
+    }
+]

@@ -1,0 +1,13 @@
+{
+    "name": "tank-pair-3-dashboard",
+    "description": "Dashboard for the third tank-pair.",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "node-red": "~3.0.2",
+        "node-red-contrib-chronos": "~1.19.0",
+        "node-red-contrib-modbus": "~5.26.0",
+        "node-red-contrib-simple-gate": "~0.5.2",
+        "node-red-dashboard": "~3.4.0"
+    }
+}

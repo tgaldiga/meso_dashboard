@@ -1,0 +1,10 @@
+{
+    "name": "central-control-dashboard",
+    "description": "Central dashboard for controlling multiple tank-pairs.",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "node-red": "~3.0.2",
+        "node-red-dashboard": "~3.4.0"
+    }
+}
