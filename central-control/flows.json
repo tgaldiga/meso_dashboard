@@ -3233,6 +3233,32 @@
         ]
     },
     {
+        "id": "c4fdbaf1504fe2ca",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "init enabled",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 110,
+        "y": 260,
+        "wires": [
+            [
+                "b53bfceb45cf35cd",
+                "1d7f0e856fb1959e"
+            ]
+        ]
+    },
+    {
         "id": "764c1dfd0795a25d",
         "type": "http request",
         "z": "f70210d4f539c189",
