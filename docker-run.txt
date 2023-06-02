@@ -1,9 +1,0 @@
-docker build -t tank-pair-1 ./tank-pair-1
-docker build -t tank-pair-2 ./tank-pair-2
-docker build -t tank-pair-3 ./tank-pair-3
-docker build -t central-control ./central-control
-
-docker run -d --name tank-pair-1 --privileged=true --user=root -p 1880:1880 -p 10502:10502 -v tank_pair_1_data:/data tank-pair-1
-docker run -d --name tank-pair-2 --privileged=true --user=root -p 1881:1880 -p 10503:10502 -v tank_pair_2_data:/data tank-pair-2
-docker run -d --name tank-pair-3 --privileged=true --user=root -p 1882:1880 -p 10504:10502 -v tank_pair_3_data:/data tank-pair-3
-docker run -d --name central-control --privileged=true --user=root -p 1879:1880 -v central_control_data:/data central-control
