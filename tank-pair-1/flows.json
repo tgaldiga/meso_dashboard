@@ -259,7 +259,7 @@
         "order": 17,
         "width": 3,
         "height": 2,
-        "passthru": true,
+        "passthru": false,
         "outs": "end",
         "topic": "TIDE_A",
         "topicType": "str",
@@ -270,7 +270,9 @@
         "x": 900,
         "y": 540,
         "wires": [
-            []
+            [
+                "c3d8907a71bd9117"
+            ]
         ]
     },
     {
@@ -350,7 +352,7 @@
         "order": 18,
         "width": 3,
         "height": 2,
-        "passthru": true,
+        "passthru": false,
         "outs": "end",
         "topic": "TIDE_B",
         "topicType": "str",
@@ -361,7 +363,9 @@
         "x": 900,
         "y": 880,
         "wires": [
-            []
+            [
+                "017d8ac48bb6f272"
+            ]
         ]
     },
     {
@@ -622,23 +626,6 @@
         ]
     },
     {
-        "id": "d8138258c98e82ce",
-        "type": "function",
-        "z": "51164a2570c98448",
-        "name": "Write to setpoint",
-        "func": "// Write to setpoint\nvar status = Number(msg.payload);\nvar setpoint = flow.get(\"setpoint\") || {};\n\nif (setpoint != null) {\n    setpoint[msg.topic] = status;\n    msg.payload = setpoint;\n    node.warn(setpoint);\n    flow.set(\"setpoint\", setpoint);\n    return msg;\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1300,
-        "y": 560,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "faf9cbb9bb658881",
         "type": "function",
         "z": "51164a2570c98448",
@@ -680,6 +667,7 @@
         "id": "3d12a66ae3e0cdcc",
         "type": "ui_button",
         "z": "51164a2570c98448",
+        "d": true,
         "name": "",
         "group": "ba4217cd1248e741",
         "order": 29,
@@ -729,9 +717,7 @@
         "x": 310,
         "y": 1600,
         "wires": [
-            [
-                "8fb7d099d6da7d32"
-            ]
+            []
         ]
     },
     {
@@ -739,7 +725,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "Compare Setpoint vs Status",
-        "func": "var setpoint = flow.get(\"setpoint\") || {};\nvar sps_status = global.get(\"current_status\") || {};\n\nmsg.enabled = false;\n//if (sps_status[\"MANUAL_CONTROL\"] == 1){\n//    for (let x in setpoint){\n//        if (x != \"MANUAL_CONTROL\"){\n//            if (setpoint[x] != sps_status[x]){\n//                //node.warn(x);\n//                //node.warn(setpoint[x]);\n//                //node.warn(status[x]);\n//                msg.enabled = true; break;\n//            }\n//        }\n//    }\n//}\nif (setpoint[\"temp_control_a\"] != sps_status[\"temp_control_a\"]){ msg.enabled = true; }\nif (setpoint[\"temp_control_b\"] != sps_status[\"temp_control_b\"]){ msg.enabled = true; }\nreturn msg;",
+        "func": "var setpoint = flow.get(\"setpoint\") || {};\nvar sps_status = global.get(\"current_status\") || {};\n\nmsg.enabled = false;\n//if (sps_status[\"MANUAL_CONTROL\"] == 1){\n//    for (let x in setpoint){\n//        if (x != \"MANUAL_CONTROL\"){\n//            if (setpoint[x] != sps_status[x]){\n//                //node.warn(x);\n//                //node.warn(setpoint[x]);\n//                //node.warn(status[x]);\n//                msg.enabled = true; break;\n//            }\n//        }\n//    }\n//}\n//if (setpoint[\"temp_control_a\"] != sps_status[\"temp_control_a\"]){ msg.enabled = true; }\n//if (setpoint[\"temp_control_b\"] != sps_status[\"temp_control_b\"]){ msg.enabled = true; }\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1021,7 +1007,7 @@
         "width": 3,
         "height": 1,
         "wrap": false,
-        "passthru": true,
+        "passthru": false,
         "topic": "temp_control_a",
         "topicType": "str",
         "format": "{{value}} °C",
@@ -1030,10 +1016,10 @@
         "step": "0.1",
         "className": "",
         "x": 940,
-        "y": 380,
+        "y": 420,
         "wires": [
             [
-                "d8138258c98e82ce"
+                "2a5a4345e98bfad5"
             ]
         ]
     },
@@ -1049,7 +1035,7 @@
         "width": 3,
         "height": 1,
         "wrap": false,
-        "passthru": true,
+        "passthru": false,
         "topic": "temp_control_b",
         "topicType": "str",
         "format": "{{value}} °C",
@@ -1061,7 +1047,7 @@
         "y": 720,
         "wires": [
             [
-                "d8138258c98e82ce"
+                "a656528fdb70409f"
             ]
         ]
     },
@@ -1102,9 +1088,7 @@
         "x": 850,
         "y": 1760,
         "wires": [
-            [
-                "a741a6a17d12ca20"
-            ]
+            []
         ]
     },
     {
@@ -1183,10 +1167,11 @@
         "animate": false,
         "className": "",
         "x": 920,
-        "y": 1120,
+        "y": 500,
         "wires": [
             [
-                "52b37fc435b7d54f"
+                "360e2fde90318b03",
+                "70ff94abd5651e3c"
             ]
         ]
     },
@@ -1217,10 +1202,11 @@
         "animate": false,
         "className": "",
         "x": 920,
-        "y": 1160,
+        "y": 840,
         "wires": [
             [
-                "52b37fc435b7d54f"
+                "58c113ee4ae08ee2",
+                "25ce4183720fdd6e"
             ]
         ]
     },
@@ -1235,48 +1221,10 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1150,
-        "y": 1140,
+        "x": 990,
+        "y": 1260,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "40a9852fb15c77a6",
-        "type": "function",
-        "z": "51164a2570c98448",
-        "name": "AUTO_TIDE_A",
-        "func": "var modes = global.get(\"modes\");\nif (modes[\"auto_tide_a\"] != null){\n    msg.payload = modes[\"auto_tide_a\"];\n}\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 740,
-        "y": 1120,
-        "wires": [
-            [
-                "5da0fb6680030a20"
-            ]
-        ]
-    },
-    {
-        "id": "eee1d24303f71362",
-        "type": "function",
-        "z": "51164a2570c98448",
-        "name": "AUTO_TIDE_B",
-        "func": "var modes = global.get(\"modes\");\nif (modes[\"auto_tide_b\"] != null){\n    msg.payload = modes[\"auto_tide_b\"];\n}\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 740,
-        "y": 1160,
-        "wires": [
-            [
-                "1c19ba01064aef11"
-            ]
         ]
     },
     {
@@ -1292,7 +1240,7 @@
         "format": "{{msg.payload}}",
         "layout": "row-spread",
         "className": "",
-        "x": 940,
+        "x": 930,
         "y": 580,
         "wires": []
     },
@@ -1309,7 +1257,7 @@
         "format": "{{msg.payload}}",
         "layout": "row-spread",
         "className": "",
-        "x": 940,
+        "x": 930,
         "y": 920,
         "wires": []
     },
@@ -1318,10 +1266,10 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "TIDE_B",
-        "func": "var modes = global.get(\"modes\");\nif (modes[\"auto_tide_b\"] == 0) {\n    msg.enabled = true;\n    delete msg.payload;\n}\nelse {\n    msg.enabled = false;\n}\n\nmsg.payload = parseFloat(msg.payload.state.toFixed(2));\n\nreturn msg;\n",
+        "func": "if(msg.payload != null){\n    if (context.get(\"update\")) {\n        msg.payload = parseFloat(msg.payload.state.toFixed(2));\n        return msg;\n    }\n}\nelse{\n    context.set(\"update\", !msg.enabled);\n    return msg; \n}\n",
         "outputs": 1,
         "noerr": 0,
-        "initialize": "",
+        "initialize": "if (context.get(\"update\") === undefined) {\n    context.set(\"update\", true)\n}",
         "finalize": "",
         "libs": [],
         "x": 620,
@@ -1337,10 +1285,10 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "TIDE_A",
-        "func": "var modes = global.get(\"modes\");\nif (modes[\"auto_tide_a\"] == 0) {\n    msg.enabled = true;\n    delete msg.payload;\n}\nelse {\n    msg.enabled = false;\n}\n\nmsg.payload = parseFloat(msg.payload.state.toFixed(2));\n\nreturn msg;\n",
+        "func": "if (msg.payload != null) {\n    if (context.get(\"update\")) {\n        msg.payload = parseFloat(msg.payload.state.toFixed(2));\n        return msg;\n    }\n}\nelse {\n    context.set(\"update\", !msg.enabled);\n    return msg;\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "initialize": "",
+        "initialize": "if (context.get(\"update\") === undefined) {\n    context.set(\"update\", true)\n}",
         "finalize": "",
         "libs": [],
         "x": 620,
@@ -1411,9 +1359,7 @@
         "x": 310,
         "y": 1480,
         "wires": [
-            [
-                "229df4c34158cfcb"
-            ]
+            []
         ]
     },
     {
@@ -1509,23 +1455,6 @@
         ]
     },
     {
-        "id": "5cb8994b91115a63",
-        "type": "debug",
-        "z": "51164a2570c98448",
-        "name": "debug 5",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 560,
-        "y": 620,
-        "wires": []
-    },
-    {
         "id": "52f6107e92a6518a",
         "type": "ros-subscribe",
         "z": "51164a2570c98448",
@@ -1610,19 +1539,6 @@
         ]
     },
     {
-        "id": "7561c980a3ccc18b",
-        "type": "ros-call-service",
-        "z": "51164a2570c98448",
-        "server": "45f0857cd7a7486d",
-        "servicename": "/temp_control_a/control",
-        "srvtype": "osbk_interfaces/srv/ContinuousActuatorControll",
-        "x": 1430,
-        "y": 1500,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "7515ac406f967c30",
         "type": "switch",
         "z": "51164a2570c98448",
@@ -1647,24 +1563,7 @@
         "x": 1230,
         "y": 1600,
         "wires": [
-            [
-                "7561c980a3ccc18b"
-            ],
-            [
-                "7b9614d0a7dea9b0"
-            ]
-        ]
-    },
-    {
-        "id": "7b9614d0a7dea9b0",
-        "type": "ros-call-service",
-        "z": "51164a2570c98448",
-        "server": "45f0857cd7a7486d",
-        "servicename": "/temp_control_b/control",
-        "srvtype": "osbk_interfaces/srv/ContinuousActuatorControl",
-        "x": 1430,
-        "y": 1540,
-        "wires": [
+            [],
             []
         ]
     },
@@ -1689,69 +1588,6 @@
         ]
     },
     {
-        "id": "913b558f6075c2f1",
-        "type": "ros-subscribe",
-        "z": "51164a2570c98448",
-        "server": "45f0857cd7a7486d",
-        "topicname": "/temp_control_a/state",
-        "x": 320,
-        "y": 1320,
-        "wires": [
-            [
-                "c87a908e85435e94",
-                "9832b36d0f0730bc"
-            ]
-        ]
-    },
-    {
-        "id": "c87a908e85435e94",
-        "type": "function",
-        "z": "51164a2570c98448",
-        "name": "set current_status",
-        "func": "var current_status = global.get(\"current_status\") || {};\n\nlet key = msg.payload.topic_name.split(\"/\")[0];\ncurrent_status[key] = parseFloat(msg.payload.state.toFixed(2));\n\nglobal.set(\"current_status\", current_status);",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 550,
-        "y": 1320,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "9832b36d0f0730bc",
-        "type": "debug",
-        "z": "51164a2570c98448",
-        "name": "debug 6",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 520,
-        "y": 1260,
-        "wires": []
-    },
-    {
-        "id": "1ff4e5f6e39e4e3a",
-        "type": "ros-subscribe",
-        "z": "51164a2570c98448",
-        "server": "45f0857cd7a7486d",
-        "topicname": "/temp_control_b/state",
-        "x": 320,
-        "y": 1360,
-        "wires": [
-            [
-                "c87a908e85435e94"
-            ]
-        ]
-    },
-    {
         "id": "77c693f9ea53148c",
         "type": "debug",
         "z": "51164a2570c98448",
@@ -1765,6 +1601,386 @@
         "statusType": "auto",
         "x": 1240,
         "y": 1640,
+        "wires": []
+    },
+    {
+        "id": "d620cb2d7966e76d",
+        "type": "function",
+        "z": "51164a2570c98448",
+        "name": "set initially",
+        "func": "var current_status = global.get(\"current_status\");\n\nif(context.get(\"initially\")){\n    context.set(\"initially\", false);\n    msg.payload = parseFloat(msg.payload.state.toFixed(2));\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "if (context.get(\"initially\") === undefined) {\n    context.set(\"initially\", true)\n}",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 420,
+        "wires": [
+            [
+                "1a220d7c6bc1630f"
+            ]
+        ]
+    },
+    {
+        "id": "7561c980a3ccc18b",
+        "type": "ros-call-service",
+        "z": "51164a2570c98448",
+        "server": "45f0857cd7a7486d",
+        "servicename": "/temp_control_a/control",
+        "srvtype": "osbk_interfaces/srv/ContinuousActuatorControll",
+        "x": 1390,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7b9614d0a7dea9b0",
+        "type": "ros-call-service",
+        "z": "51164a2570c98448",
+        "server": "45f0857cd7a7486d",
+        "servicename": "/temp_control_b/control",
+        "srvtype": "osbk_interfaces/srv/ContinuousActuatorControl",
+        "x": 1390,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2a5a4345e98bfad5",
+        "type": "function",
+        "z": "51164a2570c98448",
+        "name": "prepare service call",
+        "func": "let request = msg.payload;\nmsg.payload = {};\nmsg.payload.new_status = request;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1160,
+        "y": 420,
+        "wires": [
+            [
+                "7561c980a3ccc18b"
+            ]
+        ]
+    },
+    {
+        "id": "a656528fdb70409f",
+        "type": "function",
+        "z": "51164a2570c98448",
+        "name": "prepare service call",
+        "func": "let request = msg.payload;\nmsg.payload = {};\nmsg.payload.new_status = request;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1160,
+        "y": 720,
+        "wires": [
+            [
+                "7b9614d0a7dea9b0"
+            ]
+        ]
+    },
+    {
+        "id": "678ef535b95afdde",
+        "type": "ros-subscribe",
+        "z": "51164a2570c98448",
+        "server": "45f0857cd7a7486d",
+        "topicname": "/temp_control_a/state",
+        "x": 340,
+        "y": 420,
+        "wires": [
+            [
+                "d620cb2d7966e76d"
+            ]
+        ]
+    },
+    {
+        "id": "c579376ecc909929",
+        "type": "function",
+        "z": "51164a2570c98448",
+        "name": "set initially",
+        "func": "var current_status = global.get(\"current_status\");\n\nif(context.get(\"initially\")){\n    context.set(\"initially\", false);\n    msg.payload = parseFloat(msg.payload.state.toFixed(2));\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "if (context.get(\"initially\") === undefined) {\n    context.set(\"initially\", true)\n}",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 720,
+        "wires": [
+            [
+                "8c242c6939227338"
+            ]
+        ]
+    },
+    {
+        "id": "a76aae8cb2e8c960",
+        "type": "ros-subscribe",
+        "z": "51164a2570c98448",
+        "server": "45f0857cd7a7486d",
+        "topicname": "/temp_control_b/state",
+        "x": 340,
+        "y": 720,
+        "wires": [
+            [
+                "c579376ecc909929"
+            ]
+        ]
+    },
+    {
+        "id": "6fa8cca94eebde01",
+        "type": "ros-subscribe",
+        "z": "51164a2570c98448",
+        "server": "45f0857cd7a7486d",
+        "topicname": "/tide_sim/auto_tide_current_a",
+        "x": 360,
+        "y": 500,
+        "wires": [
+            [
+                "b2a6a3e7da585e6e"
+            ]
+        ]
+    },
+    {
+        "id": "b2a6a3e7da585e6e",
+        "type": "function",
+        "z": "51164a2570c98448",
+        "name": "set initially",
+        "func": "var current_status = global.get(\"current_status\");\n\nif(context.get(\"initially\")){\n    context.set(\"initially\", false);\n    msg.payload = parseInt(msg.payload.data);\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "if (context.get(\"initially\") === undefined) {\n    context.set(\"initially\", true)\n}",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 500,
+        "wires": [
+            [
+                "5da0fb6680030a20"
+            ]
+        ]
+    },
+    {
+        "id": "0668ce470706eb07",
+        "type": "ros-subscribe",
+        "z": "51164a2570c98448",
+        "server": "45f0857cd7a7486d",
+        "topicname": "/tide_sim/auto_tide_current_b",
+        "x": 360,
+        "y": 840,
+        "wires": [
+            [
+                "cc6481e469407d22"
+            ]
+        ]
+    },
+    {
+        "id": "cc6481e469407d22",
+        "type": "function",
+        "z": "51164a2570c98448",
+        "name": "set initially",
+        "func": "var current_status = global.get(\"current_status\");\n\nif(context.get(\"initially\")){\n    context.set(\"initially\", false);\n    msg.payload = parseInt(msg.payload.data);\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "if (context.get(\"initially\") === undefined) {\n    context.set(\"initially\", true)\n}",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 840,
+        "wires": [
+            [
+                "1c19ba01064aef11"
+            ]
+        ]
+    },
+    {
+        "id": "360e2fde90318b03",
+        "type": "function",
+        "z": "51164a2570c98448",
+        "name": "prepare service call",
+        "func": "let request = msg.payload;\nmsg.payload = {};\nmsg.payload.new_status = request;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 500,
+        "wires": [
+            [
+                "19a6d74fb8b0716c",
+                "ddca9f6b426706ca"
+            ]
+        ]
+    },
+    {
+        "id": "58c113ee4ae08ee2",
+        "type": "function",
+        "z": "51164a2570c98448",
+        "name": "prepare service call",
+        "func": "let request = msg.payload;\nmsg.payload = {};\nmsg.payload.new_status = request;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 840,
+        "wires": [
+            [
+                "17bbd4ef7a47cc09"
+            ]
+        ]
+    },
+    {
+        "id": "19a6d74fb8b0716c",
+        "type": "ros-call-service",
+        "z": "51164a2570c98448",
+        "server": "45f0857cd7a7486d",
+        "servicename": "/tide_sim/set_auto_tide_a",
+        "srvtype": "osbk_interfaces/srv/DiscreteActuatorControl",
+        "x": 1370,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "17bbd4ef7a47cc09",
+        "type": "ros-call-service",
+        "z": "51164a2570c98448",
+        "server": "45f0857cd7a7486d",
+        "servicename": "/tide_sim/set_auto_tide_b",
+        "srvtype": "osbk_sim/srv/DiscreteActuatorControl",
+        "x": 1370,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "70ff94abd5651e3c",
+        "type": "function",
+        "z": "51164a2570c98448",
+        "name": "enable/disable tide slider",
+        "func": "let response = {};\nif(msg.payload > 0){\n    response.enabled = false;\n}\nelse{\n    response.enabled = true;\n}\nreturn response;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 460,
+        "wires": [
+            [
+                "ecb02bb24a61dedd"
+            ]
+        ]
+    },
+    {
+        "id": "25ce4183720fdd6e",
+        "type": "function",
+        "z": "51164a2570c98448",
+        "name": "enable/disable tide slider",
+        "func": "let response = {};\nif(msg.payload > 0){\n    response.enabled = false;\n}\nelse{\n    response.enabled = true;\n}\nreturn response;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 800,
+        "wires": [
+            [
+                "f47c3ceaa2d5a83d"
+            ]
+        ]
+    },
+    {
+        "id": "017d8ac48bb6f272",
+        "type": "function",
+        "z": "51164a2570c98448",
+        "name": "prepare service call",
+        "func": "let request = msg.payload;\nmsg.payload = {};\nmsg.payload.new_status = request;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 880,
+        "wires": [
+            [
+                "9c2e4ad9e63f24ab"
+            ]
+        ]
+    },
+    {
+        "id": "c3d8907a71bd9117",
+        "type": "function",
+        "z": "51164a2570c98448",
+        "name": "prepare service call",
+        "func": "let request = msg.payload;\nmsg.payload = {};\nmsg.payload.new_status = request;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 540,
+        "wires": [
+            [
+                "92e9e2a712cc440f",
+                "ddca9f6b426706ca"
+            ]
+        ]
+    },
+    {
+        "id": "92e9e2a712cc440f",
+        "type": "ros-call-service",
+        "z": "51164a2570c98448",
+        "server": "45f0857cd7a7486d",
+        "servicename": "/tide_control_a/control",
+        "srvtype": "osbk_interfaces/srv/DiscreteActuatorControl",
+        "x": 1360,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9c2e4ad9e63f24ab",
+        "type": "ros-call-service",
+        "z": "51164a2570c98448",
+        "server": "45f0857cd7a7486d",
+        "servicename": "/tide_control_b/control",
+        "srvtype": "osbk_interfaces/srv/DiscreteActuatorControl",
+        "x": 1360,
+        "y": 880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ddca9f6b426706ca",
+        "type": "debug",
+        "z": "51164a2570c98448",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1340,
+        "y": 600,
         "wires": []
     },
     {
