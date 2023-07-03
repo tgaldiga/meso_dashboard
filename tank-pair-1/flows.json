@@ -436,6 +436,7 @@
         "id": "895748c4fa71b508",
         "type": "ui_switch",
         "z": "51164a2570c98448",
+        "d": true,
         "name": "MANUAL_CONTROL",
         "label": "Manual Control",
         "tooltip": "",
@@ -630,7 +631,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "V1",
-        "func": "if (msg.payload != null){\n    msg.payload = Boolean(msg.payload.state);\n}\nmsg.enabled = false;\nreturn msg;\n",
+        "func": "var status = global.get(\"status\");\n\nif (msg.payload != null){\n    status[\"v1\"] = msg.payload.state;\n    msg.payload = Boolean(msg.payload.state);\n}\nmsg.enabled = false;\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -649,7 +650,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "V3",
-        "func": "if (msg.payload != null){\n    msg.payload = Boolean(msg.payload.state);\n}\nmsg.enabled = false;\nreturn msg;\n",
+        "func": "var status = global.get(\"status\");\n\nif (msg.payload != null) {\n    status[\"v3\"] = msg.payload.state;\n    msg.payload = Boolean(msg.payload.state);\n}\nmsg.enabled = false;\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -744,7 +745,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "CURRENT_TIDE_A",
-        "func": "if (msg.payload != null) {\n    msg.payload = JSON.parse(msg.payload.data).TIDE_A/100;\n    msg.payload = parseFloat(msg.payload.toFixed(2))\n}\nmsg.enabled = true;\nreturn msg;\n",
+        "func": "var status = global.get(\"status\");\nif (msg.payload != null) {\n    msg.payload = JSON.parse(msg.payload.data).TIDE_A/100;\n    msg.payload = parseFloat(msg.payload.toFixed(2))\n    status[\"tide_current_a\"] = msg.payload;\n}\nmsg.enabled = true;\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -763,7 +764,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "CURRENT_TIDE_B",
-        "func": "if (msg.payload != null) {\n    msg.payload = JSON.parse(msg.payload.data).TIDE_B / 100;\n    msg.payload = parseFloat(msg.payload.toFixed(2))\n}\nmsg.enabled = true;\nreturn msg;\n",
+        "func": "var status = global.get(\"status\");\nif (msg.payload != null) {\n    msg.payload = JSON.parse(msg.payload.data).TIDE_B / 100;\n    msg.payload = parseFloat(msg.payload.toFixed(2))\n    status[\"tide_current_b\"] = msg.payload;\n}\nmsg.enabled = true;\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -782,7 +783,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "UPPER_MAGNETIC_VALVE",
-        "func": "if (msg.payload != null){\n    msg.payload = Boolean(msg.payload.state);\n}\nmsg.enabled = false;\nreturn msg;\n",
+        "func": "var status = global.get(\"status\");\n\nif (msg.payload != null) {\n    status[\"upper_magnetic_valve\"] = msg.payload.state;\n    msg.payload = Boolean(msg.payload.state);\n}\nmsg.enabled = false;\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -801,7 +802,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "PUMP",
-        "func": "if (msg.payload != null){\n    msg.payload = Boolean(msg.payload.state);\n}\nmsg.enabled = false;\nreturn msg;\n",
+        "func": "var status = global.get(\"status\");\n\nif (msg.payload != null){\n    status[\"pump\"] = msg.payload.state;\n    msg.payload = Boolean(msg.payload.state);\n}\nmsg.enabled = false;\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -820,7 +821,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "LOWER_MAGNETIC_VALVE",
-        "func": "if (msg.payload != null){\n    msg.payload = Boolean(msg.payload.state);\n}\nmsg.enabled = false;\nreturn msg;\n",
+        "func": "var status = global.get(\"status\");\n\nif (msg.payload != null) {\n    status[\"lower_magnetic_valve\"] = msg.payload.state;\n    msg.payload = Boolean(msg.payload.state);\n}\nmsg.enabled = false;\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -839,7 +840,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "RO_TEMP",
-        "func": "if (msg.payload != null){\n    msg.payload = parseFloat(msg.payload.temperature.toFixed(2));\n    return msg;\n}",
+        "func": "var status = global.get(\"status\");\n\nif (msg.payload != null){\n    msg.payload = parseFloat(msg.payload.temperature.toFixed(2));\n    status[\"temperature\"] = msg.payload;\n    if(status[\"last_step_number\"] == 3){\n        status[\"temp_current_a\"] = msg.payload;\n    }\n    else if(status[\"last_step_number\"] == 8){\n        status[\"temp_current_b\"] = msg.payload;\n    }\n\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -858,7 +859,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "RO_PH",
-        "func": "if (msg.payload != null){\n    msg.payload = parseFloat(msg.payload.acidity.toFixed(2));\n    return msg;\n}",
+        "func": "var status = global.get(\"status\");\n\nif (msg.payload != null){\n    msg.payload = parseFloat(msg.payload.acidity.toFixed(2));\n    status[\"acidity\"] = msg.payload;\n    if (status[\"last_step_number\"] == 3) {\n        status[\"acidity_a\"] = msg.payload;\n    }\n    else if (status[\"last_step_number\"] == 8) {\n        status[\"acidity_b\"] = msg.payload;\n    }\n\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -877,7 +878,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "RO_COND",
-        "func": "if (msg.payload != null){\n    msg.payload = parseFloat(msg.payload.salinity.toFixed(2));\n    return msg;\n}",
+        "func": "var status = global.get(\"status\");\n\nif (msg.payload != null){\n    msg.payload = parseFloat(msg.payload.salinity.toFixed(2));\n    status[\"salinity\"] = msg.payload;\n    if (status[\"last_step_number\"] == 3) {\n        status[\"salinity_a\"] = msg.payload;\n    }\n    else if (status[\"last_step_number\"] == 8) {\n        status[\"salinity_b\"] = msg.payload;\n    }\n\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -896,7 +897,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "RO_OXYGEN",
-        "func": "if (msg.payload != null){\n    msg.payload = parseFloat(msg.payload.o2_concentration.toFixed(2));\n    return msg;\n}",
+        "func": "var status = global.get(\"status\");\n\nif (msg.payload != null){\n    msg.payload = parseFloat(msg.payload.o2_concentration.toFixed(2));\n    status[\"oxygen\"] = msg.payload;\n    if (status[\"last_step_number\"] == 3) {\n        status[\"oxygen_a\"] = msg.payload;\n    }\n    else if (status[\"last_step_number\"] == 8) {\n        status[\"oxygen_b\"] = msg.payload;\n    }\n\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -949,7 +950,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "get LAST_STEP",
-        "func": "var step_list = [\n    \"STOP\",\n    \"PREP TANK A\",\n    \"VENT TANK A\",\n    \"RUN TANK A\",\n    \"STOP TANK A\",\n    \"DRAIN SYSTEM A\",\n    \"PREP TANK B\",\n    \"VENT TANK B\",\n    \"RUN TANK B\",\n    \"STOP TANK B\",\n    \"DRAIN SYSTEM B\"\n]\n\nif (msg.payload.data == null) { msg.payload = \"UNKNOWN\" }\nelse { msg.payload = step_list[msg.payload.data] }\nreturn msg;",
+        "func": "var step_list = [\n    \"STOP\",\n    \"PREP TANK A\",\n    \"VENT TANK A\",\n    \"RUN TANK A\",\n    \"STOP TANK A\",\n    \"DRAIN SYSTEM A\",\n    \"PREP TANK B\",\n    \"VENT TANK B\",\n    \"RUN TANK B\",\n    \"STOP TANK B\",\n    \"DRAIN SYSTEM B\"\n];\n\nvar status = global.get(\"status\");\n\nif (msg.payload.data == null) {\n    msg.payload = \"UNKNOWN\";\n}\nelse {\n    status[\"last_step_number\"] = msg.payload.data\n    msg.payload = step_list[msg.payload.data]\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1007,7 +1008,7 @@
         "width": 3,
         "height": 1,
         "wrap": false,
-        "passthru": false,
+        "passthru": true,
         "topic": "temp_control_a",
         "topicType": "str",
         "format": "{{value}} °C",
@@ -1035,7 +1036,7 @@
         "width": 3,
         "height": 1,
         "wrap": false,
-        "passthru": false,
+        "passthru": true,
         "topic": "temp_control_b",
         "topicType": "str",
         "format": "{{value}} °C",
@@ -1211,23 +1212,6 @@
         ]
     },
     {
-        "id": "52b37fc435b7d54f",
-        "type": "function",
-        "z": "51164a2570c98448",
-        "name": "set auto-tide",
-        "func": "var modes = global.get(\"modes\");\n\nif(msg.topic === \"AUTO_TIDE_A\"){\n    modes[\"auto_tide_a\"] = msg.payload;\n}\nelse if(msg.topic === \"AUTO_TIDE_B\"){\n    modes[\"auto_tide_b\"] = msg.payload;\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 990,
-        "y": 1260,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "c9653abf31104242",
         "type": "ui_text",
         "z": "51164a2570c98448",
@@ -1266,7 +1250,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "TIDE_B",
-        "func": "if(msg.payload != null){\n    if (context.get(\"update\")) {\n        msg.payload = parseFloat(msg.payload.state.toFixed(2));\n        return msg;\n    }\n}\nelse{\n    context.set(\"update\", !msg.enabled);\n    return msg; \n}\n",
+        "func": "if (msg.payload != null) {\n    if (context.get(\"update\")) {\n        var status = global.get(\"status\");\n        msg.payload = parseFloat(msg.payload.state.toFixed(2));\n        status[\"tide_setpoint_b\"] = msg.payload;\n        return msg;\n    }\n}\nelse {\n    context.set(\"update\", !msg.enabled);\n    return msg;\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "if (context.get(\"update\") === undefined) {\n    context.set(\"update\", true)\n}",
@@ -1285,7 +1269,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "TIDE_A",
-        "func": "if (msg.payload != null) {\n    if (context.get(\"update\")) {\n        msg.payload = parseFloat(msg.payload.state.toFixed(2));\n        return msg;\n    }\n}\nelse {\n    context.set(\"update\", !msg.enabled);\n    return msg;\n}\n",
+        "func": "if (msg.payload != null) {\n    if (context.get(\"update\")) {\n        var status = global.get(\"status\");\n        msg.payload = parseFloat(msg.payload.state.toFixed(2));\n        status[\"tide_setpoint_a\"] = msg.payload;\n        return msg;\n    }\n}\nelse {\n    context.set(\"update\", !msg.enabled);\n    return msg;\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "if (context.get(\"update\") === undefined) {\n    context.set(\"update\", true)\n}",
@@ -1608,7 +1592,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "set initially",
-        "func": "var current_status = global.get(\"current_status\");\n\nif(context.get(\"initially\")){\n    context.set(\"initially\", false);\n    msg.payload = parseFloat(msg.payload.state.toFixed(2));\n    return msg;\n}",
+        "func": "if(context.get(\"initially\")){\n    context.set(\"initially\", false);\n    var status = global.get(\"status\");\n    msg.payload = parseFloat(msg.payload.state.toFixed(2));\n    status[\"temp_setpoint_a\"] = msg.payload;\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "if (context.get(\"initially\") === undefined) {\n    context.set(\"initially\", true)\n}",
@@ -1653,7 +1637,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "prepare service call",
-        "func": "let request = msg.payload;\nmsg.payload = {};\nmsg.payload.new_status = request;\nreturn msg;",
+        "func": "var status = global.get(\"status\");\n\nlet request = msg.payload;\nstatus[\"temp_setpoint_a\"] = request;\nmsg.payload = {};\nmsg.payload.new_status = request;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1672,7 +1656,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "prepare service call",
-        "func": "let request = msg.payload;\nmsg.payload = {};\nmsg.payload.new_status = request;\nreturn msg;",
+        "func": "var status = global.get(\"status\");\n\nlet request = msg.payload;\nstatus[\"temp_setpoint_b\"] = request;\nmsg.payload = {};\nmsg.payload.new_status = request;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1705,7 +1689,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "set initially",
-        "func": "var current_status = global.get(\"current_status\");\n\nif(context.get(\"initially\")){\n    context.set(\"initially\", false);\n    msg.payload = parseFloat(msg.payload.state.toFixed(2));\n    return msg;\n}",
+        "func": "if (context.get(\"initially\")) {\n    context.set(\"initially\", false);\n    var status = global.get(\"status\");\n    msg.payload = parseFloat(msg.payload.state.toFixed(2));\n    status[\"temp_setpoint_b\"] = msg.payload;\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "if (context.get(\"initially\") === undefined) {\n    context.set(\"initially\", true)\n}",
@@ -1752,7 +1736,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "set initially",
-        "func": "var current_status = global.get(\"current_status\");\n\nif(context.get(\"initially\")){\n    context.set(\"initially\", false);\n    msg.payload = parseInt(msg.payload.data);\n    return msg;\n}",
+        "func": "if(context.get(\"initially\")){\n    context.set(\"initially\", false);\n    var status = global.get(\"status\");\n    msg.payload = parseInt(msg.payload.data);\n    status[\"auto_tide_a\"] = msg.payload;\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "if (context.get(\"initially\") === undefined) {\n    context.set(\"initially\", true)\n}",
@@ -1785,7 +1769,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "set initially",
-        "func": "var current_status = global.get(\"current_status\");\n\nif(context.get(\"initially\")){\n    context.set(\"initially\", false);\n    msg.payload = parseInt(msg.payload.data);\n    return msg;\n}",
+        "func": "if (context.get(\"initially\")) {\n    context.set(\"initially\", false);\n    var status = global.get(\"status\");\n    msg.payload = parseInt(msg.payload.data);\n    status[\"auto_tide_b\"] = msg.payload;\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "if (context.get(\"initially\") === undefined) {\n    context.set(\"initially\", true)\n}",
@@ -1804,7 +1788,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "prepare service call",
-        "func": "let request = msg.payload;\nmsg.payload = {};\nmsg.payload.new_status = request;\nreturn msg;",
+        "func": "var status = global.get(\"status\");\n\nlet request = msg.payload;\nstatus[\"auto_tide_a\"] = request;\nmsg.payload = {};\nmsg.payload.new_status = request;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1823,7 +1807,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "prepare service call",
-        "func": "let request = msg.payload;\nmsg.payload = {};\nmsg.payload.new_status = request;\nreturn msg;",
+        "func": "var status = global.get(\"status\");\n\nlet request = msg.payload;\nstatus[\"auto_tide_b\"] = request;\nmsg.payload = {};\nmsg.payload.new_status = request;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1906,7 +1890,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "prepare service call",
-        "func": "let request = msg.payload;\nmsg.payload = {};\nmsg.payload.new_status = request;\nreturn msg;",
+        "func": "var status = global.get(\"status\");\n\nlet request = msg.payload;\nstatus[\"tide_setpoint_b\"] = request;\nmsg.payload = {};\nmsg.payload.new_status = request;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1925,7 +1909,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "prepare service call",
-        "func": "let request = msg.payload;\nmsg.payload = {};\nmsg.payload.new_status = request;\nreturn msg;",
+        "func": "var status = global.get(\"status\");\n\nlet request = msg.payload;\nstatus[\"tide_setpoint_a\"] = request;\nmsg.payload = {};\nmsg.payload.new_status = request;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1987,23 +1971,23 @@
             },
             {
                 "label": "Measure tank A",
-                "value": "1",
-                "type": "str"
+                "value": 1,
+                "type": "num"
             },
             {
                 "label": "Measure tank B",
-                "value": "2",
-                "type": "str"
+                "value": 2,
+                "type": "num"
             },
             {
                 "label": "Drain Sensor",
-                "value": "3",
-                "type": "str"
+                "value": 3,
+                "type": "num"
             },
             {
                 "label": "Stop",
-                "value": "4",
-                "type": "str"
+                "value": 4,
+                "type": "num"
             }
         ],
         "payload": "",
@@ -2036,7 +2020,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "prepare service call",
-        "func": "var MODE_STRING = [\n    \"AUTOMATIC_CYCLE\",\n    \"MEASURE_TANK_A\",\n    \"MEASURE_TANK_B\",\n    \"DRAIN_SENSOR\",\n    \"STOP\"\n]\nlet request = msg.payload;\nmsg.payload = {};\nmsg.payload.mode = MODE_STRING[request];\nreturn msg;",
+        "func": "var MODE_STRING = [\n    \"AUTOMATIC_CYCLE\",\n    \"MEASURE_TANK_A\",\n    \"MEASURE_TANK_B\",\n    \"DRAIN_SENSOR\",\n    \"STOP\"\n]\nvar status = global.get(\"status\");\n\nlet request = msg.payload;\nstatus[\"operating_mode\"] = request;\nmsg.payload = {};\nmsg.payload.mode = MODE_STRING[request];\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2055,7 +2039,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "set initially",
-        "func": "if(context.get(\"initially\")){\n    let MODE_STRING = [\n        \"AUTOMATIC_CYCLE\",\n        \"MEASURE_TANK_A\",\n        \"MEASURE_TANK_B\",\n        \"DRAIN_SENSOR\",\n        \"STOP\"\n    ]\n\n    context.set(\"initially\", false);\n    msg.payload = MODE_STRING.indexOf(msg.payload.data);\n    return msg;\n}",
+        "func": "if (context.get(\"initially\")) {\n    context.set(\"initially\", false);\n    \n    let MODE_STRING = [\n        \"AUTOMATIC_CYCLE\",\n        \"MEASURE_TANK_A\",\n        \"MEASURE_TANK_B\",\n        \"DRAIN_SENSOR\",\n        \"STOP\"\n    ];\n\n    let status = global.get(\"status\");\n\n    msg.payload = MODE_STRING.indexOf(msg.payload.data);\n    status[\"operating_mode\"] = msg.payload;\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "if (context.get(\"initially\") === undefined) {\n    context.set(\"initially\", true)\n}",
@@ -2080,6 +2064,190 @@
         "wires": [
             [
                 "290a10c540893aa1"
+            ]
+        ]
+    },
+    {
+        "id": "fc59167dfa01a56e",
+        "type": "inject",
+        "z": "51164a2570c98448",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 310,
+        "y": 1140,
+        "wires": [
+            [
+                "1533dbe344080fc7"
+            ]
+        ]
+    },
+    {
+        "id": "1533dbe344080fc7",
+        "type": "template",
+        "z": "51164a2570c98448",
+        "name": "initial_status",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n    \"operating_mode\": 0,\n    \"last_step_number\": 0,\n    \"pump\": 0,\n    \"v1\": 0,\n    \"v3\": 0,\n    \"upper_magnetic_valve\": 0,\n    \"lower_magnetic_valve\": 0,\n    \"temperature\": 0,\n    \"salinity\": 0,\n    \"oxygen\": 0,\n    \"acidity\": 0,\n    \"auto_tide_a\": 0,\n    \"tide_setpoint_a\": 0,\n    \"tide_current_a\": 0,\n    \"temp_setpoint_a\": 0,\n    \"temp_current_a\": 0,\n    \"salinity_a\": 0,\n    \"oxygen_a\": 0,\n    \"acidity_a\": 0,\n    \"auto_tide_b\": 0,\n    \"tide_setpoint_b\": 0,\n    \"tide_current_b\": 0,\n    \"temp_setpoint_b\": 0,\n    \"temp_current_b\": 0,\n    \"salinity_b\": 0,\n    \"oxygen_b\": 0,\n    \"acidity_b\": 0\n}",
+        "output": "json",
+        "x": 490,
+        "y": 1140,
+        "wires": [
+            [
+                "38c10b0433092c09"
+            ]
+        ]
+    },
+    {
+        "id": "38c10b0433092c09",
+        "type": "change",
+        "z": "51164a2570c98448",
+        "name": "to global.status",
+        "rules": [
+            {
+                "t": "set",
+                "p": "status",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4b8d296a8f5cf55d",
+        "type": "link in",
+        "z": "51164a2570c98448",
+        "name": "lnk_in_operating_mode",
+        "links": [
+            "48ec24ca4a963af9"
+        ],
+        "x": 825,
+        "y": 60,
+        "wires": [
+            [
+                "a2e8593df24d14d6"
+            ]
+        ]
+    },
+    {
+        "id": "e3ac26f685233213",
+        "type": "link in",
+        "z": "51164a2570c98448",
+        "name": "lnk_in_temp_setpoint_a",
+        "links": [
+            "8814ec3e9e52fd94"
+        ],
+        "x": 765,
+        "y": 380,
+        "wires": [
+            [
+                "1a220d7c6bc1630f"
+            ]
+        ]
+    },
+    {
+        "id": "7ca1536258a7b83a",
+        "type": "link in",
+        "z": "51164a2570c98448",
+        "name": "lnk_in_auto_tide_a",
+        "links": [
+            "b6d2350a1014b79b"
+        ],
+        "x": 765,
+        "y": 460,
+        "wires": [
+            [
+                "5da0fb6680030a20"
+            ]
+        ]
+    },
+    {
+        "id": "56889d1e73070bec",
+        "type": "link in",
+        "z": "51164a2570c98448",
+        "name": "lnk_in_tide_setpoint_a",
+        "links": [
+            "8cbeb9fcc292b83f"
+        ],
+        "x": 765,
+        "y": 520,
+        "wires": [
+            [
+                "ca802baf35ab3c2d",
+                "c3d8907a71bd9117"
+            ]
+        ]
+    },
+    {
+        "id": "1511fdc5a377667a",
+        "type": "link in",
+        "z": "51164a2570c98448",
+        "name": "lnk_in_temp_setpoint_b",
+        "links": [
+            "1b44a0b33b884ceb"
+        ],
+        "x": 765,
+        "y": 700,
+        "wires": [
+            [
+                "8c242c6939227338"
+            ]
+        ]
+    },
+    {
+        "id": "1ace3eb385635922",
+        "type": "link in",
+        "z": "51164a2570c98448",
+        "name": "lnk_in_auto_tide_b",
+        "links": [
+            "7aaa6d23401eb677"
+        ],
+        "x": 765,
+        "y": 820,
+        "wires": [
+            [
+                "1c19ba01064aef11"
+            ]
+        ]
+    },
+    {
+        "id": "b18e535cd45df8c9",
+        "type": "link in",
+        "z": "51164a2570c98448",
+        "name": "lnk_in_tide_setpoint_b",
+        "links": [
+            "7d78ca8d4b4d36f9"
+        ],
+        "x": 765,
+        "y": 860,
+        "wires": [
+            [
+                "07db7490fddc2459",
+                "017d8ac48bb6f272"
             ]
         ]
     },
@@ -2116,7 +2284,7 @@
         "type": "function",
         "z": "188f3d12c338cf2e",
         "name": "getSystemResponse",
-        "func": "var sps_status = global.get(\"sps_status\");\nvar rest_response = flow.get(\"rest_response\");\nvar map_endpoint_to_response = flow.get(\"map_endpoint_to_response\");\nvar map_response_to_status = flow.get(\"map_response_to_status\");\n\nvar getOperatingModeString = function(mode_number) {\n    switch (mode_number) {\n        case 0:\n            return \"AUTOMATIC_CYCLE\";\n        case 1:\n            return \"MEASURE_TANK_A\";\n        case 2:\n            return \"MEASURE_TANK_B\";\n        case 3:\n            return \"DRAIN_SENSOR\";\n        case 4:\n            return \"STOP\";\n    }\n}\n\n/* returns the corresponding name for a given step number */\nvar getStatusString = function (step_number) {\n    switch (step_number) {\n        case 0:\n            return \"STOP\";\n        case 1:\n            return \"PREP_TANK_A\";\n        case 2:\n            return \"VENT_TANK_A\";\n        case 3:\n            return \"RUN_TANK_A\";\n        case 4:\n            return \"STOP_TANK_A\";\n        case 5:\n            return \"DRAIN_TANK_A\";\n        case 6:\n            return \"PREP_TANK_B\";\n        case 7:\n            return \"VENT_TANK_B\";\n        case 8:\n            return \"RUN_TANK_B\";\n        case 9:\n            return \"STOP_TANK_B\";\n        case 10:\n            return \"DRAIN_TANK_B\";\n    }\n}\n\n/* recursively fill the response object from current sps_status\n    using the given mapping*/\nvar fillResponseFromSpsStatus = function(response, map) {\n    for (let key in response){\n        // if current parameter is object fill its nested parameters\n        if (typeof response[key] === 'object' && response[key] !== null) {\n            fillResponseFromSpsStatus(response[key], map[key]);\n        }\n        // if current parameter is a simple value assign it and break recursion\n        else{\n            // if the value should not be copied from sps-status, but instead from the current setpoint etc.\n            // it maps to -1\n            if(map[key] !== -1){\n                // special handling of auto-tide and operating mode\n                if (key === \"auto_tide\" || key === \"operating_mode\") {\n                    let modes = global.get(\"modes\");\n                    response[key] = modes[map[key]];\n                    if (key === \"operating_mode\") {\n                        response[key] = getOperatingModeString(response[key]);\n                    }\n                }\n                else{\n                    response[key] = sps_status[map[key]];\n                \n                    // replace step number with status string\n                    if(key === \"state\"){\n                        response[key] = getStatusString(response[key]);\n                    }\n                }\n            }\n        }\n    }\n    //node.warn(response);\n    return response;\n}\n\n/* return the nested object for a request with given url */\nvar extractSpecificResponse = function(url) {\n    var response = RED.util.cloneMessage(rest_response);\n\n    // remove trailing slashes\n    url = url.endsWith('/') ? url.slice(0, -1) : url;\n\n    // get the path to the nested parameter\n    var path = map_endpoint_to_response[url].split(\".\");\n    // select the requested nested parameter\n    //node.warn(path);\n    for(let index in path){\n        response = response[path[index]];\n        if(response === null){\n            msg.statusCode = 500;\n        }\n    }\n\n    // return the response as the key-value pair from the full response-json\n    return {[path.at(-1)]: response};\n}\n\nfillResponseFromSpsStatus(rest_response, map_response_to_status);\n\n//unless something goes wrong set response status to OK\nmsg.statusCode = 200\nmsg.payload = extractSpecificResponse(msg.req.url);\n\nreturn msg;",
+        "func": "var status = global.get(\"status\");\nvar rest_response = flow.get(\"rest_response\");\nvar map_endpoint_to_response = flow.get(\"map_endpoint_to_response\");\nvar map_response_to_status = flow.get(\"map_response_to_status\");\n\nvar getOperatingModeString = function(mode_number) {\n    switch (mode_number) {\n        case 0:\n            return \"AUTOMATIC_CYCLE\";\n        case 1:\n            return \"MEASURE_TANK_A\";\n        case 2:\n            return \"MEASURE_TANK_B\";\n        case 3:\n            return \"DRAIN_SENSOR\";\n        case 4:\n            return \"STOP\";\n    }\n}\n\n/* returns the corresponding name for a given step number */\nvar getStatusString = function (step_number) {\n    switch (step_number) {\n        case 0:\n            return \"STOP\";\n        case 1:\n            return \"PREP_TANK_A\";\n        case 2:\n            return \"VENT_TANK_A\";\n        case 3:\n            return \"RUN_TANK_A\";\n        case 4:\n            return \"STOP_TANK_A\";\n        case 5:\n            return \"DRAIN_TANK_A\";\n        case 6:\n            return \"PREP_TANK_B\";\n        case 7:\n            return \"VENT_TANK_B\";\n        case 8:\n            return \"RUN_TANK_B\";\n        case 9:\n            return \"STOP_TANK_B\";\n        case 10:\n            return \"DRAIN_TANK_B\";\n    }\n}\n\n/* recursively fill the response object from current status\n    using the given mapping*/\nvar fillResponseFromStatus = function(response, map) {\n    for (let key in response){\n        // if current parameter is object fill its nested parameters\n        if (typeof response[key] === 'object' && response[key] !== null) {\n            fillResponseFromStatus(response[key], map[key]);\n        }\n        // if current parameter is a simple value assign it and break recursion\n        else{\n            // if the value should not be copied from sps-status, but instead from the current setpoint etc.\n            // it maps to -1\n            if(map[key] !== -1){\n                response[key] = status[map[key]];\n            \n                // replace step number with status string\n                if(key === \"state\"){\n                    response[key] = getStatusString(response[key]);\n                }\n                // replace operating_mode number with string\n                else if(key === \"operating_mode\"){\n                    response[key] = getOperatingModeString(response[key]);\n                }\n            }\n        }\n    }\n    //node.warn(response);\n    return response;\n}\n\n/* return the nested object for a request with given url */\nvar extractSpecificResponse = function(url) {\n    var response = RED.util.cloneMessage(rest_response);\n\n    // remove trailing slashes\n    url = url.endsWith('/') ? url.slice(0, -1) : url;\n\n    // get the path to the nested parameter\n    var path = map_endpoint_to_response[url].split(\".\");\n    // select the requested nested parameter\n    //node.warn(path);\n    for(let index in path){\n        response = response[path[index]];\n        if(response === null){\n            msg.statusCode = 500;\n        }\n    }\n\n    // return the response as the key-value pair from the full response-json\n    return {[path.at(-1)]: response};\n}\n\nfillResponseFromStatus(rest_response, map_response_to_status);\n\n//unless something goes wrong set response status to OK\nmsg.statusCode = 200\nmsg.payload = extractSpecificResponse(msg.req.url);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2177,40 +2345,6 @@
         "wires": [
             [
                 "9dc52c24123445f5"
-            ]
-        ]
-    },
-    {
-        "id": "6d9edf53bede6d75",
-        "type": "function",
-        "z": "188f3d12c338cf2e",
-        "name": "fill_rest_response_from_setpoint",
-        "func": "var rest_response = flow.get(\"rest_response\");\n\nfor (let x in msg.setpoint) {\n    switch (x) {\n        case \"TIDE_A\":\n            rest_response[\"system\"][\"tank_a\"][\"platform_position\"][\"target\"] = msg.setpoint[x];\n            break;\n        case \"TIDE_B\":\n            rest_response[\"system\"][\"tank_b\"][\"platform_position\"][\"target\"] = msg.setpoint[x];\n            break;\n        case \"TEMP_SETPOINT_A\":\n            rest_response[\"system\"][\"tank_a\"][\"temperature\"][\"target\"] = parseFloat((0.01 * msg.setpoint[x]).toFixed(2));\n            break;\n        case \"TEMP_SETPOINT_B\":\n            rest_response[\"system\"][\"tank_b\"][\"temperature\"][\"target\"] = parseFloat((0.01 * msg.setpoint[x]).toFixed(2));\n            break;\n    }\n}\nreturn;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 370,
-        "y": 160,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "c76a6fae6adc5754",
-        "type": "link in",
-        "z": "188f3d12c338cf2e",
-        "name": "fill_rest_response",
-        "links": [
-            "cca8f02bd5f0d641",
-            "ed99c88cb27711c5"
-        ],
-        "x": 185,
-        "y": 160,
-        "wires": [
-            [
-                "6d9edf53bede6d75"
             ]
         ]
     },
@@ -2824,14 +2958,14 @@
         "id": "76e41250122a7b0d",
         "type": "template",
         "z": "188f3d12c338cf2e",
-        "name": "rest_response mapping to sps_status",
+        "name": "rest_response mapping to status",
         "field": "payload",
         "fieldType": "msg",
         "format": "json",
         "syntax": "mustache",
-        "template": "{\n    \"system\": {\n        \"operating_mode\": \"operating_mode\",\n        \"state\": \"LAST_STEP_NUMBER\",\n        \"pump\": \"PUMP\",\n        \"valves\": {\n            \"main_a\": \"V1\",\n            \"main_b\": \"V3\",\n            \"upper\": \"UPPER_MAGNETIC_VALVE\",\n            \"lower\": \"LOWER_MAGNETIC_VALVE\"\n        },\n        \"sensor\": {\n            \"temperature\": \"RO_TEMP\",\n            \"salinity\": \"RO_COND\",\n            \"o2_concentration\": \"RO_OXYGEN\",\n            \"acidity\": \"RO_PH\"\n        },\n        \"tank_a\": {\n            \"platform_position\": {\n                \"auto_tide\": \"auto_tide_a\",\n                \"target\": -1,\n                \"current\": \"TIDE_A\"\n            },\n            \"temperature\": {\n                \"target\": -1,\n                \"current\": -1\n            },\n            \"salinity\": -1,\n            \"o2_concentration\": -1,\n            \"acidity\": -1\n        },\n        \"tank_b\": {\n            \"platform_position\": {\n                \"auto_tide\": \"auto_tide_b\",\n                \"target\": -1,\n                \"current\": \"TIDE_B\"\n            },\n            \"temperature\": {\n                \"target\": -1,\n                \"current\": -1\n            },\n            \"salinity\": -1,\n            \"o2_concentration\": -1,\n            \"acidity\": -1\n        }\n    },\n    \"configuration\": {\n        \"timing\": {\n            \"tank_switch_interval\": -1,\n            \"empty_duration\": -1,\n            \"temp_check_interval\": -1\n        },\n        \"modbus\": {\n            \"heartbeat_interval\": -1,\n            \"publish_interval\": -1,\n            \"read_interval\": -1\n        }\n    }\n}",
+        "template": "{\n    \"system\": {\n        \"operating_mode\": \"operating_mode\",\n        \"state\": \"last_step_number\",\n        \"pump\": \"pump\",\n        \"valves\": {\n            \"main_a\": \"v1\",\n            \"main_b\": \"v3\",\n            \"upper\": \"upper_magnetic_valve\",\n            \"lower\": \"lower_magnetic_valve\"\n        },\n        \"sensor\": {\n            \"temperature\": \"temperature\",\n            \"salinity\": \"salinity\",\n            \"o2_concentration\": \"oxygen\",\n            \"acidity\": \"acidity\"\n        },\n        \"tank_a\": {\n            \"platform_position\": {\n                \"auto_tide\": \"auto_tide_a\",\n                \"target\": \"tide_setpoint_a\",\n                \"current\": \"tide_current_a\"\n            },\n            \"temperature\": {\n                \"target\": \"temp_setpoint_a\",\n                \"current\": \"temp_current_a\"\n            },\n            \"salinity\": \"salinity_a\",\n            \"o2_concentration\": \"oxygen_a\",\n            \"acidity\": \"acidity_a\"\n        },\n        \"tank_b\": {\n            \"platform_position\": {\n                \"auto_tide\": \"auto_tide_b\",\n                \"target\": \"tide_setpoint_b\",\n                \"current\": \"tide_current_b\"\n            },\n            \"temperature\": {\n                \"target\": \"temp_setpoint_b\",\n                \"current\": \"temp_current_b\"\n            },\n            \"salinity\": \"salinity_b\",\n            \"o2_concentration\": \"oxygen_b\",\n            \"acidity\": \"acidity_b\"\n        }\n    },\n    \"configuration\": {\n        \"timing\": {\n            \"tank_switch_interval\": -1,\n            \"empty_duration\": -1,\n            \"temp_check_interval\": -1\n        },\n        \"modbus\": {\n            \"heartbeat_interval\": -1,\n            \"publish_interval\": -1,\n            \"read_interval\": -1\n        }\n    }\n}",
         "output": "json",
-        "x": 390,
+        "x": 380,
         "y": 80,
         "wires": [
             [
@@ -2983,7 +3117,7 @@
         "y": 440,
         "wires": [
             [
-                "fb6998e367682f07"
+                "6663b6f250cd0867"
             ]
         ]
     },
@@ -3000,7 +3134,7 @@
         "y": 480,
         "wires": [
             [
-                "fb6998e367682f07"
+                "6663b6f250cd0867"
             ]
         ]
     },
@@ -3017,7 +3151,7 @@
         "y": 520,
         "wires": [
             [
-                "fb6998e367682f07"
+                "6663b6f250cd0867"
             ]
         ]
     },
@@ -3034,7 +3168,7 @@
         "y": 560,
         "wires": [
             [
-                "fb6998e367682f07"
+                "6663b6f250cd0867"
             ]
         ]
     },
@@ -3051,7 +3185,7 @@
         "y": 600,
         "wires": [
             [
-                "fb6998e367682f07"
+                "6663b6f250cd0867"
             ]
         ]
     },
@@ -3068,7 +3202,7 @@
         "y": 640,
         "wires": [
             [
-                "fb6998e367682f07"
+                "6663b6f250cd0867"
             ]
         ]
     },
@@ -3085,7 +3219,7 @@
         "y": 680,
         "wires": [
             [
-                "fb6998e367682f07"
+                "6663b6f250cd0867"
             ]
         ]
     },
@@ -3102,7 +3236,7 @@
         "y": 720,
         "wires": [
             [
-                "4b4fe194e5a293bb"
+                "6663b6f250cd0867"
             ]
         ]
     },
@@ -3136,7 +3270,7 @@
         "y": 840,
         "wires": [
             [
-                "4b4fe194e5a293bb"
+                "6663b6f250cd0867"
             ]
         ]
     },
@@ -3170,7 +3304,7 @@
         "y": 920,
         "wires": [
             [
-                "fb6998e367682f07"
+                "6663b6f250cd0867"
             ]
         ]
     },
@@ -3187,7 +3321,7 @@
         "y": 960,
         "wires": [
             [
-                "4b4fe194e5a293bb"
+                "6663b6f250cd0867"
             ]
         ]
     },
@@ -3221,7 +3355,7 @@
         "y": 1080,
         "wires": [
             [
-                "4b4fe194e5a293bb"
+                "6663b6f250cd0867"
             ]
         ]
     },
@@ -3407,69 +3541,6 @@
         "wires": []
     },
     {
-        "id": "fb6998e367682f07",
-        "type": "switch",
-        "z": "188f3d12c338cf2e",
-        "name": "MANUAL_CONTROL",
-        "property": "sps_status[\"MANUAL_CONTROL\"]",
-        "propertyType": "global",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "0",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "1",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 1700,
-        "y": 440,
-        "wires": [
-            [
-                "856797b0010cef5e"
-            ],
-            [
-                "4b4fe194e5a293bb"
-            ]
-        ]
-    },
-    {
-        "id": "6b59a4afdb326ba0",
-        "type": "http response",
-        "z": "188f3d12c338cf2e",
-        "name": "",
-        "statusCode": "409",
-        "headers": {},
-        "x": 2100,
-        "y": 440,
-        "wires": []
-    },
-    {
-        "id": "856797b0010cef5e",
-        "type": "template",
-        "z": "188f3d12c338cf2e",
-        "name": "ConflictResponse",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "System is not in Manual-Control-Mode.",
-        "output": "str",
-        "x": 1930,
-        "y": 440,
-        "wires": [
-            [
-                "6b59a4afdb326ba0"
-            ]
-        ]
-    },
-    {
         "id": "6663b6f250cd0867",
         "type": "template",
         "z": "188f3d12c338cf2e",
@@ -3519,48 +3590,14 @@
         ]
     },
     {
-        "id": "4b4fe194e5a293bb",
-        "type": "function",
-        "z": "188f3d12c338cf2e",
-        "name": "parse into new setpoint",
-        "func": "var map_endpoint_to_response = flow.get(\"map_endpoint_to_response\");\nvar rest_put_format = flow.get(\"rest_put_format\");\n\n// parses the requested operating mode to the corresponding integer\n// setpoint is either an integer or the corresponding mode-string\nvar parseOperatingMode = function(setpoint) {\n    // possible states and its id\n    const mode_strings = {\n        \"AUTOMATIC_CYCLE\": 0,\n        \"MEASURE_TANK_A\": 1,\n        \"MEASURE_TANK_B\": 2,\n        \"DRAIN_SENSOR\": 3,\n        \"STOP\": 4\n    };\n\n    let id = mode_strings[setpoint];\n    if (isNaN(id)) {\n        id = parseInt(setpoint)\n        if (id < 0 || 4 < id || isNaN(id)) {\n            id = null;\n            msg.statusCode = 400;\n            msg.payload = \"Unknown Status: \" + setpoint + \".\";\n        }\n    }\n    return id;\n}\n\n// recursively copies the requested values from the json request into a setpoint object\n//   format: mapping of a subset of the full json-rest-structure to its key in a setpoint object\n//   payload: same subset of the json-rest-structure as \"format\" but with the requested values\n//   setpoint: setpoint object to fill\nvar addToSetpoint = function(format, payload, setpoint){\n    //check if input is null (if format and payload do not match)\n    if(format === null || payload === null){\n        msg.statusCode = 400;\n        msg.payload = \"Body of request does not fit the expected format\";\n        setpoint = {};\n    }\n    // if current subset of the json-rest-structure has more parameters\n    if (typeof format === 'object') {\n        // recursively fill each parameter\n        for (let key in format) {\n            addToSetpoint(format[key], payload[key], setpoint);\n        }\n    }\n    // if current subset is a single parameter fill in the value\n    else {\n        //special handling of auto-tide\n        if(format === \"auto_tide_a\" || \n                format === \"auto_tide_b\"){\n            let modes = global.get(\"modes\");\n            modes[format] = payload;\n        }\n        //special handling of operating_mode\n        else if (format === \"operating_mode\") {\n            let modes = global.get(\"modes\");\n            modes[format] = parseOperatingMode(payload);\n        }\n        else if(format !== -1){\n            setpoint[format] = payload;\n        }\n    }\n}\n\n\n/* return the requested setpoint with given url and payload */\nvar constructSetpoint = function (url, payload) {\n    // remove trailing slashes\n    url = url.endsWith('/') ? url.slice(0, -1) : url;\n\n    // get the path to the nested parameter\n    var path = map_endpoint_to_response[url].split(\".\");\n    // get mapping from rest-response-object to setpoint-keys\n    var format = RED.util.cloneMessage(rest_put_format);\n\n    // get only the subset of the mapping that is requested\n    for (let i in path) {\n        format = format[path[i]];\n    }\n    // so that payload and format have the same structure\n    payload = payload[path.at(-1)];\n    \n    // fill the setpoint and return it\n    var setpoint = {};\n    addToSetpoint(format, payload, setpoint);\n    return setpoint;\n}\n\n//unless something goes wrong set response status to OK\nmsg.statusCode = 200\nmsg.setpoint = constructSetpoint(msg.req.url, msg.payload);\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1950,
-        "y": 480,
-        "wires": [
-            [
-                "40397452dc32494b",
-                "323bb0d44093cfaf",
-                "38a53c72a7b05b35"
-            ]
-        ]
-    },
-    {
         "id": "40397452dc32494b",
         "type": "http response",
         "z": "188f3d12c338cf2e",
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 2170,
-        "y": 480,
-        "wires": []
-    },
-    {
-        "id": "b21514a3b309e9fa",
-        "type": "link out",
-        "z": "188f3d12c338cf2e",
-        "name": "lnk_out_rest_setpoint_to_dashboard",
-        "mode": "link",
-        "links": [
-            "fdcf63cccbac0ce9"
-        ],
-        "x": 2325,
-        "y": 480,
+        "x": 2030,
+        "y": 420,
         "wires": []
     },
     {
@@ -3588,8 +3625,7 @@
         "y": 40,
         "wires": [
             [
-                "e07b5d16716fd3dd",
-                "66f2fe53f7991b48"
+                "e07b5d16716fd3dd"
             ]
         ]
     },
@@ -3602,9 +3638,9 @@
         "fieldType": "msg",
         "format": "json",
         "syntax": "mustache",
-        "template": "{\n    \"system\": {\n        \"operating_mode\": \"operating_mode\",\n        \"state\": -1,\n        \"pump\": \"PUMP\",\n        \"valves\": {\n            \"main_a\": \"V1\",\n            \"main_b\": \"V3\",\n            \"upper\": \"UPPER_MAGNETIC_VALVE\",\n            \"lower\": \"LOWER_MAGNETIC_VALVE\"\n        },\n        \"tank_a\": {\n            \"platform_position\": {\n                \"auto_tide\": \"auto_tide_a\",\n                \"target\": \"TIDE_A\"\n            },\n            \"temperature\": {\n                \"target\": \"TEMP_SETPOINT_A\"\n            }\n        },\n        \"tank_b\": {\n            \"platform_position\": {\n                \"auto_tide\": \"auto_tide_b\",\n                \"target\": \"TIDE_B\"\n            },\n            \"temperature\": {\n                \"target\": \"TEMP_SETPOINT_B\"\n            }\n        }\n    },\n    \"configuration\": {\n        \"timing\": {\n            \"tank_switch_interval\": -1,\n            \"empty_duration\": -1,\n            \"temp_check_interval\": -1\n        },\n        \"modbus\": {\n            \"heartbeat_interval\": -1,\n            \"publish_interval\": -1,\n            \"read_interval\": -1\n        }\n    }\n}",
+        "template": "{\n    \"system\": {\n        \"operating_mode\": \"operating_mode\",\n        \"state\": -1,\n        \"pump\": -1,\n        \"valves\": {\n            \"main_a\": -1,\n            \"main_b\": -1,\n            \"upper\": -1,\n            \"lower\": -1\n        },\n        \"tank_a\": {\n            \"platform_position\": {\n                \"auto_tide\": \"auto_tide_a\",\n                \"target\": \"tide_setpoint_a\"\n            },\n            \"temperature\": {\n                \"target\": \"temp_setpoint_a\"\n            }\n        },\n        \"tank_b\": {\n            \"platform_position\": {\n                \"auto_tide\": \"auto_tide_b\",\n                \"target\": \"tide_setpoint_b\"\n            },\n            \"temperature\": {\n                \"target\": \"temp_setpoint_b\"\n            }\n        }\n    },\n    \"configuration\": {\n        \"timing\": {\n            \"tank_switch_interval\": -1,\n            \"empty_duration\": -1,\n            \"temp_check_interval\": -1\n        },\n        \"modbus\": {\n            \"heartbeat_interval\": -1,\n            \"publish_interval\": -1,\n            \"read_interval\": -1\n        }\n    }\n}",
         "output": "json",
-        "x": 1360,
+        "x": 1380,
         "y": 40,
         "wires": [
             [
@@ -3632,28 +3668,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1610,
+        "x": 1630,
         "y": 40,
         "wires": [
             []
         ]
-    },
-    {
-        "id": "323bb0d44093cfaf",
-        "type": "debug",
-        "z": "188f3d12c338cf2e",
-        "name": "debug 4",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2180,
-        "y": 560,
-        "wires": []
     },
     {
         "id": "ece901707e5cce1b",
@@ -3672,449 +3691,6 @@
             [
                 "f8f0d0134a3cb955"
             ]
-        ]
-    },
-    {
-        "id": "38a53c72a7b05b35",
-        "type": "switch",
-        "z": "188f3d12c338cf2e",
-        "name": "request is ok?",
-        "property": "statusCode",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "200",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 2200,
-        "y": 520,
-        "wires": [
-            [
-                "b21514a3b309e9fa"
-            ]
-        ]
-    },
-    {
-        "id": "eaa19af636945029",
-        "type": "switch",
-        "z": "188f3d12c338cf2e",
-        "name": "MANUAL_CONTROL",
-        "property": "sps_status[\"MANUAL_CONTROL\"]",
-        "propertyType": "global",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "0",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "1",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 1700,
-        "y": 400,
-        "wires": [
-            [
-                "95a769edfaac37c0"
-            ],
-            [
-                "e6e65f31a1f59cd2"
-            ]
-        ]
-    },
-    {
-        "id": "18ae88f0160c15b7",
-        "type": "http response",
-        "z": "188f3d12c338cf2e",
-        "name": "",
-        "statusCode": "409",
-        "headers": {},
-        "x": 2100,
-        "y": 400,
-        "wires": []
-    },
-    {
-        "id": "e6e65f31a1f59cd2",
-        "type": "template",
-        "z": "188f3d12c338cf2e",
-        "name": "ConflictResponse",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "System is in Manual-Control-Mode.",
-        "output": "str",
-        "x": 1930,
-        "y": 400,
-        "wires": [
-            [
-                "18ae88f0160c15b7"
-            ]
-        ]
-    },
-    {
-        "id": "95a769edfaac37c0",
-        "type": "function",
-        "z": "188f3d12c338cf2e",
-        "name": "parse state",
-        "func": "// possible states and its id\nconst states = {\n    \"STOP\": 0,\n    \"PREP_TANK_A\" : 1,\n    \"VENT_TANK_A\": 2,\n    \"RUN_TANK_A\": 3,\n    \"STOP_TANK_A\": 4,\n    \"DRAIN_SYSTEM_A\": 5,\n    \"PREP_TANK_B\": 6,\n    \"VENT_TANK_B\": 7,\n    \"RUN_TANK_B\": 8,\n    \"STOP_TANK_B\": 9,\n    \"DRAIN_SYSTEM_B\": 10\n};\n\nlet status_setpoint = msg.payload[\"state\"];\nlet id = states[status_setpoint];\nif(isNaN(id)){\n    id = parseInt(status_setpoint)\n    if (id < 0 || 10 < id || isNaN(id)){\n        msg.statusCode = 400;\n        msg.payload = \"Unknown Status: \" + status_setpoint + \".\";\n        msg.id = -1;\n        msg.drop = 0\n        return msg;\n    }\n}\n\nmsg.statusCode = 200;\nmsg.payload = \"State set to \" + status_setpoint + \".\";\nmsg.id = id;\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1910,
-        "y": 360,
-        "wires": [
-            [
-                "45e1c67735c14282",
-                "c8399f8543c1a778"
-            ]
-        ]
-    },
-    {
-        "id": "45e1c67735c14282",
-        "type": "http response",
-        "z": "188f3d12c338cf2e",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 2170,
-        "y": 360,
-        "wires": []
-    },
-    {
-        "id": "c8399f8543c1a778",
-        "type": "switch",
-        "z": "188f3d12c338cf2e",
-        "name": "set state",
-        "property": "id",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "0",
-                "vt": "num"
-            },
-            {
-                "t": "eq",
-                "v": "1",
-                "vt": "num"
-            },
-            {
-                "t": "eq",
-                "v": "2",
-                "vt": "num"
-            },
-            {
-                "t": "eq",
-                "v": "3",
-                "vt": "num"
-            },
-            {
-                "t": "eq",
-                "v": "4",
-                "vt": "num"
-            },
-            {
-                "t": "eq",
-                "v": "5",
-                "vt": "num"
-            },
-            {
-                "t": "eq",
-                "v": "6",
-                "vt": "num"
-            },
-            {
-                "t": "eq",
-                "v": "7",
-                "vt": "num"
-            },
-            {
-                "t": "eq",
-                "v": "8",
-                "vt": "num"
-            },
-            {
-                "t": "eq",
-                "v": "9",
-                "vt": "num"
-            },
-            {
-                "t": "eq",
-                "v": "10",
-                "vt": "num"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 11,
-        "x": 2080,
-        "y": 140,
-        "wires": [
-            [
-                "c8b5b0133f8aceda",
-                "984d14f185fba203"
-            ],
-            [
-                "665c58bb0967f62e",
-                "984d14f185fba203"
-            ],
-            [
-                "5c7d92749b63e22b",
-                "984d14f185fba203"
-            ],
-            [
-                "9f193477211885cf",
-                "984d14f185fba203"
-            ],
-            [
-                "4eaeb80e04754d90",
-                "984d14f185fba203"
-            ],
-            [
-                "5d6e9ffa65c2d433",
-                "984d14f185fba203"
-            ],
-            [
-                "4ec8d03409d90866",
-                "984d14f185fba203"
-            ],
-            [
-                "9925e568a89caf40",
-                "984d14f185fba203"
-            ],
-            [
-                "1d1814c4869e3383",
-                "984d14f185fba203"
-            ],
-            [
-                "87ae8e90b449c818",
-                "984d14f185fba203"
-            ],
-            [
-                "0eba332582454372",
-                "984d14f185fba203"
-            ]
-        ]
-    },
-    {
-        "id": "c8b5b0133f8aceda",
-        "type": "link out",
-        "z": "188f3d12c338cf2e",
-        "name": "lnk_to_stop",
-        "mode": "link",
-        "links": [
-            "89e47bb21ad728ec"
-        ],
-        "x": 2245,
-        "y": 40,
-        "wires": []
-    },
-    {
-        "id": "665c58bb0967f62e",
-        "type": "link out",
-        "z": "188f3d12c338cf2e",
-        "name": "lnk_to_prep_tank_a",
-        "mode": "link",
-        "links": [
-            "9043510d7358b9aa"
-        ],
-        "x": 2285,
-        "y": 60,
-        "wires": []
-    },
-    {
-        "id": "5c7d92749b63e22b",
-        "type": "link out",
-        "z": "188f3d12c338cf2e",
-        "name": "lnk_to_vent_tank_a",
-        "mode": "link",
-        "links": [
-            "bc844aff20fcc420"
-        ],
-        "x": 2245,
-        "y": 80,
-        "wires": []
-    },
-    {
-        "id": "9f193477211885cf",
-        "type": "link out",
-        "z": "188f3d12c338cf2e",
-        "name": "lnk_to_start_tank_a",
-        "mode": "link",
-        "links": [
-            "a73881ed293b6a9c"
-        ],
-        "x": 2285,
-        "y": 100,
-        "wires": []
-    },
-    {
-        "id": "4eaeb80e04754d90",
-        "type": "link out",
-        "z": "188f3d12c338cf2e",
-        "name": "lnk_to_stop_tank_a",
-        "mode": "link",
-        "links": [
-            "65a8deac56c2d5b8"
-        ],
-        "x": 2245,
-        "y": 120,
-        "wires": []
-    },
-    {
-        "id": "5d6e9ffa65c2d433",
-        "type": "link out",
-        "z": "188f3d12c338cf2e",
-        "name": "lnk_to_drain_system_a",
-        "mode": "link",
-        "links": [
-            "16155fa536f4666b"
-        ],
-        "x": 2285,
-        "y": 140,
-        "wires": []
-    },
-    {
-        "id": "4ec8d03409d90866",
-        "type": "link out",
-        "z": "188f3d12c338cf2e",
-        "name": "lnk_to_prep_tank_b",
-        "mode": "link",
-        "links": [
-            "1699d5695dbb85ef"
-        ],
-        "x": 2245,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "9925e568a89caf40",
-        "type": "link out",
-        "z": "188f3d12c338cf2e",
-        "name": "lnk_to_vent_tank_b",
-        "mode": "link",
-        "links": [
-            "ebeb605bad12c3a4"
-        ],
-        "x": 2285,
-        "y": 180,
-        "wires": []
-    },
-    {
-        "id": "1d1814c4869e3383",
-        "type": "link out",
-        "z": "188f3d12c338cf2e",
-        "name": "lnk_to_start_tank_b",
-        "mode": "link",
-        "links": [
-            "db55c803415e7fef"
-        ],
-        "x": 2245,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "87ae8e90b449c818",
-        "type": "link out",
-        "z": "188f3d12c338cf2e",
-        "name": "lnk_to_stop_tank_b",
-        "mode": "link",
-        "links": [
-            "8a37df7c084d8dd2"
-        ],
-        "x": 2285,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "0eba332582454372",
-        "type": "link out",
-        "z": "188f3d12c338cf2e",
-        "name": "lnk_to_drain_system_b",
-        "mode": "link",
-        "links": [
-            "cb109462c6006dd5"
-        ],
-        "x": 2245,
-        "y": 240,
-        "wires": []
-    },
-    {
-        "id": "984d14f185fba203",
-        "type": "template",
-        "z": "188f3d12c338cf2e",
-        "name": "drop queues",
-        "field": "drop",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "1",
-        "output": "str",
-        "x": 2270,
-        "y": 280,
-        "wires": [
-            [
-                "cd97a9d5c0d13929"
-            ]
-        ]
-    },
-    {
-        "id": "cd97a9d5c0d13929",
-        "type": "link out",
-        "z": "188f3d12c338cf2e",
-        "name": "lnk_to_drop_queues",
-        "mode": "link",
-        "links": [
-            "82032b48128df29a"
-        ],
-        "x": 2385,
-        "y": 280,
-        "wires": []
-    },
-    {
-        "id": "8cc6188dae98cc80",
-        "type": "link in",
-        "z": "188f3d12c338cf2e",
-        "name": "fill_rest_response",
-        "links": [
-            "9c4e440634e179ee"
-        ],
-        "x": 185,
-        "y": 200,
-        "wires": [
-            [
-                "bbf5ad782430dec5"
-            ]
-        ]
-    },
-    {
-        "id": "bbf5ad782430dec5",
-        "type": "function",
-        "z": "188f3d12c338cf2e",
-        "name": "sensor_reading_for_current_tank",
-        "func": "var rest_response = flow.get(\"rest_response\");\nconst RUN_TANK_A = 3;\nconst RUN_TANK_B = 8;\n\nlet tank;\n\nif (msg.payload[\"LAST_STEP_NUMBER\"] == RUN_TANK_A) {\n    tank = \"tank_a\";\n}\nelse if (msg.payload[\"LAST_STEP_NUMBER\"] == RUN_TANK_B) {\n    tank = \"tank_b\";\n}\nelse {\n    return;\n}\n\nlet temperature = (0.01 * msg.payload[\"RO_TEMP\"]).toFixed(2);\nlet salinity = (0.01 * msg.payload[\"RO_COND\"]).toFixed(2);\nlet oxygen = (0.01 * msg.payload[\"RO_OXYGEN\"]).toFixed(2);\nlet acidity = (0.01 * msg.payload[\"RO_PH\"]).toFixed(2);\n\nrest_response[\"system\"][tank][\"temperature\"][\"current\"] = parseFloat(temperature);\nrest_response[\"system\"][tank][\"salinity\"] = parseFloat(salinity);\nrest_response[\"system\"][tank][\"o2_concentration\"] = parseFloat(oxygen);\nrest_response[\"system\"][tank][\"acidity\"] = parseFloat(acidity);\n        \nreturn;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 380,
-        "y": 200,
-        "wires": [
-            []
         ]
     },
     {
@@ -4288,51 +3864,6 @@
         ]
     },
     {
-        "id": "66f2fe53f7991b48",
-        "type": "template",
-        "z": "188f3d12c338cf2e",
-        "name": "modes",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "json",
-        "syntax": "mustache",
-        "template": "{\n    \"operating_mode\": 0,\n    \"auto_tide_a\": 1,\n    \"auto_tide_b\": 1\n}",
-        "output": "json",
-        "x": 1330,
-        "y": 80,
-        "wires": [
-            [
-                "50e709ba8b700964"
-            ]
-        ]
-    },
-    {
-        "id": "50e709ba8b700964",
-        "type": "change",
-        "z": "188f3d12c338cf2e",
-        "name": "to global.modes",
-        "rules": [
-            {
-                "t": "set",
-                "p": "modes",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg",
-                "dc": true
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1560,
-        "y": 80,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "662c8bd4f17502f0",
         "type": "http in",
         "z": "188f3d12c338cf2e",
@@ -4367,13 +3898,232 @@
         ]
     },
     {
-        "id": "f19fd19262394aca",
-        "type": "comment",
+        "id": "4b4fe194e5a293bb",
+        "type": "function",
         "z": "188f3d12c338cf2e",
-        "name": "if setting state directly via rest is desirable:",
-        "info": "",
-        "x": 1640,
-        "y": 360,
+        "name": "parse into new setpoint",
+        "func": "var map_endpoint_to_response = flow.get(\"map_endpoint_to_response\");\nvar rest_put_format = flow.get(\"rest_put_format\");\n\n// parses the requested operating mode to the corresponding integer\n// setpoint is either an integer or the corresponding mode-string\nvar parseOperatingMode = function(setpoint) {\n    // possible states and its id\n    const mode_strings = {\n        \"AUTOMATIC_CYCLE\": 0,\n        \"MEASURE_TANK_A\": 1,\n        \"MEASURE_TANK_B\": 2,\n        \"DRAIN_SENSOR\": 3,\n        \"STOP\": 4\n    };\n\n    let id = mode_strings[setpoint];\n    if (isNaN(id)) {\n        id = parseInt(setpoint)\n        if (id < 0 || 4 < id || isNaN(id)) {\n            id = null;\n            msg.statusCode = 400;\n            msg.payload = \"Unknown Status: \" + setpoint + \".\";\n        }\n    }\n    return id;\n}\n\n// recursively copies the requested values from the json request into a setpoint object\n//   format: mapping of a subset of the full json-rest-structure to its key in a setpoint object\n//   payload: same subset of the json-rest-structure as \"format\" but with the requested values\n//   setpoint: setpoint object to fill\nvar addToSetpoint = function(format, payload, setpoint){\n    //check if input is null (if format and payload do not match)\n    if(format === null || payload === null){\n        msg.statusCode = 400;\n        msg.payload = \"Body of request does not fit the expected format\";\n        setpoint = {};\n    }\n    // if current subset of the json-rest-structure has more parameters\n    if (typeof format === 'object') {\n        // recursively fill each parameter\n        for (let key in format) {\n            addToSetpoint(format[key], payload[key], setpoint);\n        }\n    }\n    // if current subset is a single parameter fill in the value\n    else {\n        //special handling of operating_mode\n        if (format === \"operating_mode\") {\n            setpoint[format] = parseOperatingMode(payload);\n        }\n        else if(format !== -1){\n            setpoint[format] = payload;\n        }\n    }\n}\n\n\n/* return the requested setpoint with given url and payload */\nvar constructSetpoint = function (url, payload) {\n    // remove trailing slashes\n    url = url.endsWith('/') ? url.slice(0, -1) : url;\n\n    // get the path to the nested parameter\n    var path = map_endpoint_to_response[url].split(\".\");\n    // get mapping from rest-response-object to setpoint-keys\n    var format = RED.util.cloneMessage(rest_put_format);\n\n    // get only the subset of the mapping that is requested\n    for (let i in path) {\n        format = format[path[i]];\n    }\n    // so that payload and format have the same structure\n    payload = payload[path.at(-1)];\n    \n    // fill the setpoint and return it\n    var setpoint = {};\n    addToSetpoint(format, payload, setpoint);\n    return setpoint;\n}\n\n//unless something goes wrong set response status to OK\nmsg.statusCode = 200\nlet setpoint = constructSetpoint(msg.req.url, msg.payload);\n\n//if request was ok send individual messages for every value in the setpoint\nif(msg.statusCode == 200){\n    for(let key in setpoint){\n        let message = {}\n        message.topic = key;\n        message.payload = setpoint[key];\n        node.send(message);\n    }\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1690,
+        "y": 420,
+        "wires": [
+            [
+                "2ef100866e97d267"
+            ]
+        ]
+    },
+    {
+        "id": "48ec24ca4a963af9",
+        "type": "link out",
+        "z": "188f3d12c338cf2e",
+        "name": "lnk_out_operating_mode",
+        "mode": "link",
+        "links": [
+            "4b8d296a8f5cf55d"
+        ],
+        "x": 2215,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "f6059c7b268975af",
+        "type": "switch",
+        "z": "188f3d12c338cf2e",
+        "name": "which value to change?",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "operating_mode",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "auto_tide_a",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "tide_setpoint_a",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "temp_setpoint_a",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "auto_tide_b",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "tide_setpoint_b",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "temp_setpoint_b",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 7,
+        "x": 2010,
+        "y": 520,
+        "wires": [
+            [
+                "48ec24ca4a963af9",
+                "87dcadb565f90207"
+            ],
+            [
+                "b6d2350a1014b79b"
+            ],
+            [
+                "8cbeb9fcc292b83f"
+            ],
+            [
+                "8814ec3e9e52fd94"
+            ],
+            [
+                "7aaa6d23401eb677"
+            ],
+            [
+                "7d78ca8d4b4d36f9"
+            ],
+            [
+                "1b44a0b33b884ceb"
+            ]
+        ]
+    },
+    {
+        "id": "8cbeb9fcc292b83f",
+        "type": "link out",
+        "z": "188f3d12c338cf2e",
+        "name": "lnk_out_tide_setpoint_a",
+        "mode": "link",
+        "links": [
+            "56889d1e73070bec"
+        ],
+        "x": 2215,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "b6d2350a1014b79b",
+        "type": "link out",
+        "z": "188f3d12c338cf2e",
+        "name": "lnk_out_auto_tide_a",
+        "mode": "link",
+        "links": [
+            "7ca1536258a7b83a"
+        ],
+        "x": 2265,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "8814ec3e9e52fd94",
+        "type": "link out",
+        "z": "188f3d12c338cf2e",
+        "name": "lnk_out_temp_setpoint_a",
+        "mode": "link",
+        "links": [
+            "e3ac26f685233213"
+        ],
+        "x": 2265,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "7aaa6d23401eb677",
+        "type": "link out",
+        "z": "188f3d12c338cf2e",
+        "name": "lnk_out_auto_tide_b",
+        "mode": "link",
+        "links": [
+            "1ace3eb385635922"
+        ],
+        "x": 2215,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "7d78ca8d4b4d36f9",
+        "type": "link out",
+        "z": "188f3d12c338cf2e",
+        "name": "lnk_out_tide_setpoint_b",
+        "mode": "link",
+        "links": [
+            "b18e535cd45df8c9"
+        ],
+        "x": 2265,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "1b44a0b33b884ceb",
+        "type": "link out",
+        "z": "188f3d12c338cf2e",
+        "name": "lnk_out_temp_setpoint_b",
+        "mode": "link",
+        "links": [
+            "1511fdc5a377667a"
+        ],
+        "x": 2215,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "2ef100866e97d267",
+        "type": "switch",
+        "z": "188f3d12c338cf2e",
+        "name": "http-response oder put value",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1720,
+        "y": 460,
+        "wires": [
+            [
+                "40397452dc32494b"
+            ],
+            [
+                "f6059c7b268975af"
+            ]
+        ]
+    },
+    {
+        "id": "87dcadb565f90207",
+        "type": "debug",
+        "z": "188f3d12c338cf2e",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2260,
+        "y": 420,
         "wires": []
     }
 ]
