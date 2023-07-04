@@ -7,30 +7,32 @@ services:
     ports:
       - "1880:1880"
       - "10502:10502"
+    extra-hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - ./tank-pair-1:/data
 
-  tank-pair-2:
-    container_name: tank-pair-2
-    build: ./tank-pair-2
-    privileged: true
-    user: root
-    ports:
-      - "1881:1880"
-      - "10503:10502"
-    volumes:
-      - ./tank-pair-2:/data
+  # tank-pair-2:
+  #   container_name: tank-pair-2
+  #   build: ./tank-pair-2
+  #   privileged: true
+  #   user: root
+  #   ports:
+  #     - "1881:1880"
+  #     - "10503:10502"
+  #   volumes:
+  #     - ./tank-pair-2:/data
 
-  tank-pair-3:
-    container_name: tank-pair-3
-    build: ./tank-pair-3
-    privileged: true
-    user: root
-    ports:
-      - "1882:1880"
-      - "10504:10502"
-    volumes:
-      - ./tank-pair-3:/data
+  # tank-pair-3:
+  #   container_name: tank-pair-3
+  #   build: ./tank-pair-3
+  #   privileged: true
+  #   user: root
+  #   ports:
+  #     - "1882:1880"
+  #     - "10504:10502"
+  #   volumes:
+  #     - ./tank-pair-3:/data
 
   central-control:
     container_name: central-control
@@ -39,5 +41,7 @@ services:
     user: root
     ports:
       - "1879:1880"
+    extra-hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - ./central-control:/data
