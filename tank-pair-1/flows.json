@@ -268,7 +268,7 @@
         "outs": "end",
         "topic": "TIDE_A",
         "topicType": "str",
-        "min": "100",
+        "min": "0",
         "max": "780",
         "step": 1,
         "className": "",
@@ -433,7 +433,7 @@
         "outs": "end",
         "topic": "TIDE_B",
         "topicType": "str",
-        "min": "100",
+        "min": "0",
         "max": "780",
         "step": 1,
         "className": "",
@@ -848,6 +848,7 @@
         "id": "69269d2f2f5ae9f9",
         "type": "modbus-server",
         "z": "51164a2570c98448",
+        "d": true,
         "name": "",
         "logEnabled": true,
         "hostname": "localhost",
@@ -895,9 +896,12 @@
         "name": "",
         "showStatusActivities": false,
         "showErrors": false,
-        "server": "46220ce9c8d2b07d",
+        "showWarnings": true,
+        "server": "d6bd552f7c1f0120",
         "emptyMsgOnFail": false,
         "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
         "x": 930,
         "y": 1480,
         "wires": [
@@ -931,6 +935,7 @@
         "showStatusActivities": false,
         "logIOActivities": false,
         "showErrors": false,
+        "showWarnings": true,
         "unitid": "",
         "dataType": "HoldingRegister",
         "adr": "32033",
@@ -939,7 +944,7 @@
         "rateUnit": "s",
         "delayOnStart": false,
         "startDelayTime": "",
-        "server": "46220ce9c8d2b07d",
+        "server": "d6bd552f7c1f0120",
         "useIOFile": false,
         "ioFile": "",
         "useIOForPayload": false,
@@ -970,7 +975,8 @@
             [
                 "a42761283499bbd8",
                 "4ddf8ca771d353d0",
-                "9c4e440634e179ee"
+                "9c4e440634e179ee",
+                "ea3b53ce082dec4e"
             ]
         ]
     },
@@ -1120,11 +1126,9 @@
             [
                 "d89f95907146176b",
                 "2086eb186941f521",
-                "7d73d5d0ac617f78",
                 "1b075f1d24e9a5c0",
                 "0fd5cf285d3f392d",
                 "15d7760739b7a13b",
-                "202ef10d06cb20c6",
                 "5fb752c59ec80d40",
                 "9f5b79a4732417be",
                 "cc510c94199283ba",
@@ -1200,8 +1204,7 @@
         "y": 1480,
         "wires": [
             [
-                "229df4c34158cfcb",
-                "64cdb25d28de2549"
+                "229df4c34158cfcb"
             ]
         ]
     },
@@ -1266,7 +1269,6 @@
         "wires": [
             [
                 "a393b410b58b216b",
-                "1f5bf621dfcf15af",
                 "a741a6a17d12ca20"
             ]
         ]
@@ -1298,9 +1300,12 @@
         "name": "",
         "showStatusActivities": false,
         "showErrors": false,
-        "server": "46220ce9c8d2b07d",
+        "showWarnings": true,
+        "server": "d6bd552f7c1f0120",
         "emptyMsgOnFail": false,
         "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
         "x": 1610,
         "y": 1580,
         "wires": [
@@ -1342,7 +1347,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "Compare Setpoint vs Status",
-        "func": "var setpoint = flow.get(\"setpoint\") || {};\nvar sps_status = global.get(\"sps_status\") || {};\n\nmsg.enabled = false;\nif (sps_status[\"MANUAL_CONTROL\"] == 1){\n    for (let x in setpoint){\n        if (x != \"MANUAL_CONTROL\"){\n            if (setpoint[x] != sps_status[x]){\n                //node.warn(x);\n                //node.warn(setpoint[x]);\n                //node.warn(status[x]);\n                msg.enabled = true; break;\n            }\n        }\n    }\n}\nif (setpoint[\"TEMP_SETPOINT_A\"] != sps_status[\"TEMP_SETPOINT_A\"]){ msg.enabled = true; }\nif (setpoint[\"TEMP_SETPOINT_B\"] != sps_status[\"TEMP_SETPOINT_B\"]){ msg.enabled = true; }\nif (setpoint[\"TIDE_A\"] != sps_status[\"TIDE_A\"]) { msg.enabled = true; }\nif (setpoint[\"TIDE_B\"] != sps_status[\"TIDE_B\"]) { msg.enabled = true; }\nreturn msg;",
+        "func": "var setpoint = flow.get(\"setpoint\") || {};\nvar sps_status = global.get(\"sps_status\") || {};\n\nmsg.enabled = false;\nif (sps_status[\"MANUAL_CONTROL\"] == 1){\n    for (let x in setpoint){\n        if (x != \"MANUAL_CONTROL\"){\n            if (setpoint[x] != sps_status[x]){\n                //node.warn(x);\n                //node.warn(setpoint[x]);\n                //node.warn(status[x]);\n                msg.enabled = true; break;\n            }\n        }\n    }\n}\nif (setpoint[\"TEMP_SETPOINT_A\"] != sps_status[\"TEMP_SETPOINT_A\"]){ msg.enabled = true; }\nif (setpoint[\"TEMP_SETPOINT_B\"] != sps_status[\"TEMP_SETPOINT_B\"]){ msg.enabled = true; }\nif (setpoint[\"TIDE_A\"] != sps_status[\"TIDE_A\"]) { msg.enabled = true; }\n//if (setpoint[\"TIDE_B\"] != sps_status[\"TIDE_B\"]) { msg.enabled = true; }\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1433,7 +1438,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "CURRENT_TIDE_A",
-        "func": "if (msg.payload != null) {\n    msg.payload = msg.payload[\"TIDE_A\"];\n}\nmsg.enabled = true;\nreturn msg;\n",
+        "func": "if (msg.payload != null) {\n    msg.payload = msg.payload[\"TIDE_A\"];\n    msg.enabled = true;\n    return msg;\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1452,7 +1457,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "CURRENT_TIDE_B",
-        "func": "if (msg.payload != null){\n    msg.payload = msg.payload[\"TIDE_B\"];\n}\nmsg.enabled = true;\nreturn msg;\n",
+        "func": "if (msg.payload != null){\n    msg.payload = msg.payload[\"TIDE_B\"];\n    msg.enabled = true;\n    return msg;\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1646,7 +1651,9 @@
                 "77e184d1718ac484",
                 "918ac860e7a0f619",
                 "714926aa96291ec2",
-                "a51cc46b59174854"
+                "a51cc46b59174854",
+                "202ef10d06cb20c6",
+                "7d73d5d0ac617f78"
             ]
         ]
     },
@@ -1791,50 +1798,6 @@
         "x": 1695,
         "y": 1080,
         "wires": []
-    },
-    {
-        "id": "cd2693e5a3ee2429",
-        "type": "function",
-        "z": "51164a2570c98448",
-        "name": "Sim Feedback",
-        "func": "var address_list = global.get(\"feedback_register_address_list\");\nvar setpoint = flow.get(\"setpoint\");\n\nif (address_list != null && setpoint != null){\n    let values = [];\n    \n    let first_key = Object.keys(address_list)[0]\n    let modbus_address = Number(address_list[first_key]);\n    let quantity = 0\n    \n    for (var key in address_list){\n        if (setpoint[key] != null){\n            values.push(setpoint[key]);\n            quantity++;\n        }\n    }\n\n    msg.payload = { value: values, 'fc': 16, 'unitid': 1, 'address': modbus_address , 'quantity': quantity };\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1320,
-        "y": 1540,
-        "wires": [
-            [
-                "a36fa23fc0fa93e6"
-            ]
-        ]
-    },
-    {
-        "id": "1f5bf621dfcf15af",
-        "type": "delay",
-        "z": "51164a2570c98448",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 1020,
-        "y": 1560,
-        "wires": [
-            [
-                "cd2693e5a3ee2429"
-            ]
-        ]
     },
     {
         "id": "c12513da46b5b6fa",
@@ -2050,7 +2013,7 @@
         "once": true,
         "onceDelay": "3",
         "topic": "",
-        "payload": "12",
+        "payload": "14",
         "payloadType": "num",
         "x": 650,
         "y": 280,
@@ -2146,25 +2109,6 @@
         "wires": []
     },
     {
-        "id": "64cdb25d28de2549",
-        "type": "function",
-        "z": "51164a2570c98448",
-        "name": "Sim Feedback",
-        "func": "var setpoint = flow.get(\"setpoint\");\nvar status = global.get(\"sps_status\");\nvar address_list = global.get(\"feedback_register_address_list\");\n\nmsg.payload = false;\nif (status != null && setpoint != null && address_list != null){\n    \n    if (setpoint[\"MANUAL_CONTROL\"] != status[\"MANUAL_CONTROL\"]){\n        let modbus_address = address_list[\"MANUAL_CONTROL\"];\n        msg.payload = { value: setpoint[\"MANUAL_CONTROL\"], 'fc': 6, 'unitid': 1, 'address': modbus_address , 'quantity': 1 };\n        return msg;\n    }\n}\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 720,
-        "y": 1440,
-        "wires": [
-            [
-                "d32b3369525c798c"
-            ]
-        ]
-    },
-    {
         "id": "bf1081f9c1ab7aa0",
         "type": "inject",
         "z": "51164a2570c98448",
@@ -2209,7 +2153,6 @@
         "wires": [
             [
                 "a393b410b58b216b",
-                "1f5bf621dfcf15af",
                 "90bfa2ce0d20a24f",
                 "a741a6a17d12ca20"
             ]
@@ -2512,7 +2455,6 @@
             [
                 "68bcdfd5b333371f",
                 "a393b410b58b216b",
-                "1f5bf621dfcf15af",
                 "a741a6a17d12ca20"
             ]
         ]
@@ -2696,6 +2638,22 @@
         ]
     },
     {
+        "id": "ea3b53ce082dec4e",
+        "type": "debug",
+        "z": "51164a2570c98448",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 1240,
+        "wires": []
+    },
+    {
         "id": "c97034c6148ec6db",
         "type": "inject",
         "z": "fc5cdac23d2176f1",
@@ -2805,8 +2763,7 @@
                 "f51cef615bd24a8b"
             ],
             [
-                "b4f8a311a0a67a8d",
-                "3b08bad32253dde5"
+                "b4f8a311a0a67a8d"
             ]
         ]
     },
@@ -2838,9 +2795,12 @@
         "name": "",
         "showStatusActivities": false,
         "showErrors": false,
-        "server": "46220ce9c8d2b07d",
+        "showWarnings": true,
+        "server": "d6bd552f7c1f0120",
         "emptyMsgOnFail": false,
         "keepMsgProperties": true,
+        "delayOnStart": false,
+        "startDelayTime": "",
         "x": 1290,
         "y": 280,
         "wires": [
@@ -4242,67 +4202,6 @@
         ]
     },
     {
-        "id": "3b08bad32253dde5",
-        "type": "delay",
-        "z": "fc5cdac23d2176f1",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 1020,
-        "y": 340,
-        "wires": [
-            [
-                "9dcb6c8fb703a15a"
-            ]
-        ]
-    },
-    {
-        "id": "c27708addc2094ec",
-        "type": "modbus-flex-write",
-        "z": "fc5cdac23d2176f1",
-        "name": "",
-        "showStatusActivities": false,
-        "showErrors": false,
-        "server": "46220ce9c8d2b07d",
-        "emptyMsgOnFail": false,
-        "keepMsgProperties": true,
-        "x": 1530,
-        "y": 340,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "9dcb6c8fb703a15a",
-        "type": "function",
-        "z": "fc5cdac23d2176f1",
-        "name": "Sim Feedback",
-        "func": "status = global.get(\"sps_status\");\naddress_list = global.get(\"feedback_register_address_list\");\npayload = msg.payload;\n\nif (address_list != null && payload != null){\n    let values = [];\n    \n    first_key = Object.keys(address_list)[0]\n    modbus_start_address = Number(address_list[first_key]);\n    quantity = 0\n    \n    \n    for (var key in address_list){\n        if (key.substring(0,3) != \"RO_\"){\n            if (payload[key] == null){ values.push(status[key]); }\n            else { values.push(payload[key]); }\n            quantity++;\n        }\n    }\n\n    msg.payload = { value: values, 'fc': 16, 'unitid': 1, 'address': modbus_start_address , 'quantity': quantity };\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1200,
-        "y": 340,
-        "wires": [
-            [
-                "c27708addc2094ec"
-            ]
-        ]
-    },
-    {
         "id": "f1464f6f04dbc6d6",
         "type": "debug",
         "z": "fc5cdac23d2176f1",
@@ -4362,9 +4261,12 @@
         "name": "",
         "showStatusActivities": false,
         "showErrors": false,
-        "server": "46220ce9c8d2b07d",
+        "showWarnings": true,
+        "server": "d6bd552f7c1f0120",
         "emptyMsgOnFail": false,
         "keepMsgProperties": true,
+        "delayOnStart": false,
+        "startDelayTime": "",
         "x": 1190,
         "y": 1520,
         "wires": [
@@ -4417,7 +4319,6 @@
         "wires": [
             [
                 "353f98a299adb3cf",
-                "877267732df19552",
                 "ed99c88cb27711c5"
             ]
         ]
@@ -4434,67 +4335,6 @@
         "x": 1565,
         "y": 1520,
         "wires": []
-    },
-    {
-        "id": "877267732df19552",
-        "type": "delay",
-        "z": "fc5cdac23d2176f1",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 920,
-        "y": 1580,
-        "wires": [
-            [
-                "9aa8c8f338affa42"
-            ]
-        ]
-    },
-    {
-        "id": "2d814f764aaa5b56",
-        "type": "modbus-flex-write",
-        "z": "fc5cdac23d2176f1",
-        "name": "",
-        "showStatusActivities": false,
-        "showErrors": false,
-        "server": "46220ce9c8d2b07d",
-        "emptyMsgOnFail": false,
-        "keepMsgProperties": true,
-        "x": 1430,
-        "y": 1580,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "9aa8c8f338affa42",
-        "type": "function",
-        "z": "fc5cdac23d2176f1",
-        "name": "Sim Feedback",
-        "func": "var status = global.get(\"sps_status\");\nvar address_list = global.get(\"feedback_register_address_list\");\nvar payload = msg.payload;\n\nif (address_list != null && payload != null){\n    let values = [];\n    \n    let first_key = Object.keys(address_list)[0]\n    let modbus_start_address = Number(address_list[first_key]);\n    let quantity = 0\n    \n    \n    for (var key in address_list){\n        if (key.substring(0,3) != \"RO_\"){\n            if (payload[key] == null){ values.push(status[key]); }\n            else { values.push(payload[key]); }\n            quantity++;\n        }\n    }\n\n    msg.payload = { value: values, 'fc': 16, 'unitid': 1, 'address': modbus_start_address , 'quantity': quantity };\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1100,
-        "y": 1580,
-        "wires": [
-            [
-                "2d814f764aaa5b56"
-            ]
-        ]
     },
     {
         "id": "092327f8cdceff27",
@@ -5099,7 +4939,7 @@
         "type": "function",
         "z": "188f3d12c338cf2e",
         "name": "getSystemResponse",
-        "func": "var sps_status = global.get(\"sps_status\");\nvar rest_response = flow.get(\"rest_response\");\nvar map_endpoint_to_response = flow.get(\"map_endpoint_to_response\");\nvar map_response_to_status = flow.get(\"map_response_to_status\");\n\nvar getOperatingModeString = function(mode_number) {\n    switch (mode_number) {\n        case 0:\n            return \"AUTOMATIC_CYCLE\";\n        case 1:\n            return \"MEASURE_TANK_A\";\n        case 2:\n            return \"MEASURE_TANK_B\";\n        case 3:\n            return \"DRAIN_SENSOR\";\n        case 4:\n            return \"STOP\";\n    }\n}\n\n/* returns the corresponding name for a given step number */\nvar getStatusString = function (step_number) {\n    switch (step_number) {\n        case 0:\n            return \"STOP\";\n        case 1:\n            return \"PREP_TANK_A\";\n        case 2:\n            return \"VENT_TANK_A\";\n        case 3:\n            return \"RUN_TANK_A\";\n        case 4:\n            return \"STOP_TANK_A\";\n        case 5:\n            return \"DRAIN_TANK_A\";\n        case 6:\n            return \"PREP_TANK_B\";\n        case 7:\n            return \"VENT_TANK_B\";\n        case 8:\n            return \"RUN_TANK_B\";\n        case 9:\n            return \"STOP_TANK_B\";\n        case 10:\n            return \"DRAIN_TANK_B\";\n    }\n}\n\n/* recursively fill the response object from current sps_status\n    using the given mapping*/\nvar fillResponseFromSpsStatus = function(response, map) {\n    for (let key in response){\n        // if current parameter is object fill its nested parameters\n        if (typeof response[key] === 'object' && response[key] !== null) {\n            fillResponseFromSpsStatus(response[key], map[key]);\n        }\n        // if current parameter is a simple value assign it and break recursion\n        else{\n            // if the value should not be copied from sps-status, but instead from the current setpoint etc.\n            // it maps to -1\n            if(map[key] !== -1){\n                // special handling of auto-tide and operating mode\n                if (key === \"auto_tide\" || key === \"operating_mode\") {\n                    let modes = global.get(\"modes\");\n                    response[key] = modes[map[key]];\n                    if (key === \"operating_mode\") {\n                        response[key] = getOperatingModeString(response[key]);\n                    }\n                }\n                else{\n                    response[key] = sps_status[map[key]];\n                \n                    // replace step number with status string\n                    if(key === \"state\"){\n                        response[key] = getStatusString(response[key]);\n                    }\n                }\n            }\n        }\n    }\n    //node.warn(response);\n    return response;\n}\n\n/* return the nested object for a request with given url */\nvar extractSpecificResponse = function(url) {\n    var response = RED.util.cloneMessage(rest_response);\n\n    // remove trailing slashes\n    url = url.endsWith('/') ? url.slice(0, -1) : url;\n\n    // get the path to the nested parameter\n    var path = map_endpoint_to_response[url].split(\".\");\n    // select the requested nested parameter\n    //node.warn(path);\n    for(let index in path){\n        response = response[path[index]];\n        if(response === null){\n            msg.statusCode = 500;\n        }\n    }\n\n    // return the response as the key-value pair from the full response-json\n    return {[path.at(-1)]: response};\n}\n\nfillResponseFromSpsStatus(rest_response, map_response_to_status);\n\n//unless something goes wrong set response status to OK\nmsg.statusCode = 200\nmsg.payload = extractSpecificResponse(msg.req.url);\n\nreturn msg;",
+        "func": "var sps_status = global.get(\"sps_status\");\nvar rest_response = flow.get(\"rest_response\");\nvar map_endpoint_to_response = flow.get(\"map_endpoint_to_response\");\nvar map_response_to_status = flow.get(\"map_response_to_status\");\n\nvar getOperatingModeString = function(mode_number) {\n    switch (mode_number) {\n        case 0:\n            return \"AUTOMATIC_CYCLE\";\n        case 1:\n            return \"MEASURE_TANK_A\";\n        case 2:\n            return \"MEASURE_TANK_B\";\n        case 3:\n            return \"DRAIN_SENSOR\";\n        case 4:\n            return \"STOP\";\n    }\n}\n\n/* returns the corresponding name for a given step number */\nvar getStatusString = function(step_number) {\n    switch (step_number) {\n        case 0:\n            return \"STOP\";\n        case 1:\n            return \"PREP_TANK_A\";\n        case 2:\n            return \"VENT_TANK_A\";\n        case 3:\n            return \"RUN_TANK_A\";\n        case 4:\n            return \"STOP_TANK_A\";\n        case 5:\n            return \"DRAIN_TANK_A\";\n        case 6:\n            return \"PREP_TANK_B\";\n        case 7:\n            return \"VENT_TANK_B\";\n        case 8:\n            return \"RUN_TANK_B\";\n        case 9:\n            return \"STOP_TANK_B\";\n        case 10:\n            return \"DRAIN_TANK_B\";\n    }\n}\n\n/* recursively fill the response object from current sps_status\n    using the given mapping*/\nvar fillResponseFromSpsStatus = function(response, map) {\n    for (let key in response){\n        // if current parameter is object fill its nested parameters\n        if (typeof response[key] === 'object' && response[key] !== null) {\n            fillResponseFromSpsStatus(response[key], map[key]);\n        }\n        // if current parameter is a simple value assign it and break recursion\n        else{\n            // if the value should not be copied from sps-status, but instead from the current setpoint etc.\n            // it maps to -1\n            if(map[key] !== -1){\n                // special handling of auto-tide and operating mode\n                if (key === \"auto_tide\" || key === \"operating_mode\") {\n                    let modes = global.get(\"modes\");\n                    response[key] = modes[map[key]];\n                    if (key === \"operating_mode\") {\n                        response[key] = getOperatingModeString(response[key]);\n                    }\n                }\n                else{\n                    response[key] = sps_status[map[key]];\n                \n                    // replace step number with status string\n                    if(key === \"state\"){\n                        response[key] = getStatusString(response[key]);\n                    }\n                }\n            }\n        }\n    }\n    //node.warn(response);\n    return response;\n}\n\n/* return the nested object for a request with given url */\nvar extractSpecificResponse = function(url) {\n    var response = RED.util.cloneMessage(rest_response);\n\n    // remove trailing slashes\n    url = url.endsWith('/') ? url.slice(0, -1) : url;\n    \n\n    // get the path to the nested parameter\n    var path = map_endpoint_to_response[url].split(\".\");\n    // select the requested nested parameter\n    //node.warn(path);\n    for(let index in path){\n        response = response[path[index]];\n        if(response === null){\n            msg.statusCode = 500;\n        }\n    }\n    // return the response as the key-value pair from the full response-json\n    return {[path[path.length-1]]: response};\n}\n\nfillResponseFromSpsStatus(rest_response, map_response_to_status);\n\n//unless something goes wrong set response status to OK\nmsg.statusCode = 200\nmsg.payload = extractSpecificResponse(msg.req.url);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
