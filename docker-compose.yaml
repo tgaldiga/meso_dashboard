@@ -6,7 +6,6 @@ services:
     user: root
     ports:
       - "1880:1880"
-      - "10502:10502"
     volumes:
       - ./tank-pair-1:/data
 
@@ -39,5 +38,7 @@ services:
     user: root
     ports:
       - "1879:1880"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - ./central-control:/data
