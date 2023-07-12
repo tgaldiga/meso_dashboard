@@ -1,3 +1,4 @@
+version: "3"
 services:
   tank-pair-1:
     container_name: tank-pair-1
@@ -6,9 +7,6 @@ services:
     user: root
     ports:
       - "1880:1880"
-      - "10502:10502"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     volumes:
       - ./tank-pair-1:/data
 
@@ -19,7 +17,6 @@ services:
   #   user: root
   #   ports:
   #     - "1881:1880"
-  #     - "10503:10502"
   #   volumes:
   #     - ./tank-pair-2:/data
 
@@ -30,7 +27,6 @@ services:
   #   user: root
   #   ports:
   #     - "1882:1880"
-  #     - "10504:10502"
   #   volumes:
   #     - ./tank-pair-3:/data
 

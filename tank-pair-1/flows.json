@@ -263,7 +263,7 @@
         "outs": "end",
         "topic": "TIDE_A",
         "topicType": "str",
-        "min": 0,
+        "min": "100",
         "max": "780",
         "step": "1",
         "className": "",
@@ -356,7 +356,7 @@
         "outs": "end",
         "topic": "TIDE_B",
         "topicType": "str",
-        "min": 0,
+        "min": "100",
         "max": "780",
         "step": "1",
         "className": "",
@@ -1588,25 +1588,6 @@
         "wires": []
     },
     {
-        "id": "d620cb2d7966e76d",
-        "type": "function",
-        "z": "51164a2570c98448",
-        "name": "set initially",
-        "func": "if(context.get(\"initially\")){\n    context.set(\"initially\", false);\n    var status = global.get(\"status\");\n    msg.payload = parseFloat(msg.payload.state.toFixed(2));\n    status[\"temp_setpoint_a\"] = msg.payload;\n    return msg;\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "if (context.get(\"initially\") === undefined) {\n    context.set(\"initially\", true)\n}",
-        "finalize": "",
-        "libs": [],
-        "x": 630,
-        "y": 420,
-        "wires": [
-            [
-                "1a220d7c6bc1630f"
-            ]
-        ]
-    },
-    {
         "id": "7561c980a3ccc18b",
         "type": "ros-call-service",
         "z": "51164a2570c98448",
@@ -1667,53 +1648,6 @@
         "wires": [
             [
                 "7b9614d0a7dea9b0"
-            ]
-        ]
-    },
-    {
-        "id": "678ef535b95afdde",
-        "type": "ros-subscribe",
-        "z": "51164a2570c98448",
-        "server": "45f0857cd7a7486d",
-        "topicname": "/temp_control_a/state",
-        "x": 340,
-        "y": 420,
-        "wires": [
-            [
-                "d620cb2d7966e76d"
-            ]
-        ]
-    },
-    {
-        "id": "c579376ecc909929",
-        "type": "function",
-        "z": "51164a2570c98448",
-        "name": "set initially",
-        "func": "if (context.get(\"initially\")) {\n    context.set(\"initially\", false);\n    var status = global.get(\"status\");\n    msg.payload = parseFloat(msg.payload.state.toFixed(2));\n    status[\"temp_setpoint_b\"] = msg.payload;\n    return msg;\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "if (context.get(\"initially\") === undefined) {\n    context.set(\"initially\", true)\n}",
-        "finalize": "",
-        "libs": [],
-        "x": 630,
-        "y": 720,
-        "wires": [
-            [
-                "8c242c6939227338"
-            ]
-        ]
-    },
-    {
-        "id": "a76aae8cb2e8c960",
-        "type": "ros-subscribe",
-        "z": "51164a2570c98448",
-        "server": "45f0857cd7a7486d",
-        "topicname": "/temp_control_b/state",
-        "x": 340,
-        "y": 720,
-        "wires": [
-            [
-                "c579376ecc909929"
             ]
         ]
     },
@@ -2252,6 +2186,56 @@
         ]
     },
     {
+        "id": "41f0d786e64f1425",
+        "type": "inject",
+        "z": "51164a2570c98448",
+        "name": "Initialize to 14",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "20",
+        "topic": "",
+        "payload": "14",
+        "payloadType": "num",
+        "x": 580,
+        "y": 420,
+        "wires": [
+            [
+                "1a220d7c6bc1630f"
+            ]
+        ]
+    },
+    {
+        "id": "35ee462e2ab357d2",
+        "type": "inject",
+        "z": "51164a2570c98448",
+        "name": "Initialize to 14",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "20",
+        "topic": "",
+        "payload": "14",
+        "payloadType": "num",
+        "x": 580,
+        "y": 720,
+        "wires": [
+            [
+                "8c242c6939227338"
+            ]
+        ]
+    },
+    {
         "id": "3659d24f9e27841c",
         "type": "http in",
         "z": "188f3d12c338cf2e",
@@ -2284,7 +2268,7 @@
         "type": "function",
         "z": "188f3d12c338cf2e",
         "name": "getSystemResponse",
-        "func": "var status = global.get(\"status\");\nvar rest_response = flow.get(\"rest_response\");\nvar map_endpoint_to_response = flow.get(\"map_endpoint_to_response\");\nvar map_response_to_status = flow.get(\"map_response_to_status\");\n\nvar getOperatingModeString = function(mode_number) {\n    switch (mode_number) {\n        case 0:\n            return \"AUTOMATIC_CYCLE\";\n        case 1:\n            return \"MEASURE_TANK_A\";\n        case 2:\n            return \"MEASURE_TANK_B\";\n        case 3:\n            return \"DRAIN_SENSOR\";\n        case 4:\n            return \"STOP\";\n    }\n}\n\n/* returns the corresponding name for a given step number */\nvar getStatusString = function (step_number) {\n    switch (step_number) {\n        case 0:\n            return \"STOP\";\n        case 1:\n            return \"PREP_TANK_A\";\n        case 2:\n            return \"VENT_TANK_A\";\n        case 3:\n            return \"RUN_TANK_A\";\n        case 4:\n            return \"STOP_TANK_A\";\n        case 5:\n            return \"DRAIN_TANK_A\";\n        case 6:\n            return \"PREP_TANK_B\";\n        case 7:\n            return \"VENT_TANK_B\";\n        case 8:\n            return \"RUN_TANK_B\";\n        case 9:\n            return \"STOP_TANK_B\";\n        case 10:\n            return \"DRAIN_TANK_B\";\n    }\n}\n\n/* recursively fill the response object from current status\n    using the given mapping*/\nvar fillResponseFromStatus = function(response, map) {\n    for (let key in response){\n        // if current parameter is object fill its nested parameters\n        if (typeof response[key] === 'object' && response[key] !== null) {\n            fillResponseFromStatus(response[key], map[key]);\n        }\n        // if current parameter is a simple value assign it and break recursion\n        else{\n            // if the value should not be copied from sps-status, but instead from the current setpoint etc.\n            // it maps to -1\n            if(map[key] !== -1){\n                response[key] = status[map[key]];\n            \n                // replace step number with status string\n                if(key === \"state\"){\n                    response[key] = getStatusString(response[key]);\n                }\n                // replace operating_mode number with string\n                else if(key === \"operating_mode\"){\n                    response[key] = getOperatingModeString(response[key]);\n                }\n            }\n        }\n    }\n    //node.warn(response);\n    return response;\n}\n\n/* return the nested object for a request with given url */\nvar extractSpecificResponse = function(url) {\n    var response = RED.util.cloneMessage(rest_response);\n\n    // remove trailing slashes\n    url = url.endsWith('/') ? url.slice(0, -1) : url;\n\n    // get the path to the nested parameter\n    var path = map_endpoint_to_response[url].split(\".\");\n    // select the requested nested parameter\n    //node.warn(path);\n    for(let index in path){\n        response = response[path[index]];\n        if(response === null){\n            msg.statusCode = 500;\n        }\n    }\n\n    // return the response as the key-value pair from the full response-json\n    return {[path.at(-1)]: response};\n}\n\nfillResponseFromStatus(rest_response, map_response_to_status);\n\n//unless something goes wrong set response status to OK\nmsg.statusCode = 200\nmsg.payload = extractSpecificResponse(msg.req.url);\n\nreturn msg;",
+        "func": "var status = global.get(\"status\");\nvar rest_response = flow.get(\"rest_response\");\nvar map_endpoint_to_response = flow.get(\"map_endpoint_to_response\");\nvar map_response_to_status = flow.get(\"map_response_to_status\");\n\nvar getOperatingModeString = function(mode_number) {\n    switch (mode_number) {\n        case 0:\n            return \"AUTOMATIC_CYCLE\";\n        case 1:\n            return \"MEASURE_TANK_A\";\n        case 2:\n            return \"MEASURE_TANK_B\";\n        case 3:\n            return \"DRAIN_SENSOR\";\n        case 4:\n            return \"STOP\";\n    }\n}\n\n/* returns the corresponding name for a given step number */\nvar getStatusString = function (step_number) {\n    switch (step_number) {\n        case 0:\n            return \"STOP\";\n        case 1:\n            return \"PREP_TANK_A\";\n        case 2:\n            return \"VENT_TANK_A\";\n        case 3:\n            return \"RUN_TANK_A\";\n        case 4:\n            return \"STOP_TANK_A\";\n        case 5:\n            return \"DRAIN_TANK_A\";\n        case 6:\n            return \"PREP_TANK_B\";\n        case 7:\n            return \"VENT_TANK_B\";\n        case 8:\n            return \"RUN_TANK_B\";\n        case 9:\n            return \"STOP_TANK_B\";\n        case 10:\n            return \"DRAIN_TANK_B\";\n    }\n}\n\n/* recursively fill the response object from current status\n    using the given mapping*/\nvar fillResponseFromStatus = function(response, map) {\n    for (let key in response){\n        // if current parameter is object fill its nested parameters\n        if (typeof response[key] === 'object' && response[key] !== null) {\n            fillResponseFromStatus(response[key], map[key]);\n        }\n        // if current parameter is a simple value assign it and break recursion\n        else{\n            // if the value should not be copied from sps-status, but instead from the current setpoint etc.\n            // it maps to -1\n            if(map[key] !== -1){\n                response[key] = status[map[key]];\n            \n                // replace step number with status string\n                if(key === \"state\"){\n                    response[key] = getStatusString(response[key]);\n                }\n                // replace operating_mode number with string\n                else if(key === \"operating_mode\"){\n                    response[key] = getOperatingModeString(response[key]);\n                }\n            }\n        }\n    }\n    //node.warn(response);\n    return response;\n}\n\n/* return the nested object for a request with given url */\nvar extractSpecificResponse = function(url) {\n    var response = RED.util.cloneMessage(rest_response);\n\n    // remove trailing slashes\n    url = url.endsWith('/') ? url.slice(0, -1) : url;\n\n    // get the path to the nested parameter\n    var path = map_endpoint_to_response[url].split(\".\");\n    // select the requested nested parameter\n    //node.warn(path);\n    for(let index in path){\n        response = response[path[index]];\n        if(response === null){\n            msg.statusCode = 500;\n        }\n    }\n\n    // return the response as the key-value pair from the full response-json\n    return {[path[path.length-1]]: response};\n}\n\nfillResponseFromStatus(rest_response, map_response_to_status);\n\n//unless something goes wrong set response status to OK\nmsg.statusCode = 200\nmsg.payload = extractSpecificResponse(msg.req.url);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3902,7 +3886,7 @@
         "type": "function",
         "z": "188f3d12c338cf2e",
         "name": "parse into new setpoint",
-        "func": "var map_endpoint_to_response = flow.get(\"map_endpoint_to_response\");\nvar rest_put_format = flow.get(\"rest_put_format\");\n\n// parses the requested operating mode to the corresponding integer\n// setpoint is either an integer or the corresponding mode-string\nvar parseOperatingMode = function(setpoint) {\n    // possible states and its id\n    const mode_strings = {\n        \"AUTOMATIC_CYCLE\": 0,\n        \"MEASURE_TANK_A\": 1,\n        \"MEASURE_TANK_B\": 2,\n        \"DRAIN_SENSOR\": 3,\n        \"STOP\": 4\n    };\n\n    let id = mode_strings[setpoint];\n    if (isNaN(id)) {\n        id = parseInt(setpoint)\n        if (id < 0 || 4 < id || isNaN(id)) {\n            id = null;\n            msg.statusCode = 400;\n            msg.payload = \"Unknown Status: \" + setpoint + \".\";\n        }\n    }\n    return id;\n}\n\n// recursively copies the requested values from the json request into a setpoint object\n//   format: mapping of a subset of the full json-rest-structure to its key in a setpoint object\n//   payload: same subset of the json-rest-structure as \"format\" but with the requested values\n//   setpoint: setpoint object to fill\nvar addToSetpoint = function(format, payload, setpoint){\n    //check if input is null (if format and payload do not match)\n    if(format === null || payload === null){\n        msg.statusCode = 400;\n        msg.payload = \"Body of request does not fit the expected format\";\n        setpoint = {};\n    }\n    // if current subset of the json-rest-structure has more parameters\n    if (typeof format === 'object') {\n        // recursively fill each parameter\n        for (let key in format) {\n            addToSetpoint(format[key], payload[key], setpoint);\n        }\n    }\n    // if current subset is a single parameter fill in the value\n    else {\n        //special handling of operating_mode\n        if (format === \"operating_mode\") {\n            setpoint[format] = parseOperatingMode(payload);\n        }\n        else if(format !== -1){\n            setpoint[format] = payload;\n        }\n    }\n}\n\n\n/* return the requested setpoint with given url and payload */\nvar constructSetpoint = function (url, payload) {\n    // remove trailing slashes\n    url = url.endsWith('/') ? url.slice(0, -1) : url;\n\n    // get the path to the nested parameter\n    var path = map_endpoint_to_response[url].split(\".\");\n    // get mapping from rest-response-object to setpoint-keys\n    var format = RED.util.cloneMessage(rest_put_format);\n\n    // get only the subset of the mapping that is requested\n    for (let i in path) {\n        format = format[path[i]];\n    }\n    // so that payload and format have the same structure\n    payload = payload[path.at(-1)];\n    \n    // fill the setpoint and return it\n    var setpoint = {};\n    addToSetpoint(format, payload, setpoint);\n    return setpoint;\n}\n\n//unless something goes wrong set response status to OK\nmsg.statusCode = 200\nlet setpoint = constructSetpoint(msg.req.url, msg.payload);\n\n//if request was ok send individual messages for every value in the setpoint\nif(msg.statusCode == 200){\n    for(let key in setpoint){\n        let message = {}\n        message.topic = key;\n        message.payload = setpoint[key];\n        node.send(message);\n    }\n}\nreturn msg;",
+        "func": "var map_endpoint_to_response = flow.get(\"map_endpoint_to_response\");\nvar rest_put_format = flow.get(\"rest_put_format\");\n\n// parses the requested operating mode to the corresponding integer\n// setpoint is either an integer or the corresponding mode-string\nvar parseOperatingMode = function(setpoint) {\n    // possible states and its id\n    const mode_strings = {\n        \"AUTOMATIC_CYCLE\": 0,\n        \"MEASURE_TANK_A\": 1,\n        \"MEASURE_TANK_B\": 2,\n        \"DRAIN_SENSOR\": 3,\n        \"STOP\": 4\n    };\n\n    let id = mode_strings[setpoint];\n    if (isNaN(id)) {\n        id = parseInt(setpoint)\n        if (id < 0 || 4 < id || isNaN(id)) {\n            id = null;\n            msg.statusCode = 400;\n            msg.payload = \"Unknown Status: \" + setpoint + \".\";\n        }\n    }\n    return id;\n}\n\n// recursively copies the requested values from the json request into a setpoint object\n//   format: mapping of a subset of the full json-rest-structure to its key in a setpoint object\n//   payload: same subset of the json-rest-structure as \"format\" but with the requested values\n//   setpoint: setpoint object to fill\nvar addToSetpoint = function(format, payload, setpoint){\n    //check if input is null (if format and payload do not match)\n    if(format === null || payload === null){\n        msg.statusCode = 400;\n        msg.payload = \"Body of request does not fit the expected format\";\n        setpoint = {};\n    }\n    // if current subset of the json-rest-structure has more parameters\n    if (typeof format === 'object') {\n        // recursively fill each parameter\n        for (let key in format) {\n            addToSetpoint(format[key], payload[key], setpoint);\n        }\n    }\n    // if current subset is a single parameter fill in the value\n    else {\n        //special handling of operating_mode\n        if (format === \"operating_mode\") {\n            setpoint[format] = parseOperatingMode(payload);\n        }\n        else if(format !== -1){\n            setpoint[format] = payload;\n        }\n    }\n}\n\n\n/* return the requested setpoint with given url and payload */\nvar constructSetpoint = function (url, payload) {\n    // remove trailing slashes\n    url = url.endsWith('/') ? url.slice(0, -1) : url;\n\n    // get the path to the nested parameter\n    var path = map_endpoint_to_response[url].split(\".\");\n    // get mapping from rest-response-object to setpoint-keys\n    var format = RED.util.cloneMessage(rest_put_format);\n\n    // get only the subset of the mapping that is requested\n    for (let i in path) {\n        format = format[path[i]];\n    }\n    // so that payload and format have the same structure\n    payload = payload[path[path.length-1]];\n    \n    // fill the setpoint and return it\n    var setpoint = {};\n    addToSetpoint(format, payload, setpoint);\n    return setpoint;\n}\n\n//unless something goes wrong set response status to OK\nmsg.statusCode = 200\nlet setpoint = constructSetpoint(msg.req.url, msg.payload);\n\n//if request was ok send individual messages for every value in the setpoint\nif(msg.statusCode == 200){\n    for(let key in setpoint){\n        let message = {}\n        message.topic = key;\n        message.payload = setpoint[key];\n        node.send(message);\n    }\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
