@@ -268,7 +268,7 @@
         "outs": "end",
         "topic": "TIDE_A",
         "topicType": "str",
-        "min": "0",
+        "min": "100",
         "max": "780",
         "step": 1,
         "className": "",
@@ -433,7 +433,7 @@
         "outs": "end",
         "topic": "TIDE_B",
         "topicType": "str",
-        "min": "0",
+        "min": "100",
         "max": "780",
         "step": 1,
         "className": "",
@@ -1278,7 +1278,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "Prepare Modbus Payload",
-        "func": "var address_list = global.get(\"write_register_address_list\");\nvar setpoint = flow.get(\"setpoint\");\n\nif (address_list != null && setpoint != null){\n    let values = [];\n    \n    let first_key = Object.keys(address_list)[0]\n    let modbus_address = Number(address_list[first_key]);\n    let quantity = 0\n    \n    for (var key in address_list){\n        if (setpoint[key] != null){\n            values.push(setpoint[key]);\n            quantity++;\n        }\n    }\n\n    msg.payload = { value: values, 'fc': 16, 'unitid': 1, 'address': modbus_address , 'quantity': quantity };\n}\nreturn msg;",
+        "func": "var address_list = global.get(\"write_register_address_list\");\nvar setpoint = flow.get(\"setpoint\");\n\nif (address_list != null && setpoint != null){\n    let values = [];\n    \n    let first_key = Object.keys(address_list)[0]\n    let modbus_address = Number(address_list[first_key]);\n    let quantity = 0\n    \n    for (var key in address_list){\n        if (key == \"TIDE_A\" || key == \"TIDE_B\"){\n            // limit tide setpoints to 100-780\n            if (setpoint[key] < 100 || isNaN(setpoint[key])){\n                setpoint[key] = 100;\n            }\n            else if (setpoint[key] > 780){\n                setpoint[key] = 780;\n            }\n        }\n        if (setpoint[key] != null){\n            values.push(setpoint[key]);\n            quantity++;\n        }\n    }\n\n    msg.payload = { value: values, 'fc': 16, 'unitid': 1, 'address': modbus_address , 'quantity': quantity };\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1582,54 +1582,6 @@
         "wires": [
             [
                 "1e247344ad3c7afa"
-            ]
-        ]
-    },
-    {
-        "id": "b2ea6e5f95f50950",
-        "type": "inject",
-        "z": "51164a2570c98448",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "2",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 1070,
-        "y": 1680,
-        "wires": [
-            [
-                "0ed52b1e0134f5ec"
-            ]
-        ]
-    },
-    {
-        "id": "0ed52b1e0134f5ec",
-        "type": "function",
-        "z": "51164a2570c98448",
-        "name": "Insert some RO values",
-        "func": "msg.payload = { value: [1250,1360,1470,1580], 'fc': 16, 'unitid': 1, 'address': 32053 , 'quantity': 4 };\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1260,
-        "y": 1680,
-        "wires": [
-            [
-                "a36fa23fc0fa93e6"
             ]
         ]
     },
@@ -2724,7 +2676,7 @@
         "type": "function",
         "z": "fc5cdac23d2176f1",
         "name": "PREP_TANK_A (1)",
-        "func": "msg.setpoint = {\n    \"V1\":1,\n    \"V2\":1,\n    \"V3\":0,\n    \"V4\":0,\n    \"UPPER_MAGNETIC_VALVE\":0,\n    \"LOWER_MAGNETIC_VALVE\":0,\n    \"PUMP\":0,\n    \"LAST_STEP_NUMBER\":1\n}\nmsg.last_step = \"PREP_TANK_A\";\nreturn msg;\n\n",
+        "func": "msg.setpoint = {\n    \"V1\":1,\n    \"V2\":1,\n    \"V3\":0,\n    \"V4\":0,\n    \"UPPER_MAGNETIC_VALVE\":1,\n    \"LOWER_MAGNETIC_VALVE\":0,\n    \"PUMP\":0,\n    \"LAST_STEP_NUMBER\":1\n}\nmsg.last_step = \"PREP_TANK_A\";\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3163,7 +3115,7 @@
         "type": "function",
         "z": "fc5cdac23d2176f1",
         "name": "PREP_TANK_B (6)",
-        "func": "msg.setpoint = {\n    \"V1\":0,\n    \"V2\":0,\n    \"V3\":1,\n    \"V4\":1,\n    \"UPPER_MAGNETIC_VALVE\":0,\n    \"LOWER_MAGNETIC_VALVE\":0,\n    \"PUMP\":0,\n    \"LAST_STEP_NUMBER\":6\n}\n\nmsg.last_step = \"PREP_TANK_B\";\nreturn msg;\n\n",
+        "func": "msg.setpoint = {\n    \"V1\":0,\n    \"V2\":0,\n    \"V3\":1,\n    \"V4\":1,\n    \"UPPER_MAGNETIC_VALVE\":1,\n    \"LOWER_MAGNETIC_VALVE\":0,\n    \"PUMP\":0,\n    \"LAST_STEP_NUMBER\":6\n}\n\nmsg.last_step = \"PREP_TANK_B\";\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4443,8 +4395,8 @@
         "name": "",
         "config": "3cfcee9f07bdf583",
         "delayType": "fixedDuration",
-        "fixedDuration": "1",
-        "fixedDurationUnit": "minutes",
+        "fixedDuration": "10",
+        "fixedDurationUnit": "seconds",
         "randomDuration1": "1",
         "randomDuration2": "5",
         "randomDurationUnit": "seconds",
@@ -4457,7 +4409,7 @@
         "customDelayValue": "",
         "preserveCtrlProps": false,
         "ignoreCtrlProps": false,
-        "x": 990,
+        "x": 1000,
         "y": 840,
         "wires": [
             [
@@ -4503,8 +4455,8 @@
         "name": "",
         "config": "3cfcee9f07bdf583",
         "delayType": "fixedDuration",
-        "fixedDuration": "1",
-        "fixedDurationUnit": "minutes",
+        "fixedDuration": "10",
+        "fixedDurationUnit": "seconds",
         "randomDuration1": "1",
         "randomDuration2": "5",
         "randomDurationUnit": "seconds",
@@ -4517,7 +4469,7 @@
         "customDelayValue": "",
         "preserveCtrlProps": false,
         "ignoreCtrlProps": false,
-        "x": 990,
+        "x": 1000,
         "y": 1140,
         "wires": [
             [
@@ -4559,7 +4511,7 @@
                 "vt": "str"
             }
         ],
-        "repeat": "30",
+        "repeat": "10",
         "crontab": "",
         "once": true,
         "onceDelay": "5",
@@ -4581,8 +4533,8 @@
         "name": "",
         "config": "3cfcee9f07bdf583",
         "delayType": "fixedDuration",
-        "fixedDuration": "1",
-        "fixedDurationUnit": "minutes",
+        "fixedDuration": "10",
+        "fixedDurationUnit": "seconds",
         "randomDuration1": "1",
         "randomDuration2": "5",
         "randomDurationUnit": "seconds",
@@ -4595,7 +4547,7 @@
         "customDelayValue": "",
         "preserveCtrlProps": false,
         "ignoreCtrlProps": false,
-        "x": 1010,
+        "x": 1020,
         "y": 960,
         "wires": [
             [
@@ -4641,8 +4593,8 @@
         "name": "",
         "config": "3cfcee9f07bdf583",
         "delayType": "fixedDuration",
-        "fixedDuration": "1",
-        "fixedDurationUnit": "minutes",
+        "fixedDuration": "10",
+        "fixedDurationUnit": "seconds",
         "randomDuration1": "1",
         "randomDuration2": "5",
         "randomDurationUnit": "seconds",
@@ -4655,7 +4607,7 @@
         "customDelayValue": "",
         "preserveCtrlProps": false,
         "ignoreCtrlProps": false,
-        "x": 990,
+        "x": 1000,
         "y": 660,
         "wires": [
             [
@@ -4824,8 +4776,8 @@
         "name": "",
         "config": "3cfcee9f07bdf583",
         "delayType": "fixedDuration",
-        "fixedDuration": "1",
-        "fixedDurationUnit": "minutes",
+        "fixedDuration": "10",
+        "fixedDurationUnit": "seconds",
         "randomDuration1": "1",
         "randomDuration2": "5",
         "randomDurationUnit": "seconds",
@@ -4838,7 +4790,7 @@
         "customDelayValue": "",
         "preserveCtrlProps": false,
         "ignoreCtrlProps": false,
-        "x": 770,
+        "x": 780,
         "y": 1280,
         "wires": [
             [
@@ -4884,8 +4836,8 @@
         "name": "",
         "config": "3cfcee9f07bdf583",
         "delayType": "fixedDuration",
-        "fixedDuration": "1",
-        "fixedDurationUnit": "minutes",
+        "fixedDuration": "10",
+        "fixedDurationUnit": "seconds",
         "randomDuration1": "1",
         "randomDuration2": "5",
         "randomDurationUnit": "seconds",
@@ -4898,7 +4850,7 @@
         "customDelayValue": "",
         "preserveCtrlProps": false,
         "ignoreCtrlProps": false,
-        "x": 770,
+        "x": 780,
         "y": 960,
         "wires": [
             [
@@ -6346,7 +6298,7 @@
         "type": "function",
         "z": "188f3d12c338cf2e",
         "name": "parse into new setpoint",
-        "func": "var map_endpoint_to_response = flow.get(\"map_endpoint_to_response\");\nvar rest_put_format = flow.get(\"rest_put_format\");\n\n// parses the requested operating mode to the corresponding integer\n// setpoint is either an integer or the corresponding mode-string\nvar parseOperatingMode = function(setpoint) {\n    // possible states and its id\n    const mode_strings = {\n        \"AUTOMATIC_CYCLE\": 0,\n        \"MEASURE_TANK_A\": 1,\n        \"MEASURE_TANK_B\": 2,\n        \"DRAIN_SENSOR\": 3,\n        \"STOP\": 4\n    };\n\n    let id = mode_strings[setpoint];\n    if (isNaN(id)) {\n        id = parseInt(setpoint)\n        if (id < 0 || 4 < id || isNaN(id)) {\n            id = null;\n            msg.statusCode = 400;\n            msg.payload = \"Unknown Status: \" + setpoint + \".\";\n        }\n    }\n    return id;\n}\n\n// recursively copies the requested values from the json request into a setpoint object\n//   format: mapping of a subset of the full json-rest-structure to its key in a setpoint object\n//   payload: same subset of the json-rest-structure as \"format\" but with the requested values\n//   setpoint: setpoint object to fill\nvar addToSetpoint = function(format, payload, setpoint){\n    //check if input is null (if format and payload do not match)\n    if(format === null || payload === null){\n        msg.statusCode = 400;\n        msg.payload = \"Body of request does not fit the expected format\";\n        setpoint = {};\n    }\n    // if current subset of the json-rest-structure has more parameters\n    if (typeof format === 'object') {\n        // recursively fill each parameter\n        for (let key in format) {\n            addToSetpoint(format[key], payload[key], setpoint);\n        }\n    }\n    // if current subset is a single parameter fill in the value\n    else {\n        //special handling of auto-tide\n        if(format === \"auto_tide_a\" || \n                format === \"auto_tide_b\"){\n            let modes = global.get(\"modes\");\n            modes[format] = payload;\n        }\n        //special handling of operating_mode\n        else if (format === \"operating_mode\") {\n            let modes = global.get(\"modes\");\n            modes[format] = parseOperatingMode(payload);\n        }\n        else if(format !== -1){\n            setpoint[format] = payload;\n        }\n    }\n}\n\n\n/* return the requested setpoint with given url and payload */\nvar constructSetpoint = function (url, payload) {\n    // remove trailing slashes\n    url = url.endsWith('/') ? url.slice(0, -1) : url;\n\n    // get the path to the nested parameter\n    var path = map_endpoint_to_response[url].split(\".\");\n    // get mapping from rest-response-object to setpoint-keys\n    var format = RED.util.cloneMessage(rest_put_format);\n\n    // get only the subset of the mapping that is requested\n    for (let i in path) {\n        format = format[path[i]];\n    }\n    // so that payload and format have the same structure\n    payload = payload[path.at(-1)];\n    \n    // fill the setpoint and return it\n    var setpoint = {};\n    addToSetpoint(format, payload, setpoint);\n    return setpoint;\n}\n\n//unless something goes wrong set response status to OK\nmsg.statusCode = 200\nmsg.setpoint = constructSetpoint(msg.req.url, msg.payload);\n\nreturn msg;",
+        "func": "var map_endpoint_to_response = flow.get(\"map_endpoint_to_response\");\nvar rest_put_format = flow.get(\"rest_put_format\");\n\n// parses the requested operating mode to the corresponding integer\n// setpoint is either an integer or the corresponding mode-string\nvar parseOperatingMode = function(setpoint) {\n    // possible states and its id\n    const mode_strings = {\n        \"AUTOMATIC_CYCLE\": 0,\n        \"MEASURE_TANK_A\": 1,\n        \"MEASURE_TANK_B\": 2,\n        \"DRAIN_SENSOR\": 3,\n        \"STOP\": 4\n    };\n\n    let id = mode_strings[setpoint];\n    if (isNaN(id)) {\n        id = parseInt(setpoint)\n        if (id < 0 || 4 < id || isNaN(id)) {\n            id = null;\n            msg.statusCode = 400;\n            msg.payload = \"Unknown Status: \" + setpoint + \".\";\n        }\n    }\n    return id;\n}\n\n// recursively copies the requested values from the json request into a setpoint object\n//   format: mapping of a subset of the full json-rest-structure to its key in a setpoint object\n//   payload: same subset of the json-rest-structure as \"format\" but with the requested values\n//   setpoint: setpoint object to fill\nvar addToSetpoint = function(format, payload, setpoint){\n    //check if input is null (if format and payload do not match)\n    if(format === null || payload === null){\n        msg.statusCode = 400;\n        msg.payload = \"Body of request does not fit the expected format\";\n        setpoint = {};\n    }\n    // if current subset of the json-rest-structure has more parameters\n    if (typeof format === 'object') {\n        // recursively fill each parameter\n        for (let key in format) {\n            addToSetpoint(format[key], payload[key], setpoint);\n        }\n    }\n    // if current subset is a single parameter fill in the value\n    else {\n        //special handling of auto-tide\n        if(format === \"auto_tide_a\" || \n                format === \"auto_tide_b\"){\n            let modes = global.get(\"modes\");\n            modes[format] = payload;\n        }\n        //special handling of operating_mode\n        else if (format === \"operating_mode\") {\n            let modes = global.get(\"modes\");\n            modes[format] = parseOperatingMode(payload);\n        }\n        else if(format !== -1){\n            setpoint[format] = payload;\n        }\n    }\n}\n\n\n/* return the requested setpoint with given url and payload */\nvar constructSetpoint = function (url, payload) {\n    // remove trailing slashes\n    url = url.endsWith('/') ? url.slice(0, -1) : url;\n\n    // get the path to the nested parameter\n    var path = map_endpoint_to_response[url].split(\".\");\n    // get mapping from rest-response-object to setpoint-keys\n    var format = RED.util.cloneMessage(rest_put_format);\n\n    // get only the subset of the mapping that is requested\n    for (let i in path) {\n        format = format[path[i]];\n    }\n    // so that payload and format have the same structure\n    payload = payload[path[path.length-1]];\n    \n    // fill the setpoint and return it\n    var setpoint = {};\n    addToSetpoint(format, payload, setpoint);\n    return setpoint;\n}\n\n//unless something goes wrong set response status to OK\nmsg.statusCode = 200\nmsg.setpoint = constructSetpoint(msg.req.url, msg.payload);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
