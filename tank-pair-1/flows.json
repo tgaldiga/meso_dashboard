@@ -2749,7 +2749,7 @@
         "showErrors": false,
         "showWarnings": true,
         "server": "d6bd552f7c1f0120",
-        "emptyMsgOnFail": false,
+        "emptyMsgOnFail": true,
         "keepMsgProperties": true,
         "delayOnStart": false,
         "startDelayTime": "",
@@ -2759,7 +2759,9 @@
             [
                 "1bb44b60c044c7a6"
             ],
-            []
+            [
+                "b1c39cd5a417e3d8"
+            ]
         ]
     },
     {
@@ -2808,7 +2810,7 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "onceDelay": "1",
+        "onceDelay": "10",
         "topic": "",
         "payload": "",
         "payloadType": "date",
@@ -3976,7 +3978,8 @@
         "z": "fc5cdac23d2176f1",
         "name": "lnk_init_logic_flow",
         "links": [
-            "d53c12f54431f534"
+            "d53c12f54431f534",
+            "30feb0f4d870a402"
         ],
         "x": 265,
         "y": 100,
@@ -4857,6 +4860,38 @@
                 "9e55bf970b56d4f0"
             ]
         ]
+    },
+    {
+        "id": "b1c39cd5a417e3d8",
+        "type": "function",
+        "z": "fc5cdac23d2176f1",
+        "name": "Retry on Modbus-Failure",
+        "func": "if (msg.payload == \"\"){\n    return {\n        payload: \"retry connection\"\n    }\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1530,
+        "y": 320,
+        "wires": [
+            [
+                "30feb0f4d870a402"
+            ]
+        ]
+    },
+    {
+        "id": "30feb0f4d870a402",
+        "type": "link out",
+        "z": "fc5cdac23d2176f1",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "1d6e67eefea1a621"
+        ],
+        "x": 1725,
+        "y": 320,
+        "wires": []
     },
     {
         "id": "3659d24f9e27841c",
