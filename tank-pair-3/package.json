@@ -9,5 +9,8 @@
         "node-red-contrib-modbus": "~5.26.0",
         "node-red-contrib-simple-gate": "~0.5.2",
         "node-red-dashboard": "~3.4.0"
+    },
+    "scripts": {
+        "start": "node $NODE_OPTIONS node_modules/node-red/red.js $FLOWS"
     }
 }
