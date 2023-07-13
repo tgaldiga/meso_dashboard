@@ -1,6 +1,6 @@
 version: "3"
 services:
-  tank-pair-1:
+  tank-dashboard:
     container_name: tank-pair-1
     build: ./tank-pair-1
     privileged: true
@@ -30,7 +30,7 @@ services:
   #   volumes:
   #     - ./tank-pair-3:/data
 
-  central-control:
+  central-dashboard:
     container_name: central-control
     build: ./central-control
     privileged: true
