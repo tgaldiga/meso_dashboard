@@ -31,14 +31,14 @@ services:
   #   volumes:
   #     - ./tank-pair-3:/data
 
-  central-control:
-    container_name: central-control
-    build: ./central-control
-    privileged: true
-    user: root
-    ports:
-      - "1879:1880"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    volumes:
-      - ./central-control:/data
+  # central-control:
+  #   container_name: central-control
+  #   build: ./central-control
+  #   privileged: true
+  #   user: root
+  #   ports:
+  #     - "1879:1880"
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
+  #   volumes:
+  #     - ./central-control:/data
