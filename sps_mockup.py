@@ -229,7 +229,7 @@ def run_server():
     # run the server you want
     # ----------------------------------------------------------------------- #
     # Tcp:
-    sim_thread = Thread(target=sps_simulation, args=(context,))
+    sim_thread = Thread(target=sps_simulation, args=(context,), daemon=True)
     sim_thread.start()
     StartTcpServer(context, identity=identity, address=("", 5020))
     #
@@ -262,4 +262,7 @@ def run_server():
 
 
 if __name__ == "__main__":
-    run_server()
+    try:
+        run_server()
+    except KeyboardInterrupt:
+        print("Exiting...")
