@@ -259,7 +259,7 @@
         "order": 11,
         "width": 3,
         "height": 2,
-        "passthru": true,
+        "passthru": false,
         "outs": "end",
         "topic": "TIDE_A",
         "topicType": "str",
@@ -270,7 +270,9 @@
         "x": 920,
         "y": 520,
         "wires": [
-            []
+            [
+                "c4745534e745ad74"
+            ]
         ]
     },
     {
@@ -318,7 +320,7 @@
         "order": 12,
         "width": 3,
         "height": 2,
-        "passthru": true,
+        "passthru": false,
         "outs": "end",
         "topic": "TIDE_B",
         "topicType": "str",
@@ -327,9 +329,11 @@
         "step": 1,
         "className": "",
         "x": 920,
-        "y": 780,
+        "y": 820,
         "wires": [
-            []
+            [
+                "4e5faad7023bc29b"
+            ]
         ]
     },
     {
@@ -445,23 +449,6 @@
         "wires": []
     },
     {
-        "id": "ecf059e6d489e804",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "name": "Write to global var",
-        "func": "global.set(msg.topic, msg.payload);",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1150,
-        "y": 560,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "4bc78ad57b42f9a8",
         "type": "inject",
         "z": "f6f2187d.f17ca8",
@@ -508,7 +495,9 @@
         "wires": [
             [
                 "35f554c59d754b8e",
-                "b1ac061a5c0c819d"
+                "b1ac061a5c0c819d",
+                "f8cd7a0aefc9a683",
+                "4ce7c6eb54bb9cc7"
             ]
         ]
     },
@@ -517,17 +506,17 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "TIDE_A",
-        "func": "let setpoint = global.get(\"setpoint\");\nmsg.enabled = Boolean(global.get[\"AUTO_TIDE_A\"])\nif (msg.payload != null){ msg.payload = Math.trunc(msg.payload[\"TIDE_A\"]/10); }\nreturn msg;\n",
+        "func": "let setpoint = global.get(\"setpoint\");\nif (msg.payload != null){ msg.payload = Math.trunc(msg.payload[\"TIDE_A\"]/10); }\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 640,
-        "y": 520,
+        "y": 560,
         "wires": [
             [
-                "0ab261c97d9d1a92"
+                "76f03e4297cc16e4"
             ]
         ]
     },
@@ -536,17 +525,17 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "TIDE_B",
-        "func": "let setpoint = global.get(\"setpoint\");\nmsg.enabled = Boolean(global.get[\"AUTO_TIDE_B\"])\nif (msg.payload != null){ msg.payload = Math.trunc(msg.payload[\"TIDE_B\"]/10); }\nreturn msg;\n",
+        "func": "let setpoint = global.get(\"setpoint\");\nif (msg.payload != null){ msg.payload = Math.trunc(msg.payload[\"TIDE_B\"]/10); }\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 640,
-        "y": 780,
+        "y": 860,
         "wires": [
             [
-                "d2c36a65d0847f9a"
+                "6a74a6e576e6bc49"
             ]
         ]
     },
@@ -654,8 +643,8 @@
         "z": "f6f2187d.f17ca8",
         "group": "32abb39c6efb8344",
         "order": 1,
-        "width": "6",
-        "height": "1",
+        "width": 6,
+        "height": 1,
         "name": "",
         "label": "Tank Pair 1",
         "format": "{{msg.payload}}",
@@ -731,7 +720,7 @@
         "step": "0.1",
         "className": "",
         "x": 960,
-        "y": 820,
+        "y": 780,
         "wires": [
             []
         ]
@@ -774,11 +763,11 @@
         "label": "Auto Tide A",
         "tooltip": "",
         "group": "32abb39c6efb8344",
-        "order": 13,
-        "width": "3",
-        "height": "1",
-        "passthru": true,
-        "decouple": "false",
+        "order": 15,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "decouple": "true",
         "topic": "AUTO_TIDE_A",
         "topicType": "str",
         "style": "",
@@ -793,10 +782,10 @@
         "animate": false,
         "className": "",
         "x": 940,
-        "y": 560,
+        "y": 600,
         "wires": [
             [
-                "ecf059e6d489e804"
+                "6ac072e32426e6fc"
             ]
         ]
     },
@@ -808,11 +797,11 @@
         "label": "Auto Tide B",
         "tooltip": "",
         "group": "32abb39c6efb8344",
-        "order": 14,
-        "width": "3",
-        "height": "1",
-        "passthru": true,
-        "decouple": "false",
+        "order": 16,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "decouple": "true",
         "topic": "AUTO_TIDE_B",
         "topicType": "str",
         "style": "",
@@ -827,10 +816,10 @@
         "animate": false,
         "className": "",
         "x": 940,
-        "y": 860,
+        "y": 900,
         "wires": [
             [
-                "5bce43a165cf9f73"
+                "1871521571ad6400"
             ]
         ]
     },
@@ -848,23 +837,6 @@
         "wires": []
     },
     {
-        "id": "5bce43a165cf9f73",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "name": "Write to global var",
-        "func": "global.set(msg.topic, msg.payload);",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1150,
-        "y": 860,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "c408de937c59f7d6",
         "type": "function",
         "z": "f6f2187d.f17ca8",
@@ -880,6 +852,202 @@
         "wires": [
             [
                 "488c4bdda2fd34f0"
+            ]
+        ]
+    },
+    {
+        "id": "76f03e4297cc16e4",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "32abb39c6efb8344",
+        "order": 13,
+        "width": 3,
+        "height": 1,
+        "name": "Cur_Tide_A",
+        "label": "Current Position",
+        "format": "{{msg.payload}} cm",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 930,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "6a74a6e576e6bc49",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "32abb39c6efb8344",
+        "order": 14,
+        "width": 3,
+        "height": 1,
+        "name": "Cur_Tide_B",
+        "label": "Current Position",
+        "format": "{{msg.payload}} cm",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 930,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "c4745534e745ad74",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "lnk_out_tideA_toTechnical",
+        "mode": "link",
+        "links": [
+            "fdb7a71b12c8c99f"
+        ],
+        "x": 1105,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "4e5faad7023bc29b",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "lnk_out_tideB_toTechnical",
+        "mode": "link",
+        "links": [
+            "7443883d476ec4b3"
+        ],
+        "x": 1105,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "8d1c63b5c0a544dd",
+        "type": "link in",
+        "z": "f6f2187d.f17ca8",
+        "name": "lnk_in_tideA_fromTechnical",
+        "links": [
+            "9efa6fd0c68f8d5a"
+        ],
+        "x": 795,
+        "y": 540,
+        "wires": [
+            [
+                "0ab261c97d9d1a92"
+            ]
+        ]
+    },
+    {
+        "id": "faf059c4e33d2a06",
+        "type": "link in",
+        "z": "f6f2187d.f17ca8",
+        "name": "lnk_in_tideB_fromTechnical",
+        "links": [
+            "f2c0ee5a49a3221f"
+        ],
+        "x": 795,
+        "y": 840,
+        "wires": [
+            [
+                "d2c36a65d0847f9a"
+            ]
+        ]
+    },
+    {
+        "id": "4ce7c6eb54bb9cc7",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "TIDE_A_setpoint",
+        "func": "// Where the tide automation writes its setpoint\nlet auto_tide_setpoint = global.get(\"setpoint_tide_a\");\n\n// Enable slider when automatic tide is activated\nmsg.enabled = !Boolean(global.get(\"AUTO_TIDE_A\"));\n\n// Update the slider in automatic mode\n// in manual mode the sliders should update each other directly\nif (msg.enabled) {\n    msg.payload = null;\n}\nelse {\n    msg.payload = Math.trunc(auto_tide_setpoint / 10);\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 520,
+        "wires": [
+            [
+                "0ab261c97d9d1a92"
+            ]
+        ]
+    },
+    {
+        "id": "f8cd7a0aefc9a683",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "TIDE_B_setpoint",
+        "func": "// Where the tide automation writes its setpoint\nlet auto_tide_setpoint = global.get(\"setpoint_tide_b\");\n\n// Enable slider when automatic tide is activated\nmsg.enabled = !Boolean(global.get(\"AUTO_TIDE_B\"));\n\n// Update the slider in automatic mode\n// in manual mode the sliders should update each other directly\nif (msg.enabled) {\n    msg.payload = null;\n}\nelse {\n    msg.payload = Math.trunc(auto_tide_setpoint / 10);\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 820,
+        "wires": [
+            [
+                "d2c36a65d0847f9a"
+            ]
+        ]
+    },
+    {
+        "id": "c2ca5364dd75179d",
+        "type": "link in",
+        "z": "f6f2187d.f17ca8",
+        "name": "lnk_in_AutoTideB_fromTechnical",
+        "links": [
+            "6c4fa33497b49178"
+        ],
+        "x": 795,
+        "y": 900,
+        "wires": [
+            [
+                "4b539ccce5e0adcf"
+            ]
+        ]
+    },
+    {
+        "id": "1871521571ad6400",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "lnk_out_AutoTideB_toTechnical",
+        "mode": "link",
+        "links": [
+            "aa723c7bcde0f7d9"
+        ],
+        "x": 1075,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "6ac072e32426e6fc",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "lnk_out_AutoTideA_toTechnical",
+        "mode": "link",
+        "links": [
+            "ea903d637bd2120b"
+        ],
+        "x": 1075,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "a0b73ff6becaacc8",
+        "type": "link in",
+        "z": "f6f2187d.f17ca8",
+        "name": "lnk_in_AutoTideA_fromTechnical",
+        "links": [
+            "1f70b07a60f6c801"
+        ],
+        "x": 795,
+        "y": 600,
+        "wires": [
+            [
+                "274d61a691ca1609"
             ]
         ]
     },
@@ -928,7 +1096,7 @@
         "order": 15,
         "width": 3,
         "height": 2,
-        "passthru": true,
+        "passthru": false,
         "outs": "end",
         "topic": "TIDE_A",
         "topicType": "str",
@@ -937,10 +1105,13 @@
         "step": 1,
         "className": "",
         "x": 940,
-        "y": 680,
+        "y": 640,
         "wires": [
             [
-                "d8138258c98e82ce"
+                "d8138258c98e82ce",
+                "9efa6fd0c68f8d5a",
+                "d310593e73777544",
+                "be76305c815350db"
             ]
         ]
     },
@@ -1040,7 +1211,7 @@
         "animate": false,
         "className": "",
         "x": 930,
-        "y": 560,
+        "y": 520,
         "wires": [
             [
                 "d8138258c98e82ce"
@@ -1075,7 +1246,7 @@
         "animate": false,
         "className": "",
         "x": 930,
-        "y": 940,
+        "y": 920,
         "wires": [
             [
                 "d8138258c98e82ce"
@@ -1093,7 +1264,7 @@
         "order": 16,
         "width": 3,
         "height": 2,
-        "passthru": true,
+        "passthru": false,
         "outs": "end",
         "topic": "TIDE_B",
         "topicType": "str",
@@ -1102,10 +1273,13 @@
         "step": 1,
         "className": "",
         "x": 940,
-        "y": 1060,
+        "y": 1040,
         "wires": [
             [
-                "d8138258c98e82ce"
+                "d8138258c98e82ce",
+                "f2c0ee5a49a3221f",
+                "d310593e73777544",
+                "be76305c815350db"
             ]
         ]
     },
@@ -1117,7 +1291,7 @@
         "label": "Upper Magnetic Valve",
         "tooltip": "",
         "group": "ba4217cd1248e741",
-        "order": 24,
+        "order": 26,
         "width": 6,
         "height": 1,
         "passthru": true,
@@ -1151,7 +1325,7 @@
         "label": "Lower Magnetic Valve",
         "tooltip": "",
         "group": "ba4217cd1248e741",
-        "order": 25,
+        "order": 27,
         "width": 6,
         "height": 1,
         "passthru": true,
@@ -1185,12 +1359,80 @@
         "label": "Heat",
         "tooltip": "",
         "group": "ba4217cd1248e741",
-        "order": 19,
+        "order": 21,
         "width": 3,
         "height": 1,
         "passthru": true,
         "decouple": "false",
         "topic": "HEAT_A",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 940,
+        "y": 560,
+        "wires": [
+            [
+                "d8138258c98e82ce"
+            ]
+        ]
+    },
+    {
+        "id": "3597050a8b6fcac6",
+        "type": "ui_switch",
+        "z": "51164a2570c98448",
+        "name": "HEAT_B",
+        "label": "Heat",
+        "tooltip": "",
+        "group": "ba4217cd1248e741",
+        "order": 22,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "HEAT_B",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 940,
+        "y": 960,
+        "wires": [
+            [
+                "d8138258c98e82ce"
+            ]
+        ]
+    },
+    {
+        "id": "5ab4cc0796ce38e0",
+        "type": "ui_switch",
+        "z": "51164a2570c98448",
+        "name": "COOL_A",
+        "label": "Cool",
+        "tooltip": "",
+        "group": "ba4217cd1248e741",
+        "order": 23,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "COOL_A",
         "topicType": "str",
         "style": "",
         "onvalue": "true",
@@ -1212,74 +1454,6 @@
         ]
     },
     {
-        "id": "3597050a8b6fcac6",
-        "type": "ui_switch",
-        "z": "51164a2570c98448",
-        "name": "HEAT_B",
-        "label": "Heat",
-        "tooltip": "",
-        "group": "ba4217cd1248e741",
-        "order": 20,
-        "width": 3,
-        "height": 1,
-        "passthru": true,
-        "decouple": "false",
-        "topic": "HEAT_B",
-        "topicType": "str",
-        "style": "",
-        "onvalue": "true",
-        "onvalueType": "bool",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "false",
-        "offvalueType": "bool",
-        "officon": "",
-        "offcolor": "",
-        "animate": false,
-        "className": "",
-        "x": 940,
-        "y": 980,
-        "wires": [
-            [
-                "d8138258c98e82ce"
-            ]
-        ]
-    },
-    {
-        "id": "5ab4cc0796ce38e0",
-        "type": "ui_switch",
-        "z": "51164a2570c98448",
-        "name": "COOL_A",
-        "label": "Cool",
-        "tooltip": "",
-        "group": "ba4217cd1248e741",
-        "order": 21,
-        "width": 3,
-        "height": 1,
-        "passthru": true,
-        "decouple": "false",
-        "topic": "COOL_A",
-        "topicType": "str",
-        "style": "",
-        "onvalue": "true",
-        "onvalueType": "bool",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "false",
-        "offvalueType": "bool",
-        "officon": "",
-        "offcolor": "",
-        "animate": false,
-        "className": "",
-        "x": 940,
-        "y": 640,
-        "wires": [
-            [
-                "d8138258c98e82ce"
-            ]
-        ]
-    },
-    {
         "id": "a85a13eb7dd55498",
         "type": "ui_switch",
         "z": "51164a2570c98448",
@@ -1287,7 +1461,7 @@
         "label": "Cool",
         "tooltip": "",
         "group": "ba4217cd1248e741",
-        "order": 22,
+        "order": 24,
         "width": 3,
         "height": 1,
         "passthru": true,
@@ -1306,7 +1480,7 @@
         "animate": false,
         "className": "",
         "x": 940,
-        "y": 1020,
+        "y": 1000,
         "wires": [
             [
                 "d8138258c98e82ce"
@@ -1321,7 +1495,7 @@
         "label": "Manual Control",
         "tooltip": "",
         "group": "ba4217cd1248e741",
-        "order": 26,
+        "order": 28,
         "width": 6,
         "height": 1,
         "passthru": true,
@@ -1482,7 +1656,7 @@
         "label": "Pump",
         "tooltip": "",
         "group": "ba4217cd1248e741",
-        "order": 23,
+        "order": 25,
         "width": 6,
         "height": 1,
         "passthru": true,
@@ -1519,7 +1693,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1280,
+        "x": 1420,
         "y": 700,
         "wires": [
             []
@@ -1669,7 +1843,9 @@
                 "cc510c94199283ba",
                 "faf9cbb9bb658881",
                 "9c086814f3ec5283",
-                "243aeea783e13442"
+                "243aeea783e13442",
+                "4206f0aad44e5e17",
+                "0eb663549ce4152b"
             ]
         ]
     },
@@ -1765,7 +1941,7 @@
         "z": "51164a2570c98448",
         "name": "",
         "group": "ba4217cd1248e741",
-        "order": 27,
+        "order": 29,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -1850,8 +2026,7 @@
         "y": 1860,
         "wires": [
             [
-                "3d12a66ae3e0cdcc",
-                "dae85859a0a6095f"
+                "3d12a66ae3e0cdcc"
             ]
         ]
     },
@@ -1867,7 +2042,7 @@
         "finalize": "",
         "libs": [],
         "x": 650,
-        "y": 940,
+        "y": 920,
         "wires": [
             []
         ]
@@ -1884,7 +2059,7 @@
         "finalize": "",
         "libs": [],
         "x": 650,
-        "y": 560,
+        "y": 520,
         "wires": [
             []
         ]
@@ -1901,7 +2076,7 @@
         "finalize": "",
         "libs": [],
         "x": 660,
-        "y": 640,
+        "y": 600,
         "wires": [
             [
                 "5ab4cc0796ce38e0"
@@ -1920,7 +2095,7 @@
         "finalize": "",
         "libs": [],
         "x": 660,
-        "y": 1020,
+        "y": 1000,
         "wires": [
             [
                 "a85a13eb7dd55498"
@@ -1931,15 +2106,15 @@
         "id": "202ef10d06cb20c6",
         "type": "function",
         "z": "51164a2570c98448",
-        "name": "TIDE_A",
-        "func": "if (msg.payload != null){\n    msg.payload = Math.trunc(msg.payload[\"TIDE_A\"]/10);\n}\nreturn msg;\n",
+        "name": "TIDE_A_setpoint",
+        "func": "// Where the tide automation writes its setpoint\nlet auto_tide_setpoint = global.get(\"setpoint_tide_a\");\n\n// Enable slider when automatic tide is activated\nmsg.enabled = !Boolean(global.get(\"AUTO_TIDE_A\"));\n\n// Update the slider in automatic mode\n// in manual mode the sliders should update each other directly\nif (msg.enabled) {\n    msg.payload = null;\n}\nelse {\n    msg.payload = Math.trunc(auto_tide_setpoint / 10);\n}\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 660,
-        "y": 680,
+        "x": 690,
+        "y": 640,
         "wires": [
             [
                 "ca802baf35ab3c2d"
@@ -1950,15 +2125,15 @@
         "id": "7d73d5d0ac617f78",
         "type": "function",
         "z": "51164a2570c98448",
-        "name": "TIDE_B",
-        "func": "if (msg.payload != null){\n    msg.payload = Math.trunc(msg.payload[\"TIDE_B\"]/10);\n}\nreturn msg;\n",
+        "name": "TIDE_B_setpoint",
+        "func": "// Where the tide automation writes its setpoint\nlet auto_tide_setpoint = global.get(\"setpoint_tide_b\");\n\n// Enable slider when automatic tide is activated\nmsg.enabled = !Boolean(global.get(\"AUTO_TIDE_B\"));\n\n// Update the slider in automatic mode\n// in manual mode the sliders should update each other directly\nif (msg.enabled) {\n    msg.payload = null;\n}\nelse {\n    msg.payload = Math.trunc(auto_tide_setpoint / 10);\n}\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 660,
-        "y": 1060,
+        "x": 690,
+        "y": 1040,
         "wires": [
             [
                 "07db7490fddc2459"
@@ -1977,7 +2152,7 @@
         "finalize": "",
         "libs": [],
         "x": 660,
-        "y": 980,
+        "y": 960,
         "wires": [
             [
                 "3597050a8b6fcac6"
@@ -2034,7 +2209,7 @@
         "finalize": "",
         "libs": [],
         "x": 660,
-        "y": 600,
+        "y": 560,
         "wires": [
             [
                 "834b4577fced86e3"
@@ -2293,7 +2468,7 @@
         "step": "0.1",
         "className": "",
         "x": 960,
-        "y": 460,
+        "y": 440,
         "wires": [
             [
                 "d8138258c98e82ce"
@@ -2474,29 +2649,12 @@
             "c49634769b3f3175"
         ],
         "x": 735,
-        "y": 460,
+        "y": 440,
         "wires": [
             [
                 "1a220d7c6bc1630f"
             ]
         ]
-    },
-    {
-        "id": "dae85859a0a6095f",
-        "type": "debug",
-        "z": "51164a2570c98448",
-        "name": "debug 2",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "info",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 680,
-        "y": 1920,
-        "wires": []
     },
     {
         "id": "2ffb4e229e01dd8d",
@@ -2510,7 +2668,7 @@
         "finalize": "",
         "libs": [],
         "x": 620,
-        "y": 500,
+        "y": 480,
         "wires": [
             [
                 "1a220d7c6bc1630f"
@@ -2578,7 +2736,7 @@
             "2b6ce51cbfcc424d"
         ],
         "x": 445,
-        "y": 500,
+        "y": 480,
         "wires": [
             [
                 "2ffb4e229e01dd8d"
@@ -2660,6 +2818,366 @@
         "wires": [
             [
                 "8c242c6939227338"
+            ]
+        ]
+    },
+    {
+        "id": "fdb7a71b12c8c99f",
+        "type": "link in",
+        "z": "51164a2570c98448",
+        "name": "lnk_in_tideA_fromScientist",
+        "links": [
+            "c4745534e745ad74"
+        ],
+        "x": 805,
+        "y": 660,
+        "wires": [
+            [
+                "ca802baf35ab3c2d",
+                "d310593e73777544",
+                "be76305c815350db"
+            ]
+        ]
+    },
+    {
+        "id": "7443883d476ec4b3",
+        "type": "link in",
+        "z": "51164a2570c98448",
+        "name": "lnk_in_tideA_fromScientist",
+        "links": [
+            "4e5faad7023bc29b"
+        ],
+        "x": 805,
+        "y": 1060,
+        "wires": [
+            [
+                "07db7490fddc2459",
+                "d310593e73777544",
+                "be76305c815350db"
+            ]
+        ]
+    },
+    {
+        "id": "9efa6fd0c68f8d5a",
+        "type": "link out",
+        "z": "51164a2570c98448",
+        "name": "lnk_out_tideA_toScientist",
+        "mode": "link",
+        "links": [
+            "8d1c63b5c0a544dd"
+        ],
+        "x": 1055,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "f2c0ee5a49a3221f",
+        "type": "link out",
+        "z": "51164a2570c98448",
+        "name": "lnk_out_tideB_toScientist",
+        "mode": "link",
+        "links": [
+            "faf059c4e33d2a06"
+        ],
+        "x": 1045,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "d310593e73777544",
+        "type": "function",
+        "z": "51164a2570c98448",
+        "name": "bypass_write_button_prepare_modbus",
+        "func": "let address_list = global.get(\"write_register_address_list\");\n\nif (address_list != null && msg.payload != null) {\n    let modbus_address = Number(address_list[msg.topic]);\n\n    if ([\"TIDE_A\", \"TIDE_B\"].includes(msg.topic)){\n        msg.payload = msg.payload * 10;\n    }\n\n    msg.payload = { value: [msg.payload], 'fc': 16, 'unitid': 1, 'address': modbus_address, 'quantity': 1 };\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1500,
+        "y": 760,
+        "wires": [
+            [
+                "99ea6299fd99aee0"
+            ]
+        ]
+    },
+    {
+        "id": "99ea6299fd99aee0",
+        "type": "modbus-flex-write",
+        "z": "51164a2570c98448",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "server": "05b0d24399880199",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 1770,
+        "y": 760,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "be76305c815350db",
+        "type": "function",
+        "z": "51164a2570c98448",
+        "name": "update_tide_for_control_logic",
+        "func": "if(msg.topic === \"TIDE_A\"){\n    global.set(\"setpoint_tide_a\", msg.payload*10);\n}\nelse if(msg.topic === \"TIDE_B\"){\n    global.set(\"setpoint_tide_b\", msg.payload*10);\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1470,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4206f0aad44e5e17",
+        "type": "function",
+        "z": "51164a2570c98448",
+        "name": "TIDE_A",
+        "func": "let setpoint = global.get(\"setpoint\");\nmsg.enabled = true;\nif (msg.payload != null){ msg.payload = Math.trunc(msg.payload[\"TIDE_A\"]/10); }\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 680,
+        "wires": [
+            [
+                "33ee7231927a4a8d"
+            ]
+        ]
+    },
+    {
+        "id": "33ee7231927a4a8d",
+        "type": "ui_text",
+        "z": "51164a2570c98448",
+        "group": "ba4217cd1248e741",
+        "order": 17,
+        "width": 3,
+        "height": 1,
+        "name": "Cur_Tide_A",
+        "label": "Current Position",
+        "format": "{{msg.payload}} cm",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 950,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "695f7c71f0921af2",
+        "type": "ui_switch",
+        "z": "51164a2570c98448",
+        "name": "AUTO_TIDE_A",
+        "label": "Auto Tide A",
+        "tooltip": "",
+        "group": "ba4217cd1248e741",
+        "order": 19,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "AUTO_TIDE_A",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 960,
+        "y": 720,
+        "wires": [
+            [
+                "42caccf749465b30",
+                "1f70b07a60f6c801"
+            ]
+        ]
+    },
+    {
+        "id": "42caccf749465b30",
+        "type": "function",
+        "z": "51164a2570c98448",
+        "name": "Write to global var",
+        "func": "global.set(msg.topic, msg.payload);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1170,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3d276dc91ed41400",
+        "type": "function",
+        "z": "51164a2570c98448",
+        "name": "Write to global var",
+        "func": "global.set(msg.topic, msg.payload);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1170,
+        "y": 1100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "69952a69d238aeb9",
+        "type": "ui_switch",
+        "z": "51164a2570c98448",
+        "name": "AUTO_TIDE_B",
+        "label": "Auto Tide B",
+        "tooltip": "",
+        "group": "ba4217cd1248e741",
+        "order": 20,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "AUTO_TIDE_B",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 960,
+        "y": 1120,
+        "wires": [
+            [
+                "3d276dc91ed41400",
+                "6c4fa33497b49178"
+            ]
+        ]
+    },
+    {
+        "id": "0eb663549ce4152b",
+        "type": "function",
+        "z": "51164a2570c98448",
+        "name": "TIDE_B",
+        "func": "let setpoint = global.get(\"setpoint\");\nmsg.enabled = true;\nif (msg.payload != null){ msg.payload = Math.trunc(msg.payload[\"TIDE_B\"]/10); }\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 1080,
+        "wires": [
+            [
+                "851173adf93292d0"
+            ]
+        ]
+    },
+    {
+        "id": "851173adf93292d0",
+        "type": "ui_text",
+        "z": "51164a2570c98448",
+        "group": "ba4217cd1248e741",
+        "order": 18,
+        "width": 3,
+        "height": 1,
+        "name": "Cur_Tide_B",
+        "label": "Current Position",
+        "format": "{{msg.payload}} cm",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 950,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "aa723c7bcde0f7d9",
+        "type": "link in",
+        "z": "51164a2570c98448",
+        "name": "lnk_in_AutoTideB_fromScientist",
+        "links": [
+            "1871521571ad6400"
+        ],
+        "x": 825,
+        "y": 1120,
+        "wires": [
+            [
+                "69952a69d238aeb9"
+            ]
+        ]
+    },
+    {
+        "id": "6c4fa33497b49178",
+        "type": "link out",
+        "z": "51164a2570c98448",
+        "name": "lnk_out_AutoTideB_toScientist",
+        "mode": "link",
+        "links": [
+            "c2ca5364dd75179d"
+        ],
+        "x": 1095,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "1f70b07a60f6c801",
+        "type": "link out",
+        "z": "51164a2570c98448",
+        "name": "lnk_out_AutoTideA_toScientist",
+        "mode": "link",
+        "links": [
+            "a0b73ff6becaacc8"
+        ],
+        "x": 1095,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "ea903d637bd2120b",
+        "type": "link in",
+        "z": "51164a2570c98448",
+        "name": "lnk_in_AutoTideA_fromScientist",
+        "links": [
+            "6ac072e32426e6fc"
+        ],
+        "x": 825,
+        "y": 720,
+        "wires": [
+            [
+                "695f7c71f0921af2"
             ]
         ]
     },
@@ -4694,7 +5212,7 @@
         "type": "function",
         "z": "fc5cdac23d2176f1",
         "name": "Check Max/Min/AUTO_TIDE",
-        "func": "let tank_tide_max = 780;    //in mm\nlet tank_tide_min = 100;    //in mm\nlet tank_tide = 100;        //in mm\n\ntank_tide = msg.payload[0].sine_tide\n\nif(tank_tide > tank_tide_max){ tank_tide = tank_tide_max; }\nif(tank_tide < tank_tide_min){ tank_tide = tank_tide_min; }\n\nlet auto_tide_a = Boolean(global.get[\"AUTO_TIDE_A\"]) || true;\nlet auto_tide_b = Boolean(global.get[\"AUTO_TIDE_B\"]) || true;\n\nmsg.setpoint = {}\nif (auto_tide_a) { msg.setpoint[\"TIDE_A\"] = tank_tide; }\nif (auto_tide_b) { msg.setpoint[\"TIDE_B\"] = tank_tide; }\n\nglobal.set(\"setpoint_tide_a\", tank_tide);\nglobal.set(\"setpoint_tide_b\", tank_tide);\n\nreturn msg;",
+        "func": "let tank_tide_max = 780;    //in mm\nlet tank_tide_min = 100;    //in mm\nlet tank_tide = 100;        //in mm\n\ntank_tide = msg.payload[0].sine_tide\n\nif(tank_tide > tank_tide_max){ tank_tide = tank_tide_max; }\nif(tank_tide < tank_tide_min){ tank_tide = tank_tide_min; }\n\nlet auto_tide_a = Boolean(global.get(\"AUTO_TIDE_A\"));\nif(global.get(\"AUTO_TIDE_A\") === undefined) { auto_tide_a = true;}\n\nlet auto_tide_b = Boolean(global.get(\"AUTO_TIDE_B\"));\nif (global.get(\"AUTO_TIDE_B\") === undefined) { auto_tide_a = true; }\n\nmsg.setpoint = {}\nif (auto_tide_a) {\n    msg.setpoint[\"TIDE_A\"] = tank_tide;\n    global.set(\"setpoint_tide_a\", tank_tide);\n}\nif (auto_tide_b) {\n    msg.setpoint[\"TIDE_B\"] = tank_tide;\n    global.set(\"setpoint_tide_b\", tank_tide);\n}\n\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4712,6 +5230,7 @@
         "id": "d5f6f6a520e151a7",
         "type": "influxdb out",
         "z": "fc5cdac23d2176f1",
+        "d": true,
         "influxdb": "4f8c459b44a5d8b2",
         "name": "Tank_1A",
         "measurement": "Tank_1A",
@@ -4730,6 +5249,7 @@
         "id": "5ba5a56fdb6075b7",
         "type": "influxdb out",
         "z": "fc5cdac23d2176f1",
+        "d": true,
         "influxdb": "4f8c459b44a5d8b2",
         "name": "Tank_1B",
         "measurement": "Tank_1B",
@@ -4748,6 +5268,7 @@
         "id": "bbf6b010d0fa93b8",
         "type": "influxdb out",
         "z": "fc5cdac23d2176f1",
+        "d": true,
         "influxdb": "4f8c459b44a5d8b2",
         "name": "global_values",
         "measurement": "global_values",

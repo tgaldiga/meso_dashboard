@@ -6,8 +6,8 @@ FROM nodered/node-red
 RUN npm install --unsafe-perm --no-update-notifier --no-fund --only=production
 
 # Copy _your_ Node-RED project files into place
-COPY settings.js /data/settings.js
-COPY flows.json /data/flows.json
+# COPY settings.js /data/settings.js
+# COPY flows.json /data/flows.json
 
 # You should add extra nodes via your package.json file but you can also add them here:
 #WORKDIR /usr/src/node-red

@@ -1,7 +1,7 @@
 {
-    "name": "tank-pair-1-dashboard",
-    "description": "Dashboard for the first tank-pair.",
-    "version": "0.0.1",
+    "name": "tank-pair-dashboard",
+    "description": "Dashboard and Control-Software for the first tank-pair.",
+    "version": "0.1.0",
     "private": true,
     "dependencies": {
         "node-red": "~3.0.2",
