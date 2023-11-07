@@ -259,7 +259,7 @@
         "order": 11,
         "width": 3,
         "height": 2,
-        "passthru": false,
+        "passthru": true,
         "outs": "end",
         "topic": "TIDE_A",
         "topicType": "str",
@@ -320,7 +320,7 @@
         "order": 12,
         "width": 3,
         "height": 2,
-        "passthru": false,
+        "passthru": true,
         "outs": "end",
         "topic": "TIDE_B",
         "topicType": "str",
@@ -506,7 +506,7 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "TIDE_A",
-        "func": "let setpoint = global.get(\"setpoint\");\nif (msg.payload != null){ msg.payload = Math.trunc(msg.payload[\"TIDE_A\"]/10); }\nreturn msg;\n",
+        "func": "let setpoint = global.get(\"setpoint\");\nlet sps_status = global.get(\"sps_status\");\nmsg.payload = {};\nmsg.payload[\"TIDE_A\"] = sps_status[\"TIDE_A\"];\nif (msg.payload != null){ msg.payload = Math.trunc(msg.payload[\"TIDE_A\"]/10); }\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -525,7 +525,7 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "TIDE_B",
-        "func": "let setpoint = global.get(\"setpoint\");\nif (msg.payload != null){ msg.payload = Math.trunc(msg.payload[\"TIDE_B\"]/10); }\nreturn msg;\n",
+        "func": "let setpoint = global.get(\"setpoint\");\nlet sps_status = global.get(\"sps_status\");\nmsg.payload = {};\nmsg.payload[\"TIDE_B\"] = sps_status[\"TIDE_B\"];\nif (msg.payload != null){ msg.payload = Math.trunc(msg.payload[\"TIDE_B\"]/10); }\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -683,7 +683,7 @@
         "width": 3,
         "height": 1,
         "wrap": false,
-        "passthru": true,
+        "passthru": false,
         "topic": "TEMP_SETPOINT_A",
         "topicType": "str",
         "format": "{{value}} °C",
@@ -711,7 +711,7 @@
         "width": 3,
         "height": 1,
         "wrap": false,
-        "passthru": true,
+        "passthru": false,
         "topic": "TEMP_SETPOINT_B",
         "topicType": "str",
         "format": "{{value}} °C",
@@ -722,36 +722,8 @@
         "x": 960,
         "y": 780,
         "wires": [
-            []
-        ]
-    },
-    {
-        "id": "062e170e45d6fb46",
-        "type": "inject",
-        "z": "f6f2187d.f17ca8",
-        "name": "Init Temp-Setpoint",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "1",
-        "topic": "",
-        "payload": "14",
-        "payloadType": "num",
-        "x": 690,
-        "y": 640,
-        "wires": [
             [
-                "ad932227435fed38",
-                "2c9b4ecac4403473"
+                "902e1a97db63c3c1"
             ]
         ]
     },
@@ -827,7 +799,7 @@
         "id": "c494016f1da3833f",
         "type": "link out",
         "z": "f6f2187d.f17ca8",
-        "name": "link out 1",
+        "name": "lnk_out_TempSetA_toTechnical",
         "mode": "link",
         "links": [
             "939e93c443698a69"
@@ -1050,6 +1022,51 @@
                 "274d61a691ca1609"
             ]
         ]
+    },
+    {
+        "id": "9687bb63d9ae3128",
+        "type": "link in",
+        "z": "f6f2187d.f17ca8",
+        "name": "lnk_in_TempSetA_fromTechnical",
+        "links": [
+            "793c6c24178cb68b"
+        ],
+        "x": 795,
+        "y": 480,
+        "wires": [
+            [
+                "ad932227435fed38"
+            ]
+        ]
+    },
+    {
+        "id": "1627f3e597c62869",
+        "type": "link in",
+        "z": "f6f2187d.f17ca8",
+        "name": "lnk_in_TempSetB_fromTechnical",
+        "links": [
+            "63f28c774bb95206"
+        ],
+        "x": 795,
+        "y": 780,
+        "wires": [
+            [
+                "2c9b4ecac4403473"
+            ]
+        ]
+    },
+    {
+        "id": "902e1a97db63c3c1",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "lnk_out_TempSetB_toTechnical",
+        "mode": "link",
+        "links": [
+            "91cd2220a8c31956"
+        ],
+        "x": 1115,
+        "y": 780,
+        "wires": []
     },
     {
         "id": "8c25cdca95a4f35d",
@@ -2016,7 +2033,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "Compare Setpoint vs Status",
-        "func": "let setpoint = global.get(\"setpoint\") || {};\nlet sps_status = global.get(\"sps_status\") || {};\n\n//node.warn(setpoint);\n//node.warn(sps_status);\n\nmsg.enabled = false;\nif (sps_status[\"MANUAL_CONTROL\"] == 1){\n    for (let x in setpoint){\n        if (x != \"MANUAL_CONTROL\"){\n            if (setpoint[x] != sps_status[x]){\n                msg.info = x + ' -> setpoint:' + setpoint[x] + ' status:' + sps_status[x];\n                msg.enabled = true; break;\n            }\n        }\n    }\n}\nif (setpoint[\"TEMP_SETPOINT_A\"] != sps_status[\"TEMP_SETPOINT_A\"]){ msg.enabled = true; }\nif (setpoint[\"TEMP_SETPOINT_B\"] != sps_status[\"TEMP_SETPOINT_B\"]){ msg.enabled = true; }\n\nreturn msg;",
+        "func": "let setpoint = global.get(\"setpoint\") || {};\nlet sps_status = global.get(\"sps_status\") || {};\n\n//node.warn(setpoint);\n//node.warn(sps_status);\n\nmsg.enabled = false;\nif (sps_status[\"MANUAL_CONTROL\"] == 1){\n    for (let x in setpoint){\n        // skip MANUAL_CONTROL, TEMP_SETPOINT_A/B and TIDE_A/B\n        if (![\"MANUAL_CONTROL\", \"TEMP_SETPOINT_A\", \"TEMP_SETPOINT_B\", \"TIDE_A\", \"TIDE_B\"].includes(x)){\n            if (setpoint[x] != sps_status[x]){\n                msg.info = x + ' -> setpoint:' + setpoint[x] + ' status:' + sps_status[x];\n                msg.enabled = true; break;\n            }\n        }\n    }\n}\n//if (setpoint[\"TEMP_SETPOINT_A\"] != sps_status[\"TEMP_SETPOINT_A\"]){ msg.enabled = true; }\n//if (setpoint[\"TEMP_SETPOINT_B\"] != sps_status[\"TEMP_SETPOINT_B\"]){ msg.enabled = true; }\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2471,7 +2488,9 @@
         "y": 440,
         "wires": [
             [
-                "d8138258c98e82ce"
+                "d8138258c98e82ce",
+                "793c6c24178cb68b",
+                "d310593e73777544"
             ]
         ]
     },
@@ -2499,36 +2518,9 @@
         "y": 840,
         "wires": [
             [
-                "d8138258c98e82ce"
-            ]
-        ]
-    },
-    {
-        "id": "dce1442283bac825",
-        "type": "inject",
-        "z": "51164a2570c98448",
-        "name": "Init Temp-Setpoint",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "1",
-        "topic": "",
-        "payload": "14",
-        "payloadType": "num",
-        "x": 150,
-        "y": 460,
-        "wires": [
-            [
-                "c49634769b3f3175"
+                "d8138258c98e82ce",
+                "63f28c774bb95206",
+                "d310593e73777544"
             ]
         ]
     },
@@ -2643,70 +2635,16 @@
         "id": "939e93c443698a69",
         "type": "link in",
         "z": "51164a2570c98448",
-        "name": "link in 2",
+        "name": "lnk_in_TempSetA_fromScientist",
         "links": [
             "c494016f1da3833f",
             "c49634769b3f3175"
         ],
-        "x": 735,
+        "x": 805,
         "y": 440,
         "wires": [
             [
                 "1a220d7c6bc1630f"
-            ]
-        ]
-    },
-    {
-        "id": "2ffb4e229e01dd8d",
-        "type": "function",
-        "z": "51164a2570c98448",
-        "name": "check if temp_setpoint exists",
-        "func": "let setpoint = global.get(\"setpoint\");\nif (setpoint[\"TEMP_SETPOINT_A\"] == null){\n    msg.payload = null;\n    return msg;\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 620,
-        "y": 480,
-        "wires": [
-            [
-                "1a220d7c6bc1630f"
-            ]
-        ]
-    },
-    {
-        "id": "34ec65340813c410",
-        "type": "function",
-        "z": "51164a2570c98448",
-        "name": "check if temp_setpoint exists",
-        "func": "let setpoint = global.get(\"setpoint\");\nif (setpoint[\"TEMP_SETPOINT_B\"] == null){\n    msg.payload = null;\n    return msg;\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 720,
-        "y": 840,
-        "wires": [
-            [
-                "8c242c6939227338"
-            ]
-        ]
-    },
-    {
-        "id": "e6c281fe5f0e6ccc",
-        "type": "link in",
-        "z": "51164a2570c98448",
-        "name": "link in 3",
-        "links": [
-            "2b6ce51cbfcc424d"
-        ],
-        "x": 555,
-        "y": 840,
-        "wires": [
-            [
-                "34ec65340813c410"
             ]
         ]
     },
@@ -2726,22 +2664,6 @@
         "x": 235,
         "y": 400,
         "wires": []
-    },
-    {
-        "id": "d968aa4b5c99072f",
-        "type": "link in",
-        "z": "51164a2570c98448",
-        "name": "link in 4",
-        "links": [
-            "2b6ce51cbfcc424d"
-        ],
-        "x": 445,
-        "y": 480,
-        "wires": [
-            [
-                "2ffb4e229e01dd8d"
-            ]
-        ]
     },
     {
         "id": "facae4bb53e19c95",
@@ -2792,29 +2714,16 @@
         ]
     },
     {
-        "id": "c49634769b3f3175",
-        "type": "link out",
-        "z": "51164a2570c98448",
-        "name": "link out 3",
-        "mode": "link",
-        "links": [
-            "939e93c443698a69",
-            "91cd2220a8c31956"
-        ],
-        "x": 275,
-        "y": 460,
-        "wires": []
-    },
-    {
         "id": "91cd2220a8c31956",
         "type": "link in",
         "z": "51164a2570c98448",
-        "name": "link in 8",
+        "name": "lnk_in_TempSetB_fromScientist",
         "links": [
-            "c49634769b3f3175"
+            "d1669d352d3ebf4c",
+            "902e1a97db63c3c1"
         ],
         "x": 825,
-        "y": 880,
+        "y": 840,
         "wires": [
             [
                 "8c242c6939227338"
@@ -2888,7 +2797,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "bypass_write_button_prepare_modbus",
-        "func": "let address_list = global.get(\"write_register_address_list\");\n\nif (address_list != null && msg.payload != null) {\n    let modbus_address = Number(address_list[msg.topic]);\n\n    if ([\"TIDE_A\", \"TIDE_B\"].includes(msg.topic)){\n        msg.payload = msg.payload * 10;\n    }\n\n    msg.payload = { value: [msg.payload], 'fc': 16, 'unitid': 1, 'address': modbus_address, 'quantity': 1 };\n}\nreturn msg;",
+        "func": "let address_list = global.get(\"write_register_address_list\");\n\nif(address_list != null && msg.payload != null){\n    let modbus_address = Number(address_list[msg.topic]);\n\n    if([\"TIDE_A\", \"TIDE_B\"].includes(msg.topic)){\n        msg.payload = msg.payload * 10;\n    }\n\n    else if ([\"TEMP_SETPOINT_A\", \"TEMP_SETPOINT_B\"].includes(msg.topic)) {\n        msg.payload = msg.payload * 100;\n    }\n\n    msg.payload = { value: [msg.payload], 'fc': 16, 'unitid': 1, 'address': modbus_address, 'quantity': 1 };\n\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2944,7 +2853,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "TIDE_A",
-        "func": "let setpoint = global.get(\"setpoint\");\nmsg.enabled = true;\nif (msg.payload != null){ msg.payload = Math.trunc(msg.payload[\"TIDE_A\"]/10); }\nreturn msg;\n",
+        "func": "let setpoint = global.get(\"setpoint\");\nlet sps_status = global.get(\"sps_status\");\nmsg.payload = {};\nmsg.payload[\"TIDE_A\"] = sps_status[\"TIDE_A\"];\nmsg.enabled = true;\nif (msg.payload != null){ msg.payload = Math.trunc(msg.payload[\"TIDE_A\"]/10); }\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3088,7 +2997,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "TIDE_B",
-        "func": "let setpoint = global.get(\"setpoint\");\nmsg.enabled = true;\nif (msg.payload != null){ msg.payload = Math.trunc(msg.payload[\"TIDE_B\"]/10); }\nreturn msg;\n",
+        "func": "let setpoint = global.get(\"setpoint\");\nlet sps_status = global.get(\"sps_status\");\nmsg.payload = {};\nmsg.payload[\"TIDE_B\"] = sps_status[\"TIDE_B\"];\nmsg.enabled = true;\nif (msg.payload != null){ msg.payload = Math.trunc(msg.payload[\"TIDE_B\"]/10); }\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3146,7 +3055,8 @@
         "name": "lnk_out_AutoTideB_toScientist",
         "mode": "link",
         "links": [
-            "c2ca5364dd75179d"
+            "c2ca5364dd75179d",
+            "3ae5e0e611aa3b1d"
         ],
         "x": 1095,
         "y": 1140,
@@ -3159,7 +3069,8 @@
         "name": "lnk_out_AutoTideA_toScientist",
         "mode": "link",
         "links": [
-            "a0b73ff6becaacc8"
+            "a0b73ff6becaacc8",
+            "3ae5e0e611aa3b1d"
         ],
         "x": 1095,
         "y": 740,
@@ -3180,6 +3091,201 @@
                 "695f7c71f0921af2"
             ]
         ]
+    },
+    {
+        "id": "f6a5886c91ad3ba1",
+        "type": "inject",
+        "z": "51164a2570c98448",
+        "name": "init on AUTO_TIDE_A",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "AUTO_TIDE_A",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 680,
+        "y": 740,
+        "wires": [
+            [
+                "695f7c71f0921af2"
+            ]
+        ]
+    },
+    {
+        "id": "922671733510151f",
+        "type": "inject",
+        "z": "51164a2570c98448",
+        "name": "init on AUTO_TIDE_B",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "AUTO_TIDE_B",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 700,
+        "y": 1140,
+        "wires": [
+            [
+                "69952a69d238aeb9"
+            ]
+        ]
+    },
+    {
+        "id": "dce1442283bac825",
+        "type": "inject",
+        "z": "51164a2570c98448",
+        "name": "Init Temp-Setpoint",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "14",
+        "payloadType": "num",
+        "x": 130,
+        "y": 460,
+        "wires": [
+            [
+                "99578fd3e3f31091"
+            ]
+        ]
+    },
+    {
+        "id": "c49634769b3f3175",
+        "type": "link out",
+        "z": "51164a2570c98448",
+        "name": "link out 3",
+        "mode": "link",
+        "links": [
+            "939e93c443698a69"
+        ],
+        "x": 355,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "99578fd3e3f31091",
+        "type": "function",
+        "z": "51164a2570c98448",
+        "name": "read_tempSetting_from_sps",
+        "func": "let sps_status = global.get(\"sps_status\");\nlet num_retrys = context.get(\"num_retrys\");\n\nif(sps_status === undefined){\n    num_retrys = num_retrys + 1;\n    node.warn(num_retrys);\n    return msg;\n}\n\nif(sps_status[\"TEMP_SETPOINT_A\"] === undefined || msg.retry > 10){\n    let msg_a = {\n        \"payload\": 14,\n        \"topic\": \"TEMP_SETPOINT_A\",\n        \"retry\": false\n    }\n    node.send(msg_a);\n}\nelse{\n    let msg_a = {};\n    msg_a.payload = Number((sps_status[\"TEMP_SETPOINT_A\"] / 100).toFixed(2));\n    if(msg_a.payload < 0 || 25 < msg_a.payload){\n        msg_a.payload = 14;\n    }\n    msg_a.topic = \"TEMP_SETPOINT_A\";\n    node.send(msg_a);\n}\n\nif (sps_status[\"TEMP_SETPOINT_B\"] === undefined || msg.retry > 10) {\n    let msg_b = {\n        \"payload\": 14,\n        \"topic\": \"TEMP_SETPOINT_B\",\n        \"retry\": false\n    }\n    node.send(msg_b);\n}\nelse {\n    let msg_b = {};\n    msg_b.payload = Number((sps_status[\"TEMP_SETPOINT_B\"] / 100).toFixed(2));\n    if (msg_b.payload < 0 || 25 < msg_b.payload) {\n        msg_b.payload = 14;\n    }\n    msg_b.topic = \"TEMP_SETPOINT_B\";\n    node.send(msg_b);\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Der Code hier wird ausgeführt,\n// wenn der Node gestartet wird\ncontext.set(\"num_retrys\", 0);",
+        "finalize": "",
+        "libs": [],
+        "x": 160,
+        "y": 500,
+        "wires": [
+            [
+                "38ca190a7361cf69"
+            ]
+        ]
+    },
+    {
+        "id": "d1669d352d3ebf4c",
+        "type": "link out",
+        "z": "51164a2570c98448",
+        "name": "link out 10",
+        "mode": "link",
+        "links": [
+            "91cd2220a8c31956"
+        ],
+        "x": 315,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "38ca190a7361cf69",
+        "type": "switch",
+        "z": "51164a2570c98448",
+        "name": "Setpoint A or B",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "TEMP_SETPOINT_A",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "TEMP_SETPOINT_B",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 120,
+        "y": 540,
+        "wires": [
+            [
+                "c49634769b3f3175"
+            ],
+            [
+                "d1669d352d3ebf4c"
+            ]
+        ],
+        "outputLabels": [
+            "TEMP_SETPOINT_A",
+            "TEMP_SETPOINT_B"
+        ]
+    },
+    {
+        "id": "793c6c24178cb68b",
+        "type": "link out",
+        "z": "51164a2570c98448",
+        "name": "lnk_out_TempSetA_toScientist",
+        "mode": "link",
+        "links": [
+            "9687bb63d9ae3128"
+        ],
+        "x": 1135,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "63f28c774bb95206",
+        "type": "link out",
+        "z": "51164a2570c98448",
+        "name": "lnk_out_TempSetB_toScientist",
+        "mode": "link",
+        "links": [
+            "1627f3e597c62869"
+        ],
+        "x": 1135,
+        "y": 840,
+        "wires": []
     },
     {
         "id": "c97034c6148ec6db",
@@ -5436,6 +5542,43 @@
             [],
             [
                 "4fb714fdf12febdc"
+            ]
+        ]
+    },
+    {
+        "id": "3ae5e0e611aa3b1d",
+        "type": "link in",
+        "z": "fc5cdac23d2176f1",
+        "name": "lnk_in_calcNewTide",
+        "links": [
+            "1f70b07a60f6c801",
+            "6c4fa33497b49178"
+        ],
+        "x": 165,
+        "y": 1500,
+        "wires": [
+            [
+                "e947def26aa37353"
+            ]
+        ]
+    },
+    {
+        "id": "e947def26aa37353",
+        "type": "function",
+        "z": "fc5cdac23d2176f1",
+        "name": "calc_new_tide_on_autoTide_activation",
+        "func": "if(msg.payload === true \n        && (msg.topic === \"AUTO_TIDE_A\" || msg.topic === \"AUTO_TIDE_B\")){\n    msg = {\n        \"payload\": \"\"\n    };\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 180,
+        "y": 1540,
+        "wires": [
+            [
+                "a0ce7176193b36b8",
+                "f94f9b62a13cc305"
             ]
         ]
     }
