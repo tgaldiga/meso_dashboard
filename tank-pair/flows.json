@@ -3664,13 +3664,15 @@
                 "14361995f33aac5b"
             ],
             [
-                "c8dc1d2bfe2808a7"
+                "c8dc1d2bfe2808a7",
+                "6e8e9ed09fca43bb"
             ],
             [
                 "7607d33bb7083ee7"
             ],
             [
-                "2162d1bd03e344ad"
+                "2162d1bd03e344ad",
+                "6e8e9ed09fca43bb"
             ],
             [
                 "74d4590945241c7f"
@@ -4227,7 +4229,8 @@
         "mode": "link",
         "links": [
             "7f2207b1338bfbce",
-            "f7619c2e495fa3dd"
+            "f7619c2e495fa3dd",
+            "d7e59c59f3f69cb7"
         ],
         "x": 1145,
         "y": 160,
@@ -5469,7 +5472,7 @@
         "reporting": "every_second",
         "reportingformat": "human",
         "persist": false,
-        "ignoretimerpass": false,
+        "ignoretimerpass": true,
         "x": 710,
         "y": 820,
         "wires": [
@@ -5495,7 +5498,7 @@
         "reporting": "every_second",
         "reportingformat": "human",
         "persist": false,
-        "ignoretimerpass": false,
+        "ignoretimerpass": true,
         "x": 710,
         "y": 1020,
         "wires": [
@@ -5521,7 +5524,7 @@
         "reporting": "every_second",
         "reportingformat": "human",
         "persist": false,
-        "ignoretimerpass": false,
+        "ignoretimerpass": true,
         "x": 710,
         "y": 700,
         "wires": [
@@ -5547,7 +5550,7 @@
         "reporting": "every_second",
         "reportingformat": "human",
         "persist": false,
-        "ignoretimerpass": false,
+        "ignoretimerpass": true,
         "x": 710,
         "y": 900,
         "wires": [
@@ -5573,7 +5576,7 @@
         "reporting": "every_second",
         "reportingformat": "human",
         "persist": false,
-        "ignoretimerpass": false,
+        "ignoretimerpass": true,
         "x": 710,
         "y": 1140,
         "wires": [
@@ -5599,7 +5602,7 @@
         "reporting": "every_second",
         "reportingformat": "human",
         "persist": false,
-        "ignoretimerpass": false,
+        "ignoretimerpass": true,
         "x": 710,
         "y": 1220,
         "wires": [
@@ -5660,32 +5663,141 @@
         "wires": []
     },
     {
-        "id": "dff96b9accc3fa0a",
-        "type": "inject",
+        "id": "d923a6e6f63b479f",
+        "type": "switch",
         "z": "fc5cdac23d2176f1",
-        "name": "",
-        "props": [
+        "name": "resend current step",
+        "property": "last_step",
+        "propertyType": "msg",
+        "rules": [
             {
-                "p": "payload"
+                "t": "eq",
+                "v": "STOP",
+                "vt": "str"
             },
             {
-                "p": "topic",
+                "t": "eq",
+                "v": "PREP_TANK_A",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "VENT_TANK_A",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "RUN_TANK_A",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "STOP_TANK_A",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "DRAIN_SYSTEM_A",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "PREP_TANK_B",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "VENT_TANK_B",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "RUN_TANK_B",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "STOP_TANK_B",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "DRAIN_SYSTEM_B",
                 "vt": "str"
             }
         ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 840,
-        "y": 360,
+        "checkall": "false",
+        "repair": false,
+        "outputs": 11,
+        "x": 860,
+        "y": 560,
         "wires": [
             [
-                "b4f8a311a0a67a8d"
+                "2479bec9fcf2f7e6"
+            ],
+            [
+                "aec6da720bfaf1c9"
+            ],
+            [
+                "3aab87349029d91c"
+            ],
+            [
+                "a261aef43d69df05"
+            ],
+            [
+                "82a57fb8f4672bdf"
+            ],
+            [
+                "f404b40cc7182f4f"
+            ],
+            [
+                "a60d71b5876da161"
+            ],
+            [
+                "b71eaa92f09516af"
+            ],
+            [
+                "17fbffa7ddda9528"
+            ],
+            [
+                "24e44efd92c3f37f"
+            ],
+            [
+                "0db10ac37fef10ae"
             ]
         ]
+    },
+    {
+        "id": "d7e59c59f3f69cb7",
+        "type": "link in",
+        "z": "fc5cdac23d2176f1",
+        "name": "lnk_next_step",
+        "links": [
+            "9fb665ca86aeedc4"
+        ],
+        "x": 705,
+        "y": 560,
+        "wires": [
+            [
+                "d923a6e6f63b479f"
+            ]
+        ]
+    },
+    {
+        "id": "6e8e9ed09fca43bb",
+        "type": "debug",
+        "z": "fc5cdac23d2176f1",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 960,
+        "wires": []
     }
 ]
