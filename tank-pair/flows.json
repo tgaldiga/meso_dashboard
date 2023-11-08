@@ -259,7 +259,7 @@
         "order": 11,
         "width": 3,
         "height": 2,
-        "passthru": true,
+        "passthru": false,
         "outs": "end",
         "topic": "TIDE_A",
         "topicType": "str",
@@ -320,7 +320,7 @@
         "order": 12,
         "width": 3,
         "height": 2,
-        "passthru": true,
+        "passthru": false,
         "outs": "end",
         "topic": "TIDE_B",
         "topicType": "str",
@@ -932,7 +932,7 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "TIDE_A_setpoint",
-        "func": "// Where the tide automation writes its setpoint\nlet auto_tide_setpoint = global.get(\"setpoint_tide_a\");\n\n// Enable slider when automatic tide is activated\nmsg.enabled = !Boolean(global.get(\"AUTO_TIDE_A\"));\n\n// Update the slider in automatic mode\n// in manual mode the sliders should update each other directly\nif (msg.enabled) {\n    msg.payload = null;\n}\nelse {\n    msg.payload = Math.trunc(auto_tide_setpoint / 10);\n}\n\nreturn msg;\n",
+        "func": "// Where the tide automation writes its setpoint\nlet auto_tide_setpoint = global.get(\"setpoint_tide_a\");\n\n// Enable slider when automatic tide is activated\nmsg.enabled = !Boolean(global.get(\"AUTO_TIDE_A\"));\n\n// Update the slider in automatic mode\n// in manual mode the sliders should update each other directly\nif (!msg.enabled) {\n    msg.payload = Math.trunc(auto_tide_setpoint / 10);\n}\nelse {\n    msg.payload = null;\n}\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -951,7 +951,7 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "TIDE_B_setpoint",
-        "func": "// Where the tide automation writes its setpoint\nlet auto_tide_setpoint = global.get(\"setpoint_tide_b\");\n\n// Enable slider when automatic tide is activated\nmsg.enabled = !Boolean(global.get(\"AUTO_TIDE_B\"));\n\n// Update the slider in automatic mode\n// in manual mode the sliders should update each other directly\nif (msg.enabled) {\n    msg.payload = null;\n}\nelse {\n    msg.payload = Math.trunc(auto_tide_setpoint / 10);\n}\n\nreturn msg;\n",
+        "func": "// Where the tide automation writes its setpoint\nlet auto_tide_setpoint = global.get(\"setpoint_tide_b\");\n\n// Enable slider when automatic tide is activated\nmsg.enabled = !Boolean(global.get(\"AUTO_TIDE_B\"));\n\n// Update the slider in automatic mode\n// in manual mode the sliders should update each other directly\nif (!msg.enabled) {\n    msg.payload = Math.trunc(auto_tide_setpoint / 10);\n}\nelse {\n    msg.payload = null;\n}\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1069,6 +1069,26 @@
         "wires": []
     },
     {
+        "id": "b04a11edcd430908",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "Links to the ui-elements in the technical dashboard",
+        "info": "",
+        "x": 1170,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "4b4806d55c89e61e",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "Links from the ui-elements in the technical dashboard",
+        "info": "",
+        "x": 740,
+        "y": 680,
+        "wires": []
+    },
+    {
         "id": "8c25cdca95a4f35d",
         "type": "ui_switch",
         "z": "51164a2570c98448",
@@ -1113,7 +1133,7 @@
         "order": 15,
         "width": 3,
         "height": 2,
-        "passthru": false,
+        "passthru": true,
         "outs": "end",
         "topic": "TIDE_A",
         "topicType": "str",
@@ -1281,7 +1301,7 @@
         "order": 16,
         "width": 3,
         "height": 2,
-        "passthru": false,
+        "passthru": true,
         "outs": "end",
         "topic": "TIDE_B",
         "topicType": "str",
@@ -1854,15 +1874,15 @@
                 "1b075f1d24e9a5c0",
                 "0fd5cf285d3f392d",
                 "15d7760739b7a13b",
-                "202ef10d06cb20c6",
                 "5fb752c59ec80d40",
                 "9f5b79a4732417be",
                 "cc510c94199283ba",
                 "faf9cbb9bb658881",
                 "9c086814f3ec5283",
                 "243aeea783e13442",
-                "4206f0aad44e5e17",
-                "0eb663549ce4152b"
+                "0eb663549ce4152b",
+                "202ef10d06cb20c6",
+                "4206f0aad44e5e17"
             ]
         ]
     },
@@ -1985,7 +2005,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "Prepare Modbus Payload",
-        "func": "let address_list = global.get(\"write_register_address_list\");\nlet setpoint = global.get(\"setpoint\");\n\nif (address_list != null && setpoint != null){\n    let values = [];\n    \n    let first_key = Object.keys(address_list)[0]\n    let modbus_address = Number(address_list[first_key]);\n    let quantity = 0\n    \n    for (var key in address_list){\n        if (setpoint[key] != null){\n            values.push(setpoint[key]);\n            quantity++;\n        }\n    }\n    msg.payload = { value: values, 'fc': 16, 'unitid': 1, 'address': modbus_address , 'quantity': quantity };\n}\nreturn msg;",
+        "func": "let address_list = global.get(\"write_register_address_list\");\nlet setpoint = global.get(\"setpoint\");\n\nif (address_list != null && setpoint != null){\n    let values = [];\n    \n    let first_key = Object.keys(address_list)[0]\n    let modbus_address = Number(address_list[first_key]);\n    let quantity = 0\n    \n    for (var key in address_list){\n        // skip manual control because it gets written and the adress is not next to the other values\n        if (setpoint[key] != null && key != \"MANUAL_CONTROL\"){\n            values.push(setpoint[key]);\n            quantity++;\n        }\n    }\n    msg.payload = { value: values, 'fc': 16, 'unitid': 1, 'address': modbus_address , 'quantity': quantity };\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2033,7 +2053,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "Compare Setpoint vs Status",
-        "func": "let setpoint = global.get(\"setpoint\") || {};\nlet sps_status = global.get(\"sps_status\") || {};\n\n//node.warn(setpoint);\n//node.warn(sps_status);\n\nmsg.enabled = false;\nif (sps_status[\"MANUAL_CONTROL\"] == 1){\n    for (let x in setpoint){\n        // skip MANUAL_CONTROL, TEMP_SETPOINT_A/B and TIDE_A/B\n        if (![\"MANUAL_CONTROL\", \"TEMP_SETPOINT_A\", \"TEMP_SETPOINT_B\", \"TIDE_A\", \"TIDE_B\"].includes(x)){\n            if (setpoint[x] != sps_status[x]){\n                msg.info = x + ' -> setpoint:' + setpoint[x] + ' status:' + sps_status[x];\n                msg.enabled = true; break;\n            }\n        }\n    }\n}\n//if (setpoint[\"TEMP_SETPOINT_A\"] != sps_status[\"TEMP_SETPOINT_A\"]){ msg.enabled = true; }\n//if (setpoint[\"TEMP_SETPOINT_B\"] != sps_status[\"TEMP_SETPOINT_B\"]){ msg.enabled = true; }\n\nreturn msg;",
+        "func": "let setpoint = global.get(\"setpoint\") || {};\nlet sps_status = global.get(\"sps_status\") || {};\n\n//node.warn(setpoint);\n//node.warn(sps_status);\n\nmsg.enabled = false;\nif (sps_status[\"MANUAL_CONTROL\"] == 1){\n    for (let x in setpoint){\n        // skip MANUAL_CONTROL, TEMP_SETPOINT_A/B and TIDE_A/B\n        if (![\"MANUAL_CONTROL\", \"TEMP_SETPOINT_A\", \"TEMP_SETPOINT_B\", \"TIDE_A\", \"TIDE_B\"].includes(x)){\n            if (setpoint[x] != sps_status[x]){\n                msg.info = x + ' -> setpoint:' + setpoint[x] + ' status:' + sps_status[x];\n                msg.enabled = true; break;\n            }\n        }\n    }\n}\n// if temperature setpoints should be confirmed with\n// \"Write\"-Button and outside of manual control, uncomment this\n//if (setpoint[\"TEMP_SETPOINT_A\"] != sps_status[\"TEMP_SETPOINT_A\"]){ msg.enabled = true; }\n//if (setpoint[\"TEMP_SETPOINT_B\"] != sps_status[\"TEMP_SETPOINT_B\"]){ msg.enabled = true; }\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2124,7 +2144,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "TIDE_A_setpoint",
-        "func": "// Where the tide automation writes its setpoint\nlet auto_tide_setpoint = global.get(\"setpoint_tide_a\");\n\n// Enable slider when automatic tide is activated\nmsg.enabled = !Boolean(global.get(\"AUTO_TIDE_A\"));\n\n// Update the slider in automatic mode\n// in manual mode the sliders should update each other directly\nif (msg.enabled) {\n    msg.payload = null;\n}\nelse {\n    msg.payload = Math.trunc(auto_tide_setpoint / 10);\n}\n\nreturn msg;\n",
+        "func": "// Where the tide automation writes its setpoint\nlet auto_tide_setpoint = global.get(\"setpoint_tide_a\");\n\n// Enable slider when automatic tide is activated\nmsg.enabled = !Boolean(global.get(\"AUTO_TIDE_A\"));\n\n// Update the slider in automatic mode\n// in manual mode the sliders should update each other directly\nif (!msg.enabled) {\n    msg.payload = Math.trunc(auto_tide_setpoint / 10);\n}\nelse{\n    msg.payload = null;\n}\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2143,7 +2163,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "TIDE_B_setpoint",
-        "func": "// Where the tide automation writes its setpoint\nlet auto_tide_setpoint = global.get(\"setpoint_tide_b\");\n\n// Enable slider when automatic tide is activated\nmsg.enabled = !Boolean(global.get(\"AUTO_TIDE_B\"));\n\n// Update the slider in automatic mode\n// in manual mode the sliders should update each other directly\nif (msg.enabled) {\n    msg.payload = null;\n}\nelse {\n    msg.payload = Math.trunc(auto_tide_setpoint / 10);\n}\n\nreturn msg;\n",
+        "func": "// Where the tide automation writes its setpoint\nlet auto_tide_setpoint = global.get(\"setpoint_tide_b\");\n\n// Enable slider when automatic tide is activated\nmsg.enabled = !Boolean(global.get(\"AUTO_TIDE_B\"));\n\n// Update the slider in automatic mode\n// in manual mode the sliders should update each other directly\nif (!msg.enabled) {\n    msg.payload = Math.trunc(auto_tide_setpoint / 10);\n}\nelse {\n    msg.payload = null;\n}\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2659,7 +2679,9 @@
             "d968aa4b5c99072f",
             "facae4bb53e19c95",
             "95853564d1b7e31a",
-            "2b4520bbf8520749"
+            "2b4520bbf8520749",
+            "b551bd19493488f1",
+            "e1a0b7606e886dfd"
         ],
         "x": 235,
         "y": 400,
@@ -2797,7 +2819,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "bypass_write_button_prepare_modbus",
-        "func": "let address_list = global.get(\"write_register_address_list\");\n\nif(address_list != null && msg.payload != null){\n    let modbus_address = Number(address_list[msg.topic]);\n\n    if([\"TIDE_A\", \"TIDE_B\"].includes(msg.topic)){\n        msg.payload = msg.payload * 10;\n    }\n\n    else if ([\"TEMP_SETPOINT_A\", \"TEMP_SETPOINT_B\"].includes(msg.topic)) {\n        msg.payload = msg.payload * 100;\n    }\n\n    msg.payload = { value: [msg.payload], 'fc': 16, 'unitid': 1, 'address': modbus_address, 'quantity': 1 };\n\n    return msg;\n}",
+        "func": "// the modbus write-register addresses\nlet address_list = global.get(\"write_register_address_list\");\n\nif(address_list != null && msg.payload != null){\n    // get the address for the specific register from msg.topic\n    let modbus_address = Number(address_list[msg.topic]);\n\n    // Tide-levels have to be converted from cm to mm\n    if([\"TIDE_A\", \"TIDE_B\"].includes(msg.topic)){\n        msg.payload = msg.payload * 10;\n    }\n\n    // For temperatures the comma has to be shifted into place\n    else if ([\"TEMP_SETPOINT_A\", \"TEMP_SETPOINT_B\"].includes(msg.topic)) {\n        msg.payload = msg.payload * 100;\n    }\n\n    // send one value into the correct register on the modbus\n    msg.payload = { value: [msg.payload], 'fc': 16, 'unitid': 1, 'address': modbus_address, 'quantity': 1 };\n\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2836,7 +2858,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "update_tide_for_control_logic",
-        "func": "if(msg.topic === \"TIDE_A\"){\n    global.set(\"setpoint_tide_a\", msg.payload*10);\n}\nelse if(msg.topic === \"TIDE_B\"){\n    global.set(\"setpoint_tide_b\", msg.payload*10);\n}\n",
+        "func": "// write the tide levels into the global variable for the influxdb\nif(msg.topic === \"TIDE_A\"){\n    global.set(\"setpoint_tide_a\", msg.payload*10);\n}\nelse if(msg.topic === \"TIDE_B\"){\n    global.set(\"setpoint_tide_b\", msg.payload*10);\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3167,7 +3189,7 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "onceDelay": "1",
+        "onceDelay": "2",
         "topic": "",
         "payload": "14",
         "payloadType": "num",
@@ -3197,7 +3219,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "read_tempSetting_from_sps",
-        "func": "let sps_status = global.get(\"sps_status\");\nlet num_retrys = context.get(\"num_retrys\");\n\nif(sps_status === undefined){\n    num_retrys = num_retrys + 1;\n    node.warn(num_retrys);\n    return msg;\n}\n\nif(sps_status[\"TEMP_SETPOINT_A\"] === undefined || msg.retry > 10){\n    let msg_a = {\n        \"payload\": 14,\n        \"topic\": \"TEMP_SETPOINT_A\",\n        \"retry\": false\n    }\n    node.send(msg_a);\n}\nelse{\n    let msg_a = {};\n    msg_a.payload = Number((sps_status[\"TEMP_SETPOINT_A\"] / 100).toFixed(2));\n    if(msg_a.payload < 0 || 25 < msg_a.payload){\n        msg_a.payload = 14;\n    }\n    msg_a.topic = \"TEMP_SETPOINT_A\";\n    node.send(msg_a);\n}\n\nif (sps_status[\"TEMP_SETPOINT_B\"] === undefined || msg.retry > 10) {\n    let msg_b = {\n        \"payload\": 14,\n        \"topic\": \"TEMP_SETPOINT_B\",\n        \"retry\": false\n    }\n    node.send(msg_b);\n}\nelse {\n    let msg_b = {};\n    msg_b.payload = Number((sps_status[\"TEMP_SETPOINT_B\"] / 100).toFixed(2));\n    if (msg_b.payload < 0 || 25 < msg_b.payload) {\n        msg_b.payload = 14;\n    }\n    msg_b.topic = \"TEMP_SETPOINT_B\";\n    node.send(msg_b);\n}",
+        "func": "// Values from the sps feedback-registers\nlet sps_status = global.get(\"sps_status\");\n\n// Where manual control writes its settings\nlet setpoint = global.get(\"setpoint\");\n\n// messages for the two tanks\nlet msg_a = {};\nlet msg_b = {};\n\n// for Tank A initialize the setpoint to 14 if sps-data is unavailable\nif(sps_status[\"TEMP_SETPOINT_A\"] === undefined){\n    msg_a = {\n        \"payload\": 14,\n        \"topic\": \"TEMP_SETPOINT_A\",\n        \"retry\": false\n    }\n    node.send(msg_a);\n}\n// otherwise initialize with the value from the sps\nelse{\n    msg_a.payload = Number((sps_status[\"TEMP_SETPOINT_A\"] / 100).toFixed(2));\n    if(msg_a.payload < 0 || 25 < msg_a.payload){\n        msg_a.payload = 14;\n    }\n    msg_a.topic = \"TEMP_SETPOINT_A\";\n    node.send(msg_a);\n}\n\n// for Tank B initialize the setpoint to 14 if sps-data is unavailable\nif (sps_status[\"TEMP_SETPOINT_B\"] === undefined) {\n    msg_b = {\n        \"payload\": 14,\n        \"topic\": \"TEMP_SETPOINT_B\",\n        \"retry\": false\n    }\n    node.send(msg_b);\n}\n// otherwise initialize with the value from the sps\nelse {\n    msg_b.payload = Number((sps_status[\"TEMP_SETPOINT_B\"] / 100).toFixed(2));\n    if (msg_b.payload < 0 || 25 < msg_b.payload) {\n        msg_b.payload = 14;\n    }\n    msg_b.topic = \"TEMP_SETPOINT_B\";\n    node.send(msg_b);\n}\n\n// also write to setpoint to be able to send the whole setpoint on the modbus in one sequence\nsetpoint[\"TEMP_SETPOINT_A\"] = Math.trunc(msg_a.payload * 100);\nsetpoint[\"TEMP_SETPOINT_B\"] = Math.trunc(msg_b.payload * 100);",
         "outputs": 1,
         "noerr": 0,
         "initialize": "// Der Code hier wird ausgeführt,\n// wenn der Node gestartet wird\ncontext.set(\"num_retrys\", 0);",
@@ -3286,6 +3308,52 @@
         "x": 1135,
         "y": 840,
         "wires": []
+    },
+    {
+        "id": "b99b6ab5ac056132",
+        "type": "function",
+        "z": "51164a2570c98448",
+        "name": "initially put tide-setpoints in setpoint",
+        "func": "let sps_status = global.get(\"sps_status\");\nlet setpoint = global.get(\"setpoint\");\nlet tide_a = 700;\nlet tide_b = 700;\n\nif(sps_status !== undefined){\n    if(sps_status[\"TIDE_A\"] !== undefined){\n        tide_a = sps_status[\"TIDE_A\"];\n    }\n    if(sps_status[\"TIDE_B\"] !== undefined){\n        tide_b = sps_status[\"TIDE_B\"];\n    }\n}\n\nsetpoint[\"TIDE_A\"] = tide_a;\nsetpoint[\"TIDE_B\"] = tide_b;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 190,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "13287256999731b6",
+        "type": "inject",
+        "z": "51164a2570c98448",
+        "name": "Init",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 600,
+        "wires": [
+            [
+                "b99b6ab5ac056132"
+            ]
+        ]
     },
     {
         "id": "c97034c6148ec6db",
@@ -4515,7 +4583,7 @@
         "type": "function",
         "z": "fc5cdac23d2176f1",
         "name": "drop queues ?",
-        "func": "sps_status = global.get(\"sps_status\") || {};\nif (sps_status[\"MANUAL_CONTROL\"] == 1){\n    msg.drop = 1;\n    return msg;\n}",
+        "func": "let sps_status = global.get(\"sps_status\") || {};\nif (sps_status[\"MANUAL_CONTROL\"] == 1){\n    msg.drop = 1;\n    msg.payload = \"stop\";\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -5554,8 +5622,8 @@
             "1f70b07a60f6c801",
             "6c4fa33497b49178"
         ],
-        "x": 165,
-        "y": 1500,
+        "x": 155,
+        "y": 1540,
         "wires": [
             [
                 "e947def26aa37353"
@@ -5573,13 +5641,23 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 180,
-        "y": 1540,
+        "x": 170,
+        "y": 1580,
         "wires": [
             [
                 "a0ce7176193b36b8",
                 "f94f9b62a13cc305"
             ]
         ]
+    },
+    {
+        "id": "bcbbcee0b91ce247",
+        "type": "comment",
+        "z": "fc5cdac23d2176f1",
+        "name": "When an auto-tide switch is switched on",
+        "info": "",
+        "x": 170,
+        "y": 1500,
+        "wires": []
     }
 ]
