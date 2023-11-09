@@ -4111,8 +4111,7 @@
         "z": "fc5cdac23d2176f1",
         "name": "lnk_next_step",
         "links": [
-            "f51cef615bd24a8b",
-            "9fb665ca86aeedc4"
+            "f51cef615bd24a8b"
         ],
         "x": 115,
         "y": 940,
@@ -4226,7 +4225,6 @@
         "name": "",
         "mode": "link",
         "links": [
-            "7f2207b1338bfbce",
             "f7619c2e495fa3dd",
             "d7e59c59f3f69cb7"
         ],
