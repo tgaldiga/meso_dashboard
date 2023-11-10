@@ -3219,7 +3219,7 @@
         "type": "function",
         "z": "51164a2570c98448",
         "name": "read_tempSetting_from_sps",
-        "func": "// Values from the sps feedback-registers\nlet sps_status = global.get(\"sps_status\");\n\n// Where manual control writes its settings\nlet setpoint = global.get(\"setpoint\");\n\n// messages for the two tanks\nlet msg_a = {};\nlet msg_b = {};\n\n// for Tank A initialize the setpoint to 14 if sps-data is unavailable\nif(sps_status[\"TEMP_SETPOINT_A\"] === undefined){\n    msg_a = {\n        \"payload\": 14,\n        \"topic\": \"TEMP_SETPOINT_A\",\n        \"retry\": false\n    }\n    node.send(msg_a);\n}\n// otherwise initialize with the value from the sps\nelse{\n    msg_a.payload = Number((sps_status[\"TEMP_SETPOINT_A\"] / 100).toFixed(2));\n    if(msg_a.payload < 0 || 25 < msg_a.payload){\n        msg_a.payload = 14;\n    }\n    msg_a.topic = \"TEMP_SETPOINT_A\";\n    node.send(msg_a);\n}\n\n// for Tank B initialize the setpoint to 14 if sps-data is unavailable\nif (sps_status[\"TEMP_SETPOINT_B\"] === undefined) {\n    msg_b = {\n        \"payload\": 14,\n        \"topic\": \"TEMP_SETPOINT_B\",\n        \"retry\": false\n    }\n    node.send(msg_b);\n}\n// otherwise initialize with the value from the sps\nelse {\n    msg_b.payload = Number((sps_status[\"TEMP_SETPOINT_B\"] / 100).toFixed(2));\n    if (msg_b.payload < 0 || 25 < msg_b.payload) {\n        msg_b.payload = 14;\n    }\n    msg_b.topic = \"TEMP_SETPOINT_B\";\n    node.send(msg_b);\n}\n\n// also write to setpoint to be able to send the whole setpoint on the modbus in one sequence\nsetpoint[\"TEMP_SETPOINT_A\"] = Math.trunc(msg_a.payload * 100);\nsetpoint[\"TEMP_SETPOINT_B\"] = Math.trunc(msg_b.payload * 100);",
+        "func": "// Values from the sps feedback-registers\nlet sps_status = global.get(\"sps_status\");\n\n// Where manual control writes its settings\nlet setpoint = global.get(\"setpoint\");\n\n// messages for the two tanks\nlet msg_a = {};\nlet msg_b = {};\n\n// for Tank A initialize the setpoint to 12 if sps-data is unavailable\nif(sps_status === undefined || sps_status[\"TEMP_SETPOINT_A\"] === undefined){\n    msg_a = {\n        \"payload\": 12,\n        \"topic\": \"TEMP_SETPOINT_A\",\n        \"retry\": false\n    }\n    node.send(msg_a);\n}\n// otherwise initialize with the value from the sps\nelse{\n    msg_a.payload = Number((sps_status[\"TEMP_SETPOINT_A\"] / 100).toFixed(2));\n    if(msg_a.payload < 0 || 25 < msg_a.payload){\n        msg_a.payload = 12;\n    }\n    msg_a.topic = \"TEMP_SETPOINT_A\";\n    node.send(msg_a);\n}\n\n// for Tank B initialize the setpoint to 12 if sps-data is unavailable\nif (sps_status === undefined || sps_status[\"TEMP_SETPOINT_B\"] === undefined) {\n    msg_b = {\n        \"payload\": 12,\n        \"topic\": \"TEMP_SETPOINT_B\",\n        \"retry\": false\n    }\n    node.send(msg_b);\n}\n// otherwise initialize with the value from the sps\nelse {\n    msg_b.payload = Number((sps_status[\"TEMP_SETPOINT_B\"] / 100).toFixed(2));\n    if (msg_b.payload < 0 || 25 < msg_b.payload) {\n        msg_b.payload = 12;\n    }\n    msg_b.topic = \"TEMP_SETPOINT_B\";\n    node.send(msg_b);\n}\n\n// also write to setpoint to be able to send the whole setpoint on the modbus in one sequence\nsetpoint[\"TEMP_SETPOINT_A\"] = Math.trunc(msg_a.payload * 100);\nsetpoint[\"TEMP_SETPOINT_B\"] = Math.trunc(msg_b.payload * 100);",
         "outputs": 1,
         "noerr": 0,
         "initialize": "// Der Code hier wird ausgeführt,\n// wenn der Node gestartet wird\ncontext.set(\"num_retrys\", 0);",
@@ -3497,8 +3497,8 @@
         "y": 140,
         "wires": [
             [
-                "ed899039206fe429",
-                "33fa39c940f3996c"
+                "33fa39c940f3996c",
+                "84a1aaa0b14346e7"
             ]
         ]
     },
@@ -4145,7 +4145,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 760,
+        "x": 1020,
         "y": 140,
         "wires": [
             [
@@ -4207,7 +4207,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1000,
+        "x": 1260,
         "y": 140,
         "wires": [
             [
@@ -4228,7 +4228,7 @@
             "f7619c2e495fa3dd",
             "d7e59c59f3f69cb7"
         ],
-        "x": 1145,
+        "x": 1405,
         "y": 160,
         "wires": []
     },
@@ -4242,7 +4242,7 @@
             "89e47bb21ad728ec",
             "f7619c2e495fa3dd"
         ],
-        "x": 1145,
+        "x": 1405,
         "y": 120,
         "wires": []
     },
@@ -4455,7 +4455,7 @@
         "y": 100,
         "wires": [
             [
-                "ed899039206fe429"
+                "363cd809445daa48"
             ]
         ]
     },
@@ -4805,8 +4805,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 550,
-        "y": 180,
+        "x": 470,
+        "y": 220,
         "wires": [
             []
         ]
@@ -4951,7 +4951,7 @@
         "customDelayValue": "",
         "preserveCtrlProps": false,
         "ignoreCtrlProps": false,
-        "x": 530,
+        "x": 790,
         "y": 140,
         "wires": [
             [
@@ -5079,7 +5079,7 @@
         "type": "function",
         "z": "fc5cdac23d2176f1",
         "name": "set global remaining time",
-        "func": "let remaining_time = String(msg.payload);\nremaining_time = remaining_time.substring(remaining_time.length - 5);\nglobal.set(\"remaining_time\", remaining_time);\nmsg.payload = remaining_time;\nreturn msg;",
+        "func": "let remaining_time = String(msg.payload);\nif(remaining_time === \"stopped\"){\n    // don't update the remaining update\n    return msg;\n}\nremaining_time = remaining_time.substring(remaining_time.length - 5);\nglobal.set(\"remaining_time\", remaining_time);\nmsg.payload = remaining_time;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -5776,6 +5776,116 @@
         "wires": [
             [
                 "d923a6e6f63b479f"
+            ]
+        ]
+    },
+    {
+        "id": "363cd809445daa48",
+        "type": "switch",
+        "z": "fc5cdac23d2176f1",
+        "name": "Manual-Control confirmed?",
+        "property": "sps_status[\"MANUAL_CONTROL\"]",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 500,
+        "y": 100,
+        "wires": [
+            [
+                "ed899039206fe429"
+            ],
+            [
+                "ecaf1d6764d5f570"
+            ]
+        ]
+    },
+    {
+        "id": "ecaf1d6764d5f570",
+        "type": "delay",
+        "z": "fc5cdac23d2176f1",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 460,
+        "y": 60,
+        "wires": [
+            [
+                "363cd809445daa48"
+            ]
+        ]
+    },
+    {
+        "id": "84a1aaa0b14346e7",
+        "type": "switch",
+        "z": "fc5cdac23d2176f1",
+        "name": "sps_status exists?",
+        "property": "sps_status",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 470,
+        "y": 140,
+        "wires": [
+            [
+                "ed899039206fe429"
+            ],
+            [
+                "cd452742b698e497"
+            ]
+        ]
+    },
+    {
+        "id": "cd452742b698e497",
+        "type": "delay",
+        "z": "fc5cdac23d2176f1",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 460,
+        "y": 180,
+        "wires": [
+            [
+                "84a1aaa0b14346e7"
             ]
         ]
     }
