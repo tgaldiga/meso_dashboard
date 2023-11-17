@@ -1554,7 +1554,8 @@
         "y": 1440,
         "wires": [
             [
-                "c0b95e498e864c46"
+                "c0b95e498e864c46",
+                "3aaacf7f1b3f7c84"
             ]
         ]
     },
@@ -1751,7 +1752,8 @@
         "y": 1600,
         "wires": [
             [
-                "a42761283499bbd8"
+                "a42761283499bbd8",
+                "6939fba669c133d9"
             ]
         ]
     },
@@ -3356,6 +3358,83 @@
         ]
     },
     {
+        "id": "6939fba669c133d9",
+        "type": "rbe",
+        "z": "51164a2570c98448",
+        "name": "LAST_STEP_NUMBER Change",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": false,
+        "property": "payload[\"LAST_STEP_NUMBER\"]",
+        "topi": "topic",
+        "x": 810,
+        "y": 1640,
+        "wires": [
+            [
+                "d48bafbfde362c9e"
+            ]
+        ]
+    },
+    {
+        "id": "d48bafbfde362c9e",
+        "type": "function",
+        "z": "51164a2570c98448",
+        "name": "send LAST_STEP_NUMBER to influx",
+        "func": "if(msg.payload != undefined && msg.payload[\"LAST_STEP_NUMBER\"] != undefined){\n    let step_number = msg.payload[\"LAST_STEP_NUMBER\"];\n    msg.payload = [{\"last_step_number\": Number(step_number)}];\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1150,
+        "y": 1640,
+        "wires": [
+            [
+                "7264e7b1607e1bf4"
+            ]
+        ]
+    },
+    {
+        "id": "7264e7b1607e1bf4",
+        "type": "influxdb out",
+        "z": "51164a2570c98448",
+        "d": true,
+        "influxdb": "4f8c459b44a5d8b2",
+        "name": "Tank_Pair_1",
+        "measurement": "Tank_Pair_1",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "s",
+        "retentionPolicyV18Flux": "",
+        "org": "Coastal_Ecology",
+        "bucket": "meso",
+        "x": 1410,
+        "y": 1640,
+        "wires": []
+    },
+    {
+        "id": "3aaacf7f1b3f7c84",
+        "type": "function",
+        "z": "51164a2570c98448",
+        "name": "send MANUAL_CONTROL to influx",
+        "func": "let manual_control = Number(msg.payload);\nmsg.payload = [{\"manual_control\": manual_control}];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 1480,
+        "wires": [
+            [
+                "7264e7b1607e1bf4"
+            ]
+        ]
+    },
+    {
         "id": "c97034c6148ec6db",
         "type": "inject",
         "z": "fc5cdac23d2176f1",
@@ -4286,8 +4365,8 @@
         "links": [
             "f3de6e2c8a782af4"
         ],
-        "x": 1615,
-        "y": 280,
+        "x": 1435,
+        "y": 340,
         "wires": []
     },
     {
@@ -4922,8 +5001,8 @@
         "customDelayValue": "",
         "preserveCtrlProps": false,
         "ignoreCtrlProps": false,
-        "x": 1490,
-        "y": 260,
+        "x": 1280,
+        "y": 340,
         "wires": [
             [
                 "5b3f560b24fb5f9d"
@@ -5238,7 +5317,7 @@
         "type": "function",
         "z": "fc5cdac23d2176f1",
         "name": "get values tank_b",
-        "func": "let sps_status = global.get(\"sps_status\");\nmsg.payload =\n[\n    {\n        \"set_temperature\": sps_status[\"TEMP_SETPOINT_B\"]/100,\n        \"set_heat\": sps_status[\"HEAT_A\"],\n        \"set_cool\": sps_status[\"COOL_A\"],\n        \"set_tide\": global.get(\"setpoint_tide_b\")/10\n    }\n];\nreturn msg;",
+        "func": "let sps_status = global.get(\"sps_status\");\nmsg.payload =\n[\n    {\n        \"set_temperature\": sps_status[\"TEMP_SETPOINT_B\"]/100,\n        \"set_heat\": sps_status[\"HEAT_B\"],\n        \"set_cool\": sps_status[\"COOL_B\"],\n        \"set_tide\": global.get(\"setpoint_tide_b\")/10\n    }\n];\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -5624,7 +5703,8 @@
         "y": 1540,
         "wires": [
             [
-                "e947def26aa37353"
+                "e947def26aa37353",
+                "acb22c58bc0b807e"
             ]
         ]
     },
@@ -5886,6 +5966,58 @@
         "wires": [
             [
                 "84a1aaa0b14346e7"
+            ]
+        ]
+    },
+    {
+        "id": "acb22c58bc0b807e",
+        "type": "function",
+        "z": "fc5cdac23d2176f1",
+        "name": "send auto_tide_setting to influx",
+        "func": "msg.payload = [{\"auto_tide_setting\": Number(msg.payload)}];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 1540,
+        "wires": [
+            [
+                "4255240b7154826f"
+            ]
+        ]
+    },
+    {
+        "id": "4255240b7154826f",
+        "type": "switch",
+        "z": "fc5cdac23d2176f1",
+        "name": "auto_tide a or b",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "AUTO_TIDE_A",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "AUTO_TIDE_B",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 620,
+        "y": 1540,
+        "wires": [
+            [
+                "d5f6f6a520e151a7"
+            ],
+            [
+                "5ba5a56fdb6075b7"
             ]
         ]
     }
