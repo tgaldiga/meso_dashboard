@@ -192,35 +192,6 @@
         "className": ""
     },
     {
-        "id": "05b0d24399880199",
-        "type": "modbus-client",
-        "name": "Modbus Testing",
-        "clienttype": "tcp",
-        "bufferCommands": true,
-        "stateLogEnabled": false,
-        "queueLogEnabled": false,
-        "failureLogEnabled": true,
-        "tcpHost": "host.docker.internal",
-        "tcpPort": "5020",
-        "tcpType": "DEFAULT",
-        "serialPort": "/dev/ttyUSB",
-        "serialType": "RTU-BUFFERD",
-        "serialBaudrate": "9600",
-        "serialDatabits": "8",
-        "serialStopbits": "1",
-        "serialParity": "none",
-        "serialConnectionDelay": "100",
-        "serialAsciiResponseStartDelimiter": "0x3A",
-        "unit_id": "1",
-        "commandDelay": "1",
-        "clientTimeout": "1000",
-        "reconnectOnTimeout": true,
-        "reconnectTimeout": "2000",
-        "parallelUnitIdsAllowed": true,
-        "showWarnings": true,
-        "showLogs": true
-    },
-    {
         "id": "b40a2a194a7a82cc",
         "type": "influxdb",
         "hostname": "127.0.0.1",
@@ -233,20 +204,6 @@
         "influxdbVersion": "2.0",
         "url": "http://134.1.7.48:8086",
         "rejectUnauthorized": false
-    },
-    {
-        "id": "4f8c459b44a5d8b2",
-        "type": "influxdb",
-        "hostname": "127.0.0.1",
-        "port": "8086",
-        "protocol": "http",
-        "database": "database",
-        "name": "Influx Testing",
-        "usetls": false,
-        "tls": "",
-        "influxdbVersion": "2.0",
-        "url": "http://host.docker.internal:8086",
-        "rejectUnauthorized": true
     },
     {
         "id": "0ab261c97d9d1a92",
@@ -3473,7 +3430,7 @@
         "type": "debug",
         "z": "51164a2570c98448",
         "name": "debug 2",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -4953,7 +4910,8 @@
                 "2066002b416a0366",
                 "12b9e67a749befdc",
                 "f94f9b62a13cc305",
-                "f2c18f8e19ce0b18"
+                "f2c18f8e19ce0b18",
+                "419ef7a0a151eacc"
             ]
         ]
     },
@@ -6157,7 +6115,7 @@
         "senderr": false,
         "headers": [],
         "x": 450,
-        "y": 1700,
+        "y": 1720,
         "wires": [
             [
                 "389363deb06d663a"
@@ -6176,8 +6134,52 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 690,
-        "y": 1700,
+        "x": 650,
+        "y": 1720,
+        "wires": [
+            [
+                "bbf6b010d0fa93b8"
+            ]
+        ]
+    },
+    {
+        "id": "419ef7a0a151eacc",
+        "type": "http request",
+        "z": "fc5cdac23d2176f1",
+        "name": "Pegelonline SeaTemp List",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://www.pegelonline.wsv.de/webservices/rest-api/v2/stations/LIST%20AUF%20SYLT/WT/currentmeasurement.json",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 430,
+        "y": 1660,
+        "wires": [
+            [
+                "bc5b1604ed0f327c"
+            ]
+        ]
+    },
+    {
+        "id": "bc5b1604ed0f327c",
+        "type": "function",
+        "z": "fc5cdac23d2176f1",
+        "name": "Get latest seawater temp",
+        "func": "let watertemperature = Number(msg.payload[\"value\"]);\n//check if we got a value\nif (watertemperature > -20 && watertemperature < 50){\n    msg.payload = [{\"seawater_temperature\": watertemperature}];\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 1660,
         "wires": [
             [
                 "bbf6b010d0fa93b8"
